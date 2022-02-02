@@ -6,3 +6,4 @@ Códigos Python:
 
 Caract_UG:
 	Caracterizacion de cascadas hacia arriba. Gráficas de desarrollos longitudinales variando altura, ángulo y energía del primario
+	Por ahora graficas frente a Xv, para electrones y muones

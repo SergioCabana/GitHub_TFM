@@ -76,6 +76,20 @@ def htogcm2(h):
     
     else:
         return t1(h, params[0])
+    
+def Long(h, theta):
+    ''' Convierte la altura h (km) de un punto del eje de la cascada a la 
+        distancia en km medida a lo largo del eje de dicho punto
+        hasta el nivel del suelo
+        
+        theta es el angulo cenital de la cascada a nivel del suelo
+    '''
+    
+    RT = 6.3781e3 # radio de la tierra en km
+    
+    d  = np.sqrt((RT+h)**2-RT**2*np.sin(theta)**2)-RT*np.cos(theta)
+    
+    return d
 
 
 def CherenkovRing(Xmax, ground, theta, UseSlant = True):
@@ -169,7 +183,7 @@ def readfile(filename):
 
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
             xlims = [], ylims=[], legend = True, cols = 1, omitextra=False, \
-            UG = False, slant = False):
+            UG = False, slant = False, DistAlongAxis = False, ang=[]):
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
@@ -214,27 +228,33 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
             extra = ['']
     
         omitextra = True si se quiere que los extras no aparezcan en las leyendas
-    
-        UG = True si tenemos datos upgoing
-        
-        slant = True si tenemos profundidad slanted en el eje x
         
         cols -> columnas de la leyenda
+    
+        UG = True si tenemos datos de cascadas upgoing, con Xv
+        
+        slant = True si tenemos datos slanted en el eje x
+        
+        DistAlongAxis = True transforma los valores de X_v en eje x a distancia
+            en km a lo largo del eje (solo upgoing). Incompatible con datos slanted.
+            Necesita que se den los angulos cenitales asociados a cada grafico
+            en 'ang'
+
     '''
-    ext_LD  = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
-    ext_ELD = [500+ext for ext in ext_LD]
+    ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
+    ext_ELD  = [500+ext for ext in ext_LD]
     ext_LatD = [1000+ext for ext in ext_LD]
-    ext_EDG = [1500+ext for ext in ext_LD]
+    ext_EDG  = [1500+ext for ext in ext_LD]
 
     ext = [ ['.t'+str(numero) for numero in lista] for lista in [ext_LD, ext_ELD, ext_LatD, ext_EDG] ]
 
 
-    lbl = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'All chgd. pcles.', 'All pcles.']
-    xlabels = [r'$X_v$ (g/cm2)', r'$X_v$ (g/cm2)', 'Distance to core (m)', 'E (GeV)']
-    ylabels = ['N', 'E (GeV)', 'N', 'N']
+    lbl     = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'All chgd. pcles.', 'All pcles.']
+    xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]']
+    ylabels = ['N', 'E [GeV]', 'N', 'N']
     
     fig = plt.figure()
-    ax = fig.add_subplot(111)
+    ax  = fig.add_subplot(111)
     plt.xticks(fontsize = 12)
     plt.yticks(fontsize = 12)
     
@@ -260,17 +280,27 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 orden.append(serie) # solo para que la leyenda salga en el orden de extras
                 
     data = orden        
-
+    
+    angle_index = 0
+    
     for file, p, extra in data:
         values, grd = readfile(file)
         
         xvalues = values[:,0]
         yvalues = values[:,1]
         
-        if UG and slant:
-            if graf == 0 or graf == 1: # depth in x axis
+        if graf == 0 or graf == 1: # depth in x axis
+            if DistAlongAxis:
+                if not UG or slant:
+                    raise TypeError('DistAlongAxis trabaja con datos Xv originales, solo UG')
+                else:
+                    xvalues = [Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
+                    angle_index += 1
+                    
+                    
+            elif UG and slant:
                 xvalues = grd - xvalues # depth traversed in upward direction
-            
+                
         if extra == '' or omitextra:
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
         else:
@@ -281,15 +311,16 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
         
-    if slant and UG:
-        if graf == 0 or graf == 1: # depth in x axis
-            ax.set_xlabel(r'$X_s$ (g/cm2) (upward)')
-    elif slant:
-        if graf == 0 or graf == 1: # depth in x axis
-            ax.set_xlabel(r'$X_s$ (g/cm2)')
-    elif UG:
-        ax.invert_xaxis()
-               
+    if graf == 0 or graf == 1: # depth in x axis
+        if DistAlongAxis:
+            ax.set_xlabel(r'Dist. along axis (upward) [km]')
+        elif UG and slant:
+            ax.set_xlabel(r'$X_s$ (upward) [$g/cm^2$]')
+        elif slant:
+            ax.set_xlabel(r'$X_s$ [$g/cm^2$]')
+        elif UG:
+            ax.invert_xaxis()
+              
     if legend:
         ax.legend(loc = 'best', prop={'size':12}, ncol = cols, fancybox = True)
     if len(xlims)>0:
@@ -354,9 +385,9 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     
     plot_maxs_vs_coords = all([g>10 for g in graphs])
     
-    n_ant = int(max(data_time[1])) #numero de antenas
+    n_ant               = int(max(data_time[1])) #numero de antenas
     
-    ant_coord = [] # aqui guardamos las coordenadas de las antenas
+    ant_coord           = [] # aqui guardamos las coordenadas de las antenas
     
     i_ant = []
     for i in range(n_ant):
@@ -397,12 +428,13 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     
     
     fig = plt.figure()
-    ax = fig.add_subplot(111)
+    ax  = fig.add_subplot(111)
     plt.xticks(fontsize = 12)
     plt.yticks(fontsize = 12)
+    
     magnitudes = [r'$A$ (V/m)', r'$A_x$ (V/m)', r'$A_y$ (V/m)', r'$A_z$ (V/m)', r'$E$ (V/m)', r'$E_x$ (V/m)', r'$E_y$ (V/m)', r'$E_z$ (V/m)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
-    labels = []
+    labels     = []
     
     if plot_maxs_vs_coords:
         if all([((g%10-1)-(graphs[0]%10-1))==0 for g in graphs]):
@@ -500,11 +532,12 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     if plot_maxs_vs_coords and len(freq)!=len(graphs):
         raise TypeError('Indica la frecuencia en TODAS las graficas que quieras')
     
-    n_ant = int(max(data_time[1])) #numero de antenas
+    n_ant     = int(max(data_time[1])) #numero de antenas
     
     ant_coord = [] # aqui guardamos las coordenadas de las antenas
     
-    i_ant = []
+    i_ant     = []
+    
     for i in range(n_ant):
         index = list(data_time[1]).index(i+1)
         i_ant.append(index)
@@ -531,7 +564,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         
         for g, ant, f in list(zip(graphs, antenas, freq)):
             coord = g // 10 -1
-            g = g % 10
+            g     = g % 10
             for frecuencia in f:
                 x = np.array([ant_coord[a-1][coord] for a in ant])
                 y = np.array([data_time[int(5+g)][i_ant[a-1]+frecuencia] for a in ant])
@@ -548,7 +581,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     
     
     fig = plt.figure()
-    ax = fig.add_subplot(111)
+    ax  = fig.add_subplot(111)
     plt.xticks(fontsize = 12)
     plt.yticks(fontsize = 12)
     magnitudes = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
@@ -597,7 +630,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         
     return fig
 
-##########################################################################################
+################################# EJEMPLOS Aires_Plot ##################################
 
 # rootdir = 'Carac_UG'
 # graf  = 0
@@ -607,7 +640,21 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 
 # Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', cols=1, UG = True, slant=True)
 
-###########################################################################################
+# ---------------------------------------------------------------------------------------
+
+# rootdir = 'Carac_UG'
+# graf  = 0
+# pcles = [2]
+# const = ['1EeV', '5km', 'Xv']
+# extras = ['95deg', '100deg', '105deg', '110deg', '115deg', '120deg', '125deg', '130deg']
+# xlim=[0, 500]
+# #como voy a usar DistAlongAxis, necesito dar angulos en el orden que se van haciendo las graficas
+
+# thetas = [(85-5*i)*np.pi/180 for i in range(10)] # tengo 10 graficas a 95 grados
+
+# maz.Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', xlims = xlim, cols=2, UG = True, DistAlongAxis=True, ang=thetas)
+
+################################## Ejemplos ZHAireS_plot_t #######################################
 
 # rootdir = 'Graph_paperANITA'
 
@@ -619,7 +666,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 
 # ZHAireS_Plot_t(graphs, antenas, file)
 
-###########################################################################################
+################################## Ejemplos ZHAireS_plot_f ###################################
 
 # rootdir = 'Graph_paperANITA'
 # file = rootdir+'/freqfresnel-variousfreqs.dat'

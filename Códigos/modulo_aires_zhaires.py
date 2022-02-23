@@ -181,9 +181,41 @@ def readfile(filename):
     
     return datos[:,1:], ground
 
+def cos_localtheta(height, theta):
+    ''' cosine of zenital angle at height height
+    '''
+    RT = 6370
+    return np.sqrt(1. - (RT**2 * np.sin(theta)**2/(RT+height)**2))
+
+
+def Xs_of_injh(inj_h, theta, step = .001):
+    ''' Returns the (approximate) value of slanted depth, measured along shower axis,
+        of the injection point (height of the first interacion), given the 
+        zenital angle of the upgoing shower and the injectino height in km
+        
+        Default consideration: Xs(h -> infty) = 0, as in Aires
+        
+        step: 
+            Size of height increment. As I don't know the functional form
+            of teh density with h, I approximate the integral
+            
+    Danger when inj_h is very big, depends on htogcm2 function !
+    '''
+    RT = 6370 # Earth radius in km
+    
+    heights = np.arange(0, inj_h+step, step)
+    
+    Xs = 0
+    
+    for i in range(len(heights)-1):
+        Xv_0, Xv_1 = htogcm2(heights[i]), htogcm2(heights[i+1])
+        Xs += (Xv_0-Xv_1)/cos_localtheta(heights[i], theta)
+        
+    return Xs
+
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
-            xlims = [], ylims=[], legend = True, cols = 1, omitextra=False, \
-            UG = False, slant = False, DistAlongAxis = False, ang=[]):
+            xlims = [], ylims=[], legend = True, loc_leg = 'best', cols = 1, omitextra=False, \
+            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = []):
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
@@ -227,18 +259,26 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         Si no se quiere separar, se indica con un string vacio:
             extra = ['']
     
-        omitextra = True si se quiere que los extras no aparezcan en las leyendas
+        omitextra = True 
+            Si se quiere que los extras no aparezcan en las leyendas
         
-        cols -> columnas de la leyenda
+        cols : columnas de la leyenda
     
-        UG = True si tenemos datos de cascadas upgoing, con Xv
+        UG = True 
+            Si tenemos datos de cascadas upgoing, con Xv
         
-        slant = True si tenemos datos slanted en el eje x
+        slant = True
+            Si tenemos datos slanted en el eje x
         
-        DistAlongAxis = True transforma los valores de X_v en eje x a distancia
+        DistAlongAxis = True 
+            Transforma los valores de X_v en eje x a distancia
             en km a lo largo del eje (solo upgoing). Incompatible con datos slanted.
-            Necesita que se den los angulos cenitales asociados a cada grafico
-            en 'ang'
+            
+        Si tenemos DistAlongAxis ó slant, necesitamos dar los angulos cenitales
+        y alturas de inyeccion asociados a cada grafico
+
+        ang   : list angulos cenitales en radianes (relevante para UG slant y DistAlongAxis)
+        inj_h : list Altura de inyeccion en km (relevante para UG slant y DistAlongAxis)
 
     '''
     ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
@@ -281,7 +321,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 
     data = orden        
     
-    angle_index = 0
+    angle_index  = 0
+    h_index = 0
     
     for file, p, extra in data:
         values, grd = readfile(file)
@@ -294,12 +335,14 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 if not UG or slant:
                     raise TypeError('DistAlongAxis trabaja con datos Xv originales, solo UG')
                 else:
-                    xvalues = [Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
-                    angle_index += 1
+                    xvalues = [Long(gcm2toh(xv), ang[angle_index]) - Long(inj_h[h_index], ang[angle_index]) for xv in xvalues]
+                    angle_index  += 1
+                    h_index += 1
                     
                     
             elif UG and slant:
-                xvalues = grd - xvalues # depth traversed in upward direction
+                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index]) - xvalues 
+                # depth traversed in upward direction, starting from first interaction
                 
         if extra == '' or omitextra:
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
@@ -313,16 +356,16 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
     if graf == 0 or graf == 1: # depth in x axis
         if DistAlongAxis:
-            ax.set_xlabel(r'Dist. along axis (upward) [km]')
+            ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
         elif UG and slant:
-            ax.set_xlabel(r'$X_s$ (upward) [$g/cm^2$]')
+            ax.set_xlabel(r'$X_s$ (upward, from first interaction) [$g/cm^2$]')
         elif slant:
             ax.set_xlabel(r'$X_s$ [$g/cm^2$]')
         elif UG:
             ax.invert_xaxis()
               
     if legend:
-        ax.legend(loc = 'best', prop={'size':12}, ncol = cols, fancybox = True)
+        ax.legend(loc = loc_leg, prop={'size':12}, ncol = cols, fancybox = True)
     if len(xlims)>0:
         ax.set_xlim(xlims)
     if len(ylims)>0:

@@ -16,3 +16,10 @@ Caract_UG:
 	Añadidas graficas de desarrollos longitudinales de e, mu en funcion de la distancia a lo largo del eje (km) en Caract_UG
 	Nueva funcion en modulo_aires_zhaires: Long(h, theta), para la altura h de un pto. de la cascada a angulo theta calcula la 
 		longitud medida a lo largo del eje
+
+23/2/2022:
+	Nuevas graficas de desarrollos longitudinales de e, mu cambiando escalas
+	Novedad: Graficas de desarrollo longitudinal vs distancia (Xs) a lo largo del eje ahora desde el pto. de primera 
+		interaccion. Comportamiento diferente (más razonable, ?)
+	
+	modulo_aires_zhaires: opcion de calcular distancia a lo largo del eje desde altura de inyeccion. Algunas funciones nuevas.

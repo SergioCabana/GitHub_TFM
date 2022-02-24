@@ -188,22 +188,26 @@ def cos_localtheta(height, theta):
     return np.sqrt(1. - (RT**2 * np.sin(theta)**2/(RT+height)**2))
 
 
-def Xs_of_injh(inj_h, theta, step = .001):
+def Xs_of_injh(inj_h, theta, step = .005):
     ''' Returns the (approximate) value of slanted depth, measured along shower axis,
         of the injection point (height of the first interacion), given the 
-        zenital angle of the upgoing shower and the injectino height in km
+        zenital angle of the upgoing shower and the injection height in km
         
         Default consideration: Xs(h -> infty) = 0, as in Aires
         
         step: 
             Size of height increment. As I don't know the functional form
-            of teh density with h, I approximate the integral
+            of the density with h, I approximate the integral
             
-    Danger when inj_h is very big, depends on htogcm2 function !
+            Danger when inj_h is very big, depends on htogcm2 function !
+            if h > 112.8 km, then Xv = 0
     '''
+    if inj_h > 112.8:
+        raise TypeError('Height cannot be more than 112.8 km')
+        
     RT = 6370 # Earth radius in km
     
-    heights = np.arange(0, inj_h+step, step)
+    heights = np.arange(inj_h, 112.8, step)
     
     Xs = 0
     
@@ -674,15 +678,6 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     return fig
 
 ################################# EJEMPLOS Aires_Plot ##################################
-
-# rootdir = 'Carac_UG'
-# graf  = 0
-# pcles = [3]
-# const = ['5km', '95deg', 'Xs']
-# extras = ['1PeV', '10PeV', '100PeV', '1EeV', '10EeV']
-
-# Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', cols=1, UG = True, slant=True)
-
 # ---------------------------------------------------------------------------------------
 
 # rootdir = 'Carac_UG'
@@ -691,11 +686,31 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 # const = ['1EeV', '5km', 'Xv']
 # extras = ['95deg', '100deg', '105deg', '110deg', '115deg', '120deg', '125deg', '130deg']
 # xlim=[0, 500]
-# #como voy a usar DistAlongAxis, necesito dar angulos en el orden que se van haciendo las graficas
+# #como voy a usar DistAlongAxis, necesito dar angulos y inj_h en el orden que se van haciendo las graficas
 
 # thetas = [(85-5*i)*np.pi/180 for i in range(10)] # tengo 10 graficas a 95 grados
+# inj_h = [5 for _ in range(10)]
 
-# maz.Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', xlims = xlim, cols=2, UG = True, DistAlongAxis=True, ang=thetas)
+# maz.Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', xlims = xlim, cols=2, \
+#                UG = True, DistAlongAxis=True, ang=thetas, inj_h = inj_h)
+
+# -------------------------------------------------------------------------------
+
+# rootdir = 'Carac_UG'
+# graf  = 0
+# pcles = [2]
+# const = ['1EeV', '5km', 'Xs']
+# extras = ['95deg', '100deg', '105deg', '110deg', '115deg', '120deg', '125deg', '130deg']
+# xlim=[0, 500]
+# #como voy a usar slant, necesito dar angulos en el orden que se van haciendo las graficas
+
+# thetas = [(85-5*i)*np.pi/180 for i in range(10)] # tengo 10 graficas a 95 grados
+# inj_h = [5 for _ in range(10)]
+
+# maz.Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', xlims = xlim, cols=2, 
+#               UG = True, slant=True, ang=thetas)
+
+# -------------------------------------------------------------------------------
 
 ################################## Ejemplos ZHAireS_plot_t #######################################
 

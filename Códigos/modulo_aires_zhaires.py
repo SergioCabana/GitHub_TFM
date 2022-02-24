@@ -211,7 +211,7 @@ def Xs_of_injh(inj_h, theta, step):
     
     for i in range(len(heights)-1):
         Xv_0, Xv_1 = htogcm2(heights[i]), htogcm2(heights[i+1])
-        Xs += (Xv_0-Xv_1)/cos_localtheta(heights[i], theta)
+        Xs += (Xv_0-Xv_1)/cos_localtheta(heights[i+1], theta)
         
     return Xs
 

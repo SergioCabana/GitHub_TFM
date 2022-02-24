@@ -347,6 +347,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
             elif UG and slant:
                 xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues 
                 # depth traversed in upward direction, starting from first interaction
+                angle_index  += 1
+                h_index += 1
                 
         if extra == '' or omitextra:
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
@@ -708,7 +710,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 # inj_h = [5 for _ in range(10)]
 
 # maz.Aires_Plot(graf, pcles, rootdir, const, extras, yscale='log', xlims = xlim, cols=2, 
-#               UG = True, slant=True, ang=thetas)
+#               UG = True, slant=True, ang=thetas, inj_h = inj_h)
 
 # -------------------------------------------------------------------------------
 

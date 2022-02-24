@@ -188,7 +188,7 @@ def cos_localtheta(height, theta):
     return np.sqrt(1. - (RT**2 * np.sin(theta)**2/(RT+height)**2))
 
 
-def Xs_of_injh(inj_h, theta, step = .005):
+def Xs_of_injh(inj_h, theta, step):
     ''' Returns the (approximate) value of slanted depth, measured along shower axis,
         of the injection point (height of the first interacion), given the 
         zenital angle of the upgoing shower and the injection height in km
@@ -204,10 +204,8 @@ def Xs_of_injh(inj_h, theta, step = .005):
     '''
     if inj_h > 112.8:
         raise TypeError('Height cannot be more than 112.8 km')
-        
-    RT = 6370 # Earth radius in km
     
-    heights = np.arange(inj_h, 112.8, step)
+    heights = np.arange(inj_h, 112.8+step, step)
     
     Xs = 0
     
@@ -219,7 +217,7 @@ def Xs_of_injh(inj_h, theta, step = .005):
 
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
             xlims = [], ylims=[], legend = True, loc_leg = 'best', cols = 1, omitextra=False, \
-            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = []):
+            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = [], step = .005):
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
@@ -283,7 +281,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
 
         ang   : list angulos cenitales en radianes (relevante para UG slant y DistAlongAxis)
         inj_h : list Altura de inyeccion en km (relevante para UG slant y DistAlongAxis)
-
+        
+        
+        step: paso de integracion usado en Xs_of_injh
     '''
     ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
     ext_ELD  = [500+ext for ext in ext_LD]
@@ -345,7 +345,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                     
                     
             elif UG and slant:
-                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index]) - xvalues 
+                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues 
                 # depth traversed in upward direction, starting from first interaction
                 
         if extra == '' or omitextra:

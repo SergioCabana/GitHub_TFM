@@ -217,7 +217,8 @@ def Xs_of_injh(inj_h, theta, step):
 
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
             xlims = [], ylims=[], legend = True, loc_leg = 'best', cols = 1, omitextra=False, \
-            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = [], step = .005):
+            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = [], step = .005, \
+            export_graph = False):
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
@@ -260,6 +261,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     
         Si no se quiere separar, se indica con un string vacio:
             extra = ['']
+            
+        Con minotacion de archivos, para separar por particula primaria hay que
+        indicarlo como _p_ por ejemplo
     
         omitextra = True 
             Si se quiere que los extras no aparezcan en las leyendas
@@ -284,6 +288,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
         
         step: paso de integracion usado en Xs_of_injh
+        
+        export_graph: devuelve lista de valores a graficar
+            [[label, valx, valy], ...]
     '''
     ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
     ext_ELD  = [500+ext for ext in ext_LD]
@@ -302,8 +309,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     plt.xticks(fontsize = 12)
     plt.yticks(fontsize = 12)
     
-    
-    data = []
+    export = []
+    data   = []
 
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:
@@ -352,9 +359,14 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 
         if extra == '' or omitextra:
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
+            export.append([lbl[p], xvalues, yvalues])
+            
         else:
+            extra = extra[1:-1] if extra.startswith('_') and extra.endswith('_') else extra
+            # esta linea es solo por si tenemos un extra particula, que se da como _p_
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
-        
+            export.append([lbl[p]+', '+extra, xvalues, yvalues])
+            
     ax.set_xlabel(xlabels[graf], size = 12)
     ax.set_ylabel(ylabels[graf], size = 12) 
     ax.set_xscale(xscale)
@@ -376,6 +388,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         ax.set_xlim(xlims)
     if len(ylims)>0:
         ax.set_ylim(ylims)
+    
+    if export_graph:
+        return export, fig
     
     return fig
 

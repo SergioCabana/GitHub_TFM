@@ -341,6 +341,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         xvalues = values[:,0]
         yvalues = values[:,1]
         
+        
+        
+        
         if graf == 0 or graf == 1: # depth in x axis
             if DistAlongAxis:
                 if not UG or slant:
@@ -354,6 +357,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
             elif UG and slant:
                 xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues 
                 # depth traversed in upward direction, starting from first interaction
+                # consistency check
+                print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))
                 angle_index  += 1
                 h_index += 1
                 
@@ -362,8 +367,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
             export.append([lbl[p], xvalues, yvalues])
             
         else:
-            extra = extra[1:-1] if extra.startswith('_') and extra.endswith('_') else extra
-            # esta linea es solo por si tenemos un extra particula, que se da como _p_
+            extra = 'Primary $'+extra[1:-1]+'$' if extra.startswith('_') and extra.endswith('_') else extra
+            # esta linea es solo por si tenemos un extra particula, que se da como _p_ con mi notacion
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
             export.append([lbl[p]+', '+extra, xvalues, yvalues])
             

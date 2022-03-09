@@ -30,7 +30,7 @@ Programas en Python para tratamiento de datos, graficas y geometria de cascadas:
 
 Documento: 
 
-Archivo .TeX, .pdf y .bib del TFM
+Archivo .TeX, .pdf y .bib del TFM, y carpeta con graficos y diagramas
 		
 
 

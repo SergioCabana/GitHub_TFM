@@ -355,7 +355,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                     
                     
             elif UG and slant:
-                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues 
+                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues if inj_h[h_index] != 0 else grd - xvalues
                 # depth traversed in upward direction, starting from first interaction
                 # consistency check
                 print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))

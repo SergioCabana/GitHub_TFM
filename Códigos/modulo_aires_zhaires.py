@@ -217,8 +217,8 @@ def Xs_of_injh(inj_h, theta, step):
 
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
             xlims = [], ylims=[], legend = True, loc_leg = 'best', cols = 1, omitextra=False, \
-            UG = False, slant = False, DistAlongAxis = False, ang=[], inj_h = [], step = .005, \
-            export_graph = False):
+            UG = False, slant = False, DistAlongAxis = False, firstin = True, \
+            ang=[], inj_h = [], step = .005, export_graph = False):
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
@@ -279,6 +279,9 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         DistAlongAxis = True 
             Transforma los valores de X_v en eje x a distancia
             en km a lo largo del eje (solo upgoing). Incompatible con datos slanted.
+            
+        firstin: Las distancias y profundidades slanted se miden desde la primera
+            interaccion (altura de inyeccion)
             
         Si tenemos DistAlongAxis ó slant, necesitamos dar los angulos cenitales
         y alturas de inyeccion asociados a cada grafico
@@ -349,13 +352,19 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 if not UG or slant:
                     raise TypeError('DistAlongAxis trabaja con datos Xv originales, solo UG')
                 else:
-                    xvalues = [Long(gcm2toh(xv), ang[angle_index]) - Long(inj_h[h_index], ang[angle_index]) for xv in xvalues]
+                    if firstin:
+                        xvalues = [Long(gcm2toh(xv), ang[angle_index]) - Long(inj_h[h_index], ang[angle_index]) for xv in xvalues]
+                    else: 
+                        xvalues = [Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
                     angle_index  += 1
                     h_index += 1
                     
                     
             elif UG and slant:
-                xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues if inj_h[h_index] != 0 else grd - xvalues
+                if firstin:
+                    xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues if inj_h[h_index] != 0  else grd - xvalues
+                else:
+                    xvalues = grd - xvalues
                 # depth traversed in upward direction, starting from first interaction
                 # consistency check
                 print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))
@@ -379,9 +388,15 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
     if graf == 0 or graf == 1: # depth in x axis
         if DistAlongAxis:
-            ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
+            if firstin:
+                ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
+            else:
+                ax.set_xlabel(r'Dist. along axis (upward) [km]')
         elif UG and slant:
-            ax.set_xlabel(r'$X_s$ (upward, from first interaction) [$g/cm^2$]')
+            if firstin:
+                ax.set_xlabel(r'$X_s$ (upward, from first interaction) [$g/cm^2$]')
+            else:
+                ax.set_xlabel(r'$X_s$ (upward) [$g/cm^2$]')
         elif slant:
             ax.set_xlabel(r'$X_s$ [$g/cm^2$]')
         elif UG:

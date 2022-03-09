@@ -1,5 +1,6 @@
-README:
-Carac_UG: Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resultados:
+Carac_UG:
+
+Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resultados:
 	
 	Primary p, 1EeV, inyeccion a 5km, variando angulos (95-130 deg) : desarrollo de electrones y muones vs X_v; dist y X_s (desde primera interaccion) 
 	Primary p, 1EeV, 95deg, variando altura de inyeccion(0, 9km)    : desarrollo de electrones y muones vs X_v; dist y X_s (desde grd)
@@ -10,7 +11,10 @@ Carac_UG: Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resul
 
 	Comparativa de desarrollos de electrones y muones vs dist y X_s (desde primera interaccion) segun primario p, e. E=1EeV, h=0km para 100 y 120 deg
 
-Codigos: Programas en Python para tratamiento de datos, graficas y geometria de cascadas:
+Codigos:
+
+Programas en Python para tratamiento de datos, graficas y geometria de cascadas:
+
 	calcring, AntennaPlotter, ParticlePlotter: programas iniciales para calculos del cono Cherenkov y graficas. Integrados en modulo_aires_zhaires
 
 	modulo_aires_zhaires: Incorpora las siguientes funciones:
@@ -24,7 +28,9 @@ Codigos: Programas en Python para tratamiento de datos, graficas y geometria de 
 		ZHAireS_Plot_t   : Graficas de outputs de ZHAireS en dominio temporal
 		ZHAireS_Plot_f   : Graficas de outputs de ZHAireS en dominio de frecuencias
 
-Documento: Archivo .TeX, .pdf y .bib del TFM
+Documento: 
+
+Archivo .TeX, .pdf y .bib del TFM
 		
 
 

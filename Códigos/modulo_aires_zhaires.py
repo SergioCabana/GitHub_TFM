@@ -170,7 +170,7 @@ def readfile(filename):
     
     dataset = []
     for line in lineas:
-        if line[0:5] == '# GRD':
+        if line[0:5] == '# GRD' or line[0:5] == '#  GT':
             ground = line.split()
         elif line[0] != '#':
             dataset += [line.split()]
@@ -222,16 +222,20 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     ''' 
         CADA TIPO DE GRAFICA TIENE UN NUMERO
         
-        Longitudinal Development  = 0
+        Longitudinal Development     = 0
         
-        Energy Long. Development  = 1
+        Energy Long. Development     = 1
         
-        Lateral distribution      = 2
+        Egy depos., Long Development = 2
         
-        Energy distrib. at ground = 3
+        Lateral distribution         = 3
+        
+        Energy distrib. at ground    = 4
+        
+        
         
         CADA PARTICULA TIENE UN NUMERO:
-            
+
         gamma            = 0
         
         p                = 1
@@ -297,15 +301,16 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     '''
     ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
     ext_ELD  = [500+ext for ext in ext_LD]
+    ext_EDLD = [6700+ext for ext in ext_LD]
     ext_LatD = [1000+ext for ext in ext_LD]
     ext_EDG  = [1500+ext for ext in ext_LD]
 
-    ext = [ ['.t'+str(numero) for numero in lista] for lista in [ext_LD, ext_ELD, ext_LatD, ext_EDG] ]
+    ext = [ ['.t'+str(numero) for numero in lista] for lista in [ext_LD, ext_ELD, ext_EDLD, ext_LatD, ext_EDG] ]
 
 
     lbl     = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'All chgd. pcles.', 'All pcles.']
-    xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]']
-    ylabels = ['N', 'E [GeV]', 'N', 'N']
+    xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]']
+    ylabels = ['N', 'E [GeV]', 'E [GeV]', 'N', 'N']
     
     fig = plt.figure()
     ax  = fig.add_subplot(111)
@@ -323,7 +328,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                     for extra in extras:
                         if extra == '' or extra in file:
                             data.append([subdir + os.sep + file, p, extra])
-
+    
+    
     if len(data) != len(extras)*len(pcles):
         raise TypeError('Faltan archivos necesarios para la grafica que se pide')
         
@@ -333,7 +339,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
             if extra in serie:
                 orden.append(serie) # solo para que la leyenda salga en el orden de extras
                 
-    data = orden        
+    data = orden  
+          
     
     angle_index  = 0
     h_index = 0
@@ -345,9 +352,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         yvalues = values[:,1]
         
         
-        
-        
-        if graf == 0 or graf == 1: # depth in x axis
+        if any([graf == i for i in [0,1,2]]): # depth in x axis
             if DistAlongAxis:
                 if not UG or slant:
                     raise TypeError('DistAlongAxis trabaja con datos Xv originales, solo UG')
@@ -386,7 +391,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
         
-    if graf == 0 or graf == 1: # depth in x axis
+    if graf == 0 or graf == 1 or graf == 2: # depth in x axis
         if DistAlongAxis:
             if firstin:
                 ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
@@ -410,9 +415,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         ax.set_ylim(ylims)
     
     if export_graph:
-        return export, fig
-    
-    return fig
+        return export
+
 
 def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlims=[], \
                    ylims = [], legend = True):

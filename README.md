@@ -1,15 +1,20 @@
 Carac_UG:
 
 Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resultados:
+
+	Cascadas con primario p - primera caract:
 	
 	Primary p, E = 1EeV,         h = 5km,      theta = (95-130 deg)  : desarrollo de electrones y muones vs X_v; dist y X_s (desde primera interaccion) 
 	Primary p, E = 1EeV,         h = (0, 9km), theta = 95deg         : desarrollo de electrones y muones vs X_v; dist y X_s (desde grd)
 	Primary p, E = (1PeV-10EeV), h = 5km,      theta = 95deg         : desarrollo de electrones y muones vs X_v, dist y X_s (desde grd)
+	
+	Cascadas con primario p-e, 0km:
 
-	Primary p, E = 1EeV, h = 0km, theta = (95-130deg)   : desarrollo de electrones y muones vs dist y X_s (desde primera interaccion)
-	Primary e, E = 1EeV, h = 0km, theta = (95-130deg)   : desarrollo de electrones y muones vs dist y X_s (desde primera interaccion)
+	Primary p, E = 1EeV, h = 0km, theta = (95-130deg)   : desarrollo de electrones, muones, piones, all chged vs Xv, dist y X_s (desde primera interaccion)
+	Primary e, E = 1EeV, h = 0km, theta = (95-130deg)   : desarrollo de electrones, muones, piones, all chged vs Xv, dist y X_s (desde primera interaccion)
 
-	Primary (p,e), E = 1EeV, h = 0km, theta = (100,120deg)  : desarrollo de electrones y muones vs dist y X_s (desde primera interaccion)
+	Primary (p,e), E = 1EeV, h = 0km, theta = (100,120deg)  : desarrollo de electrones, muones, piones vs dist y X_s (desde primera interaccion)
+	Primary (p,e), E = 1EeV, h = 0km, theta = (100,120deg)  : energia depositada por electrones, muones, all chgd vs dist y X_s (desde primera interaccion)
 
 Codigos:
 

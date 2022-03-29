@@ -30,6 +30,7 @@ Programas en Python para tratamiento de datos, graficas y geometria de cascadas:
 		cos_localtheta   : Coseno del angulo cenital local a una altura h de una cascada a angulo theta
 		Xs_of_injh       : Profundidad slanted de la altura de inyeccion, a lo largo del eje de la cascada (calculo aproximado)
 		Aires_Plot       : Graficas de outputs de Aires
+		plot_shower_dev  : Representacion del desarrollo longitudinal de cascadas. Utiliza outputs de AiresPlot
 		ZHAireS_Plot_t   : Graficas de outputs de ZHAireS en dominio temporal
 		ZHAireS_Plot_f   : Graficas de outputs de ZHAireS en dominio de frecuencias
 

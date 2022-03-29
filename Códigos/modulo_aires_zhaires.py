@@ -3,7 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 import os
 
-mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=['k', 'royalblue', 'r', 'gold', 'limegreen', 'navy', 'crimson', 'turquoise', 'darkorange', 'darkgreen'])
+
+colores = ['k', 'royalblue', 'r', 'gold', 'limegreen', 'navy', 'crimson', 'turquoise', 'darkorange', 'darkgreen']
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=colores)
 
 def gcm2toh(t):
     ''' Transforma profundidad vertical t (g/cm2) a alturas en km
@@ -416,6 +418,57 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     
     if export_graph:
         return export
+    
+def plot_shower_dev(data, thetas, max_height = 100, \
+                    num_scale = 7, sep = 1.2):
+    
+    ''' Grafica del desarrollo de la cascada, (histogramas en angulo simplemente)
+        
+        Parametros:
+            data: output de AiresPlot (export_graph = True)
+            theta: angulos de las cascadas (deg)
+            max_height: limite de altura en la grafica
+            num_scale: orden de magnitud en que medimos numero de particulas (ajustar a mano)
+            sep: separacion entre graficas. Ajustar a mano
+            
+        Las entradas salen de AiresPlot (DistAlongAxis = True, firstin = False)
+            
+    '''
+   
+    plt.figure()
+    plt.yticks(size = 12)
+    n_show = len(data)
+    
+    if len(thetas) != n_show:
+        raise TypeError('Faltan (o sobran) angulos para las cascadas')
+    
+    thetas = [t*np.pi/180 for t in thetas]
+    
+    ang_ind = 0
+    offset = 1
+    
+    for i in range(n_show):
+        d, N = np.array(data[i][1]), np.array(data[i][2])/10**num_scale
+        
+        xpos =  np.cos(-thetas[ang_ind]+np.pi/2)*d-np.sin(-thetas[ang_ind]+np.pi/2)*N
+        ypos =  np.sin(-thetas[ang_ind]+np.pi/2)*d+np.cos(-thetas[ang_ind]+np.pi/2)*N
+        
+        xneg = np.cos(-thetas[ang_ind]+np.pi/2)*d+np.sin(-thetas[ang_ind]+np.pi/2)*N
+        yneg = np.sin(-thetas[ang_ind]+np.pi/2)*d-np.cos(-thetas[ang_ind]+np.pi/2)*N
+        
+        mask = [y > 0 for y in yneg]
+        
+        plt.plot(xpos+offset, ypos, color = colores[i], label = data[i][0])
+        plt.plot(np.array(xneg)+offset, np.array(yneg), color = colores[i])
+        
+        plt.fill(np.append(xpos+offset, xneg[::-1]+offset), np.append(ypos, yneg[::-1]), color = colores[i])
+        offset += sep*max(xpos)
+        ang_ind += 1
+        
+    plt.ylim(0, max_height)
+    plt.ylabel('h [km]', size = 12)
+    plt.xticks([])
+    plt.legend(loc = 'best', fontsize = 12)
 
 
 def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlims=[], \

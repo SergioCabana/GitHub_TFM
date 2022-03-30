@@ -477,8 +477,6 @@ def plot_shower_dev(data, thetas, max_height = 100, \
         xneg = np.cos(-thetas[ang_ind]+np.pi/2)*d+np.sin(-thetas[ang_ind]+np.pi/2)*N
         yneg = np.sin(-thetas[ang_ind]+np.pi/2)*d-np.cos(-thetas[ang_ind]+np.pi/2)*N
         
-        mask = [y > 0 for y in yneg]
-        
         plt.plot(xpos+offset, ypos, color = colores[i], label = data[i][0])
         plt.plot(np.array(xneg)+offset, np.array(yneg), color = colores[i])
         

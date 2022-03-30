@@ -284,7 +284,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
         DistAlongAxis = True 
             Transforma los valores de X_v en eje x a distancia
-            en km a lo largo del eje (solo upgoing). Incompatible con datos slanted.
+            en km a lo largo del eje. Incompatible con datos slanted.
             
         firstin: Las distancias y profundidades slanted se miden desde la primera
             interaccion (altura de inyeccion)
@@ -292,8 +292,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         Si tenemos DistAlongAxis ó slant, necesitamos dar los angulos cenitales
         y alturas de inyeccion asociados a cada grafico
 
-        ang   : list angulos cenitales en radianes (relevante para UG slant y DistAlongAxis)
-        inj_h : list Altura de inyeccion en km (relevante para UG slant y DistAlongAxis)
+        ang   : list angulos cenitales en radianes (relevante para slant y DistAlongAxis)
+        inj_h : list Altura de inyeccion en km (relevante para slant y DistAlongAxis)
         
         
         step: paso de integracion usado en Xs_of_injh
@@ -342,6 +342,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 orden.append(serie) # solo para que la leyenda salga en el orden de extras
                 
     data = orden  
+
           
     
     angle_index  = 0
@@ -356,22 +357,28 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
         if any([graf == i for i in [0,1,2]]): # depth in x axis
             if DistAlongAxis:
-                if not UG or slant:
-                    raise TypeError('DistAlongAxis trabaja con datos Xv originales, solo UG')
+                if slant or 'Xs' in const:
+                    raise TypeError('DistAlongAxis trabaja con datos Xv originales')
                 else:
                     if firstin:
-                        xvalues = [Long(gcm2toh(xv), ang[angle_index]) - Long(inj_h[h_index], ang[angle_index]) for xv in xvalues]
+                        xvalues = [Long(inj_h[h_index], ang[angle_index]) - Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
+                        if UG:
+                            xvalues = [-x for x in xvalues]
                     else: 
                         xvalues = [Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
+                    
                     angle_index  += 1
                     h_index += 1
                     
                     
-            elif UG and slant:
+            elif slant:
                 if firstin:
-                    xvalues = Xs_of_injh(inj_h[h_index], ang[angle_index], step) - xvalues if inj_h[h_index] != 0  else grd - xvalues
+                    xvalues =  xvalues - Xs_of_injh(inj_h[h_index], ang[angle_index], step) if inj_h[h_index] != 0  else xvalues - grd
+                    if UG:
+                        xvalues = [-x for x in xvalues]
                 else:
-                    xvalues = grd - xvalues
+                    xvalues = xvalues - grd if UG else xvalues
+
                 # depth traversed in upward direction, starting from first interaction
                 # consistency check
                 print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))
@@ -385,6 +392,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         else:
             extra = 'Primary $'+extra[1:-1]+'$' if extra.startswith('_') and extra.endswith('_') else extra
             # esta linea es solo por si tenemos un extra particula, que se da como _p_ con mi notacion
+            extra = extra[1:] if extra.startswith('_') else extra
             ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
             export.append([lbl[p]+', '+extra, xvalues, yvalues])
             
@@ -393,21 +401,34 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
         
-    if graf == 0 or graf == 1 or graf == 2: # depth in x axis
-        if DistAlongAxis:
-            if firstin:
-                ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
+    if any([graf == i for i in [0,1,2]]): # depth in x axis
+        if UG:
+            if DistAlongAxis:
+                if firstin:
+                    ax.set_xlabel(r'Dist. along axis (upward, from first interaction) [km]')
+                else:
+                    ax.set_xlabel(r'Dist. along axis (upward) [km]')
+            elif slant:
+                if firstin:
+                    ax.set_xlabel(r'$X_s$ (upward, from first interaction) [$g/cm^2$]')
+                else:
+                    ax.set_xlabel(r'$X_s$ (upward) [$g/cm^2$]')
             else:
-                ax.set_xlabel(r'Dist. along axis (upward) [km]')
-        elif UG and slant:
-            if firstin:
-                ax.set_xlabel(r'$X_s$ (upward, from first interaction) [$g/cm^2$]')
-            else:
-                ax.set_xlabel(r'$X_s$ (upward) [$g/cm^2$]')
-        elif slant:
-            ax.set_xlabel(r'$X_s$ [$g/cm^2$]')
-        elif UG:
-            ax.invert_xaxis()
+                ax.invert_xaxis()
+                
+        else:
+            if DistAlongAxis:
+                if firstin:
+                    ax.set_xlabel(r'Dist. along axis (from first interaction) [km]')
+                else:
+                    ax.set_xlabel(r'Dist. along axis [km]')
+            elif slant:
+                if firstin:
+                    ax.set_xlabel(r'$X_s$ (from first interaction) [$g/cm^2$]')
+                else:
+                    ax.set_xlabel(r'$X_s$ [$g/cm^2$]')
+                
+            
               
     if legend:
         ax.legend(loc = loc_leg, prop={'size':12}, ncol = cols, fancybox = True)

@@ -16,6 +16,15 @@ Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resultados:
 	Primary (p,e), E = 1EeV, h = 0km, theta = (100,120deg)  : desarrollo de electrones, muones, piones vs dist y X_s (desde primera interaccion)
 	Primary (p,e), E = 1EeV, h = 0km, theta = (100,120deg)  : energia depositada por electrones, muones, all chgd vs dist y X_s (desde primera interaccion)
 
+Comp_UGDG:
+
+Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo, para mismo ángulo. Lista de resultados:
+	
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 180 (0)  deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
+
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones en la atmósfera (rep. gráfica)	
+
 Codigos:
 
 Programas en Python para tratamiento de datos, graficas y geometria de cascadas:

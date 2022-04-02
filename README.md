@@ -23,6 +23,9 @@ Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo,
 	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
 	Primary p, E = 1EeV, h = 0 (100) km, theta = 180 (0)  deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
 
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : energía depositada por muones vs X_s atravesada (escala lin y log)
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 180 (0)  deg  : energía depositada por muones vs X_s atravesada (escala lin y log)
+
 	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones en la atmósfera (rep. gráfica)	
 
 Codigos:

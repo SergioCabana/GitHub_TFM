@@ -39,6 +39,8 @@
 \usetikzlibrary{fadings}
 \usetikzlibrary{patterns}
 
+\marginsize{1.5cm}{1.5cm}{2cm}{2cm} % MÁRGENES: Izq, Der, Sup, Inf.
+
 \parindent=0mm %sangría
 \parskip=3mm   %separacion entre parrafos
 \usepackage{gensymb}
@@ -53,6 +55,7 @@
 \renewcommand{\spanishchaptername}{} %Denominacion para capitulos
 \renewcommand{\spanishcontentsname}{Índice} %Denominacion para el indice
 
+\marginsize{1.5cm}{1.5cm}{2cm}{2cm} % MÁRGENES: Izq, Der, Sup, Inf.
 
 \definecolor{usc}{RGB}{15,41,118}
 \definecolor{grise}{RGB}{234, 236, 240}
@@ -119,14 +122,15 @@
 	
 	\mbox{}
 	\mbox{}\hfill{\large \DataDefensa} \vspace{1cm}
-	
+	\begin{center}
 	\noindent{\tiny El autor autoriza la consulta y empleo de esta memoria para uso acad\'emico y de investigaci\'on (autorizaci\'on detallada en las p\'aginas interiores).}
-	
+	\end{center}
 	
 	
 	\clearpage
 	\mbox{}
 	\clearpage %fin portada externa, inicio portada interna%%%%%%%%%%%
+	
 	
 	\mbox{}\\
 	Facultad de F\'{\i}sica\\
@@ -217,29 +221,117 @@
 	%%%%%%% Incluimos as seccións que sexan necesarias
 	\section{Introducción}
 	\clearpage
+	\section{Cascadas atmosféricas}
+	\subsection{Desarrollo de cascadas en la atmósfera}
+	\subsection{Caracterización de las cascadas hacia arriba}
+	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}
-	El objetivo fundamental de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, debemos plantear los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
+	El objetivo fundamental de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
 	\subsection{Formalismo de la emisión}
-	Como es bien sabido, la presencia de cargas en movimiento en un determinado medio implica, casi de manera inevitable, la emisión de radiación electromagnética. Resulta entonces evidente que, en una cascada atmosférica iniciada, por ejemplo, por un protón o un neutrino de origen astrofísico en la que aparecerán un número gigantesco de partículas cargadas propagándose con una velocidad $v\sim c$, podemos esperar la aparición de radiación electromagnética.
+	Como es bien sabido, la presencia de cargas en movimiento en un determinado medio implica, casi de manera inevitable, la emisión de radiación. Resulta entonces evidente que, en una cascada atmosférica iniciada, por ejemplo, por un protón o un neutrino de origen astrofísico en la que aparecerán un número gigantesco de partículas cargadas propagándose con una velocidad $v\sim c$, podemos esperar la aparición de radiación electromagnética.
 	
-	Ahora bien, uno podría pensar de manera ingenua que, en las escalas de energía y número de partículas que involucra una cascada atmosférica, el balance \textit{macroscópico} de cargas positivas y negativas debería ser nulo, y por lo tanto las respectivas contribuciones a la radiación electromagnética emitida deberían cancelarse. Sin entrar en demasiado detalle, basta recordar que los potenciales electromagnéticos pueden expresare como:
+	Ahora bien, uno podría pensar a priori que, en las escalas de energía y número de partículas que involucra una cascada atmosférica, el balance \textit{macroscópico} de cargas positivas y negativas debería ser nulo, y por lo tanto las respectivas contribuciones a la radiación electromagnética emitida deberían cancelarse. Sin embargo, existen dos aspectos acerca del desarrollo de una cascada en la atmósfera que inmediatamente nos obligan a abandonar esta perspectiva ingenua:
+	\begin{itemize}
+		\item En primer lugar, la cascada se desarrolla en presencia del campo magnético terrestre, y por lo tanto las cargas sufren una deflexión en un sentido u otro según el signo de su carga. En una perspectiva \textit{macroscópica}, podemos interpretar que este efecto origina una corriente neta perpendicular tanto al desarrollo de la cascada como al campo magnético terrestre, generando entonces un campo eléctrico.
+		\item En segundo lugar, la cascada no se desarrolla en el vacío sino en presencia de materia. Aunque en la cascada se produzca globalmente el mismo número de partículas con carga positiva que negativa, las interacciones con el medio darán lugar a un exceso de carga. Por ejemplo, los positrones generados en la cascada sufrirán procesos de aniquilación con los electrones del medio. Por otra parte, estos mismos electrones del medio podrán ser extraídos por diversos procesos (scattering $e^-e^-$, difusión Compton, ...) y contribuirán también a la aparición de una corriente neta. 
+	\end{itemize}
+
+Estos dos mecanismos, a los que a partir de ahora nos referiremos como \textit{deflexión geomagnética} y \textit{efecto Askaryan}\footnote{ Este mecanismo de emisión fue propuesto por Gurgen A. Askaryan en la década de los 60.} a partir de ahora, serán los procesos que darán lugar fundamentalmente a la emisión coherente de radiación electromagnética en cascadas atmosféricas.
+
+Para ahondar en los mecanismos de emisión, recordaremos brevemente algunos conceptos de la electrodinámica clásica que nos permitirán explicar, al menos de manera cualitativa, los campos eléctricos que esperamos a partir de cada mecanismo. Partiremos de las ecuaciones de Maxwell en términos de los potenciales:
 	\begin{equation}
-		\Phi(\vect{r}, t) \propto \int_{\text{fuente}} \frac{\rho\left(\vect{r}', t_{ret}\right)}{\left|\vect{r}-\vect{r}'\right|}d^3r'\;\;;\;\;\vect{A}(\vect{r}, t)\propto\int_{\text{fuente}} \frac{\vect{J}\left(\vect{r}', t_{ret}\right)}{\left|\vect{r}-\vect{r}'\right|}d^3r' \label{ec21}
+	\vect{\nabla}^2\phi+\frac{\partial}{\partial t}\left(\vect{\nabla}\cdot\vect{A}\right)=-\frac{\rho}{\varepsilon}\label{ec31}
 	\end{equation}
-Si uno toma que, en promedio, $\langle\rho\rangle\sim0$ y $\langle\vect{J}\rangle\sim0$, no cabría mucha opción para detectar radiación electromagnética a partir de una cascada atmosférica.
+	\begin{equation}
+	\vect{\nabla}^2\vect{A}-\mu\varepsilon\frac{\partial^2\vect{A}}{\partial t^2}-\vect{\nabla}\left(\vect{\nabla}\cdot\vect{A}+\mu\varepsilon\frac{\partial^2\phi}{\partial t^2}\right)=-\mu\vect{J}\label{ec32}
+	\end{equation}
 
-Evidentemente, esta situación desaparece inmediatamente cuando tenemos en cuenta que la cascada se desarrolla en presencia del campo magnético terrestre, y por lo tanto las cargas sufren una deflexión en un sentido u otro según el signo de su carga. En la perspectiva \textit{macroscópica}, podemos interpretar que este efecto de deflexión geomagnética origina una corriente neta perpendicular tanto al desarrollo de la cascada como al campo magnético terrestre, generando entonces un campo eléctrico $\vect{E}=-\dot{\vect{A}}$
+Por la libertad gauge, escogemos $\vect{\nabla}\cdot \vect{A}=0$ (gauge de Coulomb). En ese caso, los potenciales electromagnéticos toman la forma\footnote{ Véase por ejemplo \cite{Jackson2002}.} ($\vect{R}=\vect{r}-\vect{r}'$):
+\begin{equation}
+	\phi(\vect{r}, t)=\frac{1}{4\pi\varepsilon}\int_{\text{fuente}} \frac{\rho(\vect{r}', t)}{\left|\vect{R}\right|}d^3r'\label{ec33}
+\end{equation}
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int_{\text{fuente}}\frac{\left[\vect{J}\left(\vect{r}', t_{ret}\right)-\left(\vect{J}\left(\vect{r}', t_{ret}\right)\cdot \hat{\vect{R}}\right)\hat{\vect{R}}\right]}{\left|\vect{R}\right|}d^3r'+\mathcal{O}(\left|\vect{R}\right|^{-3})\label{ec34}
+\end{equation}
+donde\footnote{ $n$ es el índice de refracción del medio.} $t_{ret}=t-nR/c$, y en \eqref{ec34} se desprecian términos que no contribuyen en la región de radiación. Las expresiones anteriores, aunque no sean especialmente simples de manejar, nos permitirán caracterizar los dos mecanismos de emisión que hemos comentado, sin más que tener en cuenta que:
+\begin{itemize}
+	\item El potencial escalar $\phi$ viene dado por una solución \textit{instantánea}, en el sentido de que no hay ninguna dependencia con $t_{ret}$. La consecuencia inmediata es que $\phi$ sólo describe efectos de campo cercano, y podremos escribir sencillamente:
+	\begin{equation}
+		\vect{E}=-\vect{\nabla}\phi-\dot{\vect{A}}\implies \vect{E}_{rad} = -\dot{\vect{A}}\label{ec35}
+	\end{equation}
+\item La solución para el potencial vector depende exclusivamente de la componente \textit{perpendicular} a $\vect{R}$ de la corriente:
+\begin{equation}
+	\vect{J}=\vect{J}_\parallel+\vect{J}_\perp = \left(\vect{J}\cdot\hat{\vect{R}}\right)\hat{\vect{R}}-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\label{ec36}
+\end{equation} 
+Por lo tanto, el breve desarrollo anterior nos permite establecer que el campo eléctrico radiado tendrá la dirección de la componente perpendicular $\vect{J}_\perp$ de la corriente generada por cada mecanismo:
+\begin{equation}
+	\left.
+	\begin{array}{c}
+		\vect{E}_{rad} = -\dot{\vect{A}}\\
+		\vect{A}\sim\vect{J}_\perp=-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)
+	\end{array}
+\right\}\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\label{ec37}
+\end{equation}
+\end{itemize}
+Este último resultado es suficiente para estudiar la polarización del campo eléctrico generado por una cascada atmosférica, bien por deflexión geomagnética o por efecto Askaryan. Por simplicidad, consideremos una cascada que se desarrolla en la dirección vertical (i.e. con un ángulo cenital $\theta=0$). El efecto de la deflexión geomagnética está determinado por la acción de la fuerza de Lorentz sobre las cargas generadas:
+\begin{equation}
+	\vect{F}=q\vect{v}\times \vect{B}\implies \vect{J}\sim \hat{\vect{n}}_{\text{shower}}\times\vect{B}\label{ec38}
+\end{equation}
+donde $\hat{\vect{n}}_{\text{shower}}$ representa la dirección del desarrollo de la cascada. El efecto puede verse más claramente en la Fig. \ref{Geomag_deflexion}, en donde también representamos la polarización del campo radiado mediante este mecanismo.
 
+\newpage
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{figures/Geomag_deflexion}
-	\caption{Imagen macroscópica del campo eléctrico generado debido a la deflexión geomagnética, para una cascada vertical. De manera muy simplificada, $\vect{E}=-\dot{\vect{A}}\parallel -\vect{J}$. Las direcciones N, S, E, W son relativas al polo norte magnético.}
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_1}}
+	\hspace{10mm}
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_2}}
+	\caption{Campo eléctrico radiado por efecto de la deflexión geomagnética. (a) Dirección del campo $\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ en una antena prueba al este de una cascada vertical. (b) Dirección esperada para el campo eléctrico radiado en una cascada vertical (se indica la posición del observador de la fig. a). Las direcciones N, S, E, W hacen referencia al polo norte magnético.}
 	\label{Geomag_deflexion}
 \end{figure}
+
+Si queremos hacer el mismo análisis para el efecto Askaryan, la polarización del campo radiado ahora estará determinada por el exceso de carga que aparece a lo largo del desarrollo. Naturalmente, las partículas más abundantes en una cascada atmosférica serán electrones y positrones, tanto por ser las especies de menor masa como por existir numerosos mecanismos que los originan ($\gamma\rightarrow e^+e^-$; $\mu \rightarrow e+2\nu$; ... ). Como ya mencionamos, los positrones desaparecerán en procesos de aniquilación, mientras que otros electrones del medio serán extraídos y contribuirán a la carga neta generada. Por ello, el efecto Askaryan se traduce en la aparición de un exceso de carga negativa a lo largo del desarrollo y por tanto:
+\begin{equation}
+	\vect{J}\sim -\hat{\vect{n}}_{\text{shower}}\label{ec39}
+\end{equation}
+La polarización del campo generado por este mecanismo se representa en la Fig. \ref{Askaryan} para una cascada vertical. Como vemos, expresiones sencillas como \eqref{ec37}, \eqref{ec38} y \eqref{ec39} son suficientes para describir cualitativamente el campo eléctrico radiado por una cascada de dirección arbitraria.
+\begin{figure}[H]
+	\centering
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_1}}
+	\hspace{10mm}
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_2}}
+	\caption{Campo eléctrico radiado por efecto Askaryan. Mismos gráficos que en la Fig \ref{Geomag_deflexion}.}
+	\label{Askaryan}
+\end{figure}
+
+Hasta ahora, hemos hecho una descripción \textit{macroscópica} de la emisión de radiación electromagnética, en el sentido de que hemos considerado la aparición de corrientes netas como un efecto global sobre la cascada. Aunque este enfoque es muy intuitivo y permite explorar las características de la emisión, un análisis detallado de la misma deberá realizarse desde una perspectiva \textit{microscópica}, i.e. considerando la radiación emitida por partículas cargadas de manera \textit{individual}. Dado que este es el marco en el que se desarrollan nuestras simulaciones, y también porque nos permitirá extraer alguna conclusión extra acerca de la emisión, estudiaremos algo más esta perspectiva. Para empezar, reescribamos el potencial vector \eqref{ec34}:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int \frac{\vect{J}_\perp\left(\vect{r}', t'\right)}{\left|\vect{R}\right|}\,\delta\left(\sqrt{\mu\varepsilon}\left|\vect{R}\right|-\left(t-t'\right)\right)d^3r'dt'\label{ec310}
+\end{equation} 
+donde sólo hemos introducido una función-$\delta$ que evalúa la corriente en $t_{ret}$, y hemos usado que la velocidad de la luz en el medio es $1/\mu\varepsilon$. Supongamos ahora una carga $q$ puntual que se mueve a velocidad constante $\vect{v}$, entre $t=t_1$ y $t=t_2$. La corriente $\vect{J}$ asociada puede escribirse fácilmente:
+\begin{equation}
+	\vect{J}_\perp\left(\vect{r'}, t'\right)=q\vect{v}_\perp \,\delta^{(3)}\left(\vect{r}'-\vect{r}_0-\vect{v}t'\right)\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]\label{ec311}
+\end{equation}
+donde $\vect{r}_0=\vect{r}'\left(t=0\right)$, y el último término son funciones de Heaviside que garantizan que $\vect{J}_\perp=0$ para $t<t_1$ o $t>t_2$. Sustituyendo esta última expresión en \eqref{ec310} e integrando en $d^3r'$ (aplicando la función-$\delta^{(3)}$), tenemos que:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu q}{4\pi}\vect{v}_\perp\int \frac{\delta\left(\sqrt{\mu \varepsilon} \left|\vect{r}-\vect{r}_0-\vect{v}t'\right|-\left(t-t'\right)\right)}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|}\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]dt'\label{ec312}
+\end{equation}
+A grandes distancias, en el régimen de Fraunhofer, podemos escribir:
+\begin{equation}
+	\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|\approx R-t'\vect{v}\cdot\hat{\vect{R}}\;\;;\;\;\frac{1}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|} \approx \frac{1}{R}\label{ec313}
+\end{equation}
+Sustituyendo estas aproximaciones en \eqref{ec312} y aplicando propiedades de las funciones $\delta$ y $\Theta$, es fácil obtener:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)\approx\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\label{ec314}
+\end{equation}
+donde hemos usado que $\sqrt{\mu\varepsilon}=n/c$ y $\left|\vect{v}\right|=\beta c$, además de definir el ángulo de observación como $\cos{\theta}=\hat{\vect{v}}\cdot\hat{\vect{R}}$. Aunque esta expresión parece aún menos intuitiva que las obtenidas con la perspectiva macroscópica, tenemos que darnos cuenta de dos aspectos:
+\begin{itemize}
+	\item En primer lugar, el potencial vector presenta una divergencia cuando el ángulo de observación coincide con el ángulo \v{C}erenkov del medio, $\cos{\theta_C}=1/n\beta$. Aunque esta divergencia es fruto de las aproximaciones del cálculo, describe correctamente el hecho de que el \textit{pico} de las emisiones se localiza en $\theta=\theta_C$. El resultado es natural, en una cascada se producirán partículas viajando a $v\sim c$, más rápido que la luz en la atmósfera ($n\geq 1$) y por lo tanto e valor máximo del campo eléctrico radiado aparecerá asociado al cono \v{C}erenkov.
+	\item En segundo lugar, y desde un punto de vista más técnico, la expresión \eqref{ec314} puede incorporarse fácilmente a cálculos numéricos y simulaciones del desarrollo de cascadas.
+\end{itemize} 
+
 	\subsection{Caracterización de la emisión en simulaciones Monte Carlo}
 	\clearpage
-	\section{Caracterización de cascadas hacia arriba}
-	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
+
 	\section{Emisión en radio en cascadas hacia arriba}
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Conclusiones}

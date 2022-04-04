@@ -292,7 +292,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         Si tenemos DistAlongAxis ó slant, necesitamos dar los angulos cenitales
         y alturas de inyeccion asociados a cada grafico
 
-        ang   : list angulos cenitales en radianes (relevante para slant y DistAlongAxis)
+        ang   : list angulos cenitales en deg (relevante para slant y DistAlongAxis)
         inj_h : list Altura de inyeccion en km (relevante para slant y DistAlongAxis)
         
         
@@ -343,7 +343,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 
     data = orden  
 
-          
+    ang = [t*np.pi/180. for t in ang]
     
     angle_index  = 0
     h_index = 0
@@ -377,7 +377,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                     if UG:
                         xvalues = [-x for x in xvalues]
                 else:
-                    xvalues = xvalues - grd if UG else xvalues
+                    xvalues = grd-xvalues if UG else xvalues
 
                 # depth traversed in upward direction, starting from first interaction
                 # consistency check
@@ -441,12 +441,13 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         return export
     
 def plot_shower_dev(data, thetas, max_height = 100, \
-                    num_scale = 7, sep = 1.2):
+                    num_scale = 7, sep = 100):
     
     ''' Grafica del desarrollo de la cascada, (histogramas en angulo simplemente)
         
         Parametros:
             data: output de AiresPlot (export_graph = True)
+                Si no es output, algo como [[leyenda, data_x, data_y], ...]
             theta: angulos de las cascadas (deg)
             max_height: limite de altura en la grafica
             num_scale: orden de magnitud en que medimos numero de particulas (ajustar a mano)
@@ -463,26 +464,33 @@ def plot_shower_dev(data, thetas, max_height = 100, \
     if len(thetas) != n_show:
         raise TypeError('Faltan (o sobran) angulos para las cascadas')
     
-    thetas = [t*np.pi/180 for t in thetas]
+    thetas = np.array([t*np.pi/180 for t in thetas])
     
-    ang_ind = 0
-    offset = 1
+    index = np.argsort(thetas)
+
+    offset  = 1
+    c_index = 1
     
-    for i in range(n_show):
+    for i in index:
         d, N = np.array(data[i][1]), np.array(data[i][2])/10**num_scale
         
-        xpos =  np.cos(-thetas[ang_ind]+np.pi/2)*d-np.sin(-thetas[ang_ind]+np.pi/2)*N
-        ypos =  np.sin(-thetas[ang_ind]+np.pi/2)*d+np.cos(-thetas[ang_ind]+np.pi/2)*N
+        xpos =  np.cos(-thetas[i]+np.pi/2)*d-np.sin(-thetas[i]+np.pi/2)*N
+        ypos =  np.sin(-thetas[i]+np.pi/2)*d+np.cos(-thetas[i]+np.pi/2)*N
         
-        xneg = np.cos(-thetas[ang_ind]+np.pi/2)*d+np.sin(-thetas[ang_ind]+np.pi/2)*N
-        yneg = np.sin(-thetas[ang_ind]+np.pi/2)*d-np.cos(-thetas[ang_ind]+np.pi/2)*N
+        xneg = np.cos(-thetas[i]+np.pi/2)*d+np.sin(-thetas[i]+np.pi/2)*N
+        yneg = np.sin(-thetas[i]+np.pi/2)*d-np.cos(-thetas[i]+np.pi/2)*N
         
-        plt.plot(xpos+offset, ypos, color = colores[i], label = data[i][0])
-        plt.plot(np.array(xneg)+offset, np.array(yneg), color = colores[i])
+        plt.plot(xpos+offset, ypos, color = 'k')
+        plt.plot(np.array(xneg)+offset, np.array(yneg), color = 'k')
         
-        plt.fill(np.append(xpos+offset, xneg[::-1]+offset), np.append(ypos, yneg[::-1]), color = colores[i])
-        offset += sep*max(xpos)
-        ang_ind += 1
+        plt.fill(np.append(xpos+offset, xneg[::-1]+offset), np.append(ypos, yneg[::-1]), color = colores[c_index], label = data[i][0])
+        offset += sep
+        c_index += 1
+        
+    alturas = np.linspace(0, max_height, 1000)
+    long_axis = np.linspace(plt.gca().get_xlim()[0], plt.gca().get_xlim()[1])
+    for i in range(len(alturas)-1):
+        plt.fill_between(long_axis, alturas[i], alturas[i+1], alpha = np.exp(-alturas[i]/8.31), color = 'mediumblue')
         
     plt.ylim(0, max_height)
     plt.ylabel('h [km]', size = 12)

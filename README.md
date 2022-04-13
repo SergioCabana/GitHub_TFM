@@ -18,15 +18,17 @@ Caracterizacion de cascadas atmosféricas hacia arriba. Lista de resultados:
 
 Comp_UGDG:
 
-Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo, para mismo ángulo. Lista de resultados:
+Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo, para mismo ángulo:
+
+	*(Cascada extraña: Resultados con posible fluctuacion por semilla del random)*
+		
+	10cascadas: Gráficos de desarrollos promediando las simulaciones de 10 cascadas. Resultados:
+
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 0 (180) deg : desarrollo de e, mu, pi cargados, k cargados y otras particulas neutras vs. Xs
 	
-	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
-	Primary p, E = 1EeV, h = 0 (100) km, theta = 180 (0)  deg  : desarrollo de electrones, muones y piones vs X_s atravesada (escala lin y log)
+	Primary p, E = 1EeV, h = 0 (100) km, theta = 0 (180) deg : comparativas de desarrollo hacia arriba y abajo para e, mu, pi, k, y demas particulas neutras vs Xs
 
-	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : energía depositada por muones vs X_s atravesada (escala lin y log)
-	Primary p, E = 1EeV, h = 0 (100) km, theta = 180 (0)  deg  : energía depositada por muones vs X_s atravesada (escala lin y log)
-
-	Primary p, E = 1EeV, h = 0 (100) km, theta = 130 (50) deg  : desarrollo de electrones, muones y piones en la atmósfera (rep. gráfica)	
+	Ídem para 50-130 deg y 85-95 deg 
 
 Codigos:
 

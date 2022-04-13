@@ -250,9 +250,11 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
         K+K-             = 5
         
-        All chgd. pcles. = 6
+        Ot. neut. pcles  = 6
         
-        All pcles.       = 7
+        All chgd. pcles. = 7
+        
+        All pcles.       = 8
         
         Si se quiere la grafica de Long. development para e+e-, mu+mu-, se indica:
             graf = 0
@@ -301,16 +303,16 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         export_graph: devuelve lista de valores a graficar
             [[label, valx, valy], ...]
     '''
-    ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1291, 1293]
+    ext_LD   = [1001, 1022, 1205, 1207, 1211, 1213, 1092, 1291, 1293]
     ext_ELD  = [500+ext for ext in ext_LD]
-    ext_EDLD = [6700+ext for ext in ext_LD]
+    ext_EDLD = [7801, 0000, 7905, 7907, 0000, 0000, 7892, 7991, 7993]
     ext_LatD = [1000+ext for ext in ext_LD]
     ext_EDG  = [1500+ext for ext in ext_LD]
 
     ext = [ ['.t'+str(numero) for numero in lista] for lista in [ext_LD, ext_ELD, ext_EDLD, ext_LatD, ext_EDG] ]
 
 
-    lbl     = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'All chgd. pcles.', 'All pcles.']
+    lbl     = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'Other neutral pcles.', 'All chgd. pcles.', 'All pcles.']
     xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]']
     ylabels = ['N', 'E [GeV]', 'E [GeV]', 'N', 'N']
     

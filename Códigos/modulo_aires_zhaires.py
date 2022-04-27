@@ -333,15 +333,16 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                         if extra == '' or extra in file:
                             data.append([subdir + os.sep + file, p, extra])
     
-    
     if len(data) != len(extras)*len(pcles):
         raise TypeError('Faltan archivos necesarios para la grafica que se pide')
         
     orden = []
-    for extra in extras:
-        for serie in data:
-            if extra in serie:
-                orden.append(serie) # solo para que la leyenda salga en el orden de extras
+    for p in pcles:
+        for extra in extras:
+            for serie in data:
+                if p in serie and extra in serie:
+                    orden.append(serie) 
+                    # solo para que la leyenda salga en el orden de extras
                 
     data = orden  
 

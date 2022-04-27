@@ -28,7 +28,7 @@ Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo,
 	
 	Primary p, E = 1EeV, h = 0 (100) km, theta = 0 (180) deg : comparativas de desarrollo hacia arriba y abajo para e, mu, pi, k, y demas particulas neutras vs Xs
 
-	Ídem para 50-130 deg y 85-95 deg
+	Ídem para 50-130 deg y 85-95 deg; y para desarrollo de energia
 
 	* los archivos que comienzan por Desarrollo... son una representacion grafica del desarrollo en la atmosfera de cada componente de la cascada. 
 

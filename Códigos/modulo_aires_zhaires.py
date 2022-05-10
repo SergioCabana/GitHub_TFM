@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import pandas as pd
 import os
 
 
@@ -802,7 +803,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     return fig
 
 
-def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False):
+def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
     ''' Grafica de campo electrico en un array 2d de antenas
         En dominio t, se representa el maximo alcanzado para la variable 
         pedida en cada antena
@@ -846,9 +847,29 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False):
         
         d3: bool, plot 2d con mapa de calor o superficie 3d
         
+        rootdir: directorio con archivos, necesario en caso de error leyendo
     '''
-    
-    data = np.loadtxt(file, comments = '#').T
+    try:
+        data = np.loadtxt(file, comments = '#').T
+
+    except ValueError:
+        if rootdir == '':
+            print('Error leyendo, prueba a poner rootdir')
+        else:
+            print('Error leyendo, estamos en ello ...')
+            fileout = rootdir+'timefresnel-rootnew.dat'
+            f = open(file,'r')
+            filedata = f.read()
+            f.close()
+        
+            newdata = filedata.replace("-"," -")
+        
+            f = open(fileout,'w')
+            f.write(newdata)
+            f.close()
+            print('Archivo corregido: ', fileout)
+            
+        data = pd.read_csv(fileout, comment = '#', delimiter = '\s+').to_numpy().T
     
     n_ant     = int(max(data[1])) #numero de antenas
     
@@ -863,8 +884,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False):
         # con esto ya tenemos las coordenadas de las antenas
     
     i_ant.append(len(data.T))
-    
-    height = int(ant_coord[0][2]/1000)
+
+    height = int(ant_coord[0][2]/1000) 
     
     if domain == 'f':
         labels = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
@@ -884,7 +905,7 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False):
     
         g = graph+5
         
-        values = np.array([np.max(data[int(g)][i_ant[a-1]:i_ant[a]]) for a in range(n_ant)]).reshape(n_ant,1)
+        values = np.array([np.max(data[int(g)][i_ant[a]:i_ant[a+1]]) for a in range(n_ant)]).reshape(n_ant,1)
         
     puntos = np.hstack((np.array(ant_coord)[:,:2], values))
     

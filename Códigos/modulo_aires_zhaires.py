@@ -801,6 +801,132 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         
     return fig
 
+
+def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False):
+    ''' Grafica de campo electrico en un array 2d de antenas
+        En dominio t, se representa el maximo alcanzado para la variable 
+        pedida en cada antena
+        
+        Códigos de graficas en dominio de frecuencia
+        
+        E  = 1
+        
+        Ex = 2
+        
+        Ey = 3
+        
+        Ez = 4
+        
+        Codigos de graficas en dominio temporal
+        
+        A  = 1
+        
+        Ax = 2
+        
+        Ay = 3
+        
+        Az = 4
+        
+        E  = 5
+        
+        Ex = 6
+        
+        Ey = 7
+        
+        Ez = 8
+        
+        ----------- INPUTS -------------
+        
+        graph: numero que indica la grafica que queremos, segun lo anterior
+        
+        file: archivo de datos. Output estandar de ZHAireS
+        
+        domain: datos en dominio de frecuencia ('f') o tiempo ('t')
+            Si se escoge 'f', debe introducirse manualmente la frecuencia deseada
+        
+        d3: bool, plot 2d con mapa de calor o superficie 3d
+        
+    '''
+    
+    data = np.loadtxt(file, comments = '#').T
+    
+    n_ant     = int(max(data[1])) #numero de antenas
+    
+    ant_coord = [] # aqui guardamos las coordenadas de las antenas
+    
+    i_ant     = []
+    
+    for i in range(n_ant):
+        index = list(data[1]).index(i+1)
+        i_ant.append(index)
+        ant_coord.append([data[2][index], data[3][index], data[4][index]])
+        # con esto ya tenemos las coordenadas de las antenas
+    
+    i_ant.append(len(data.T))
+    
+    height = int(ant_coord[0][2]/1000)
+    
+    if domain == 'f':
+        labels = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
+        freq_list = [data[6][i] for i in range(i_ant[0], i_ant[1])]
+        
+        print('Frecuencias (MHz): ', freq_list)
+        
+        f = int(input('Escoge frecuencia (indice empezando en 0): '))
+        
+        g = graph+6
+        
+        values = np.array([data[int(g)][i_ant[a]+f] for a in range(n_ant)]).reshape(n_ant,1)
+    
+    else:
+        
+        labels = [r'$A$ (V/m)', r'$A_x$ (V/m)', r'$A_y$ (V/m)', r'$A_z$ (V/m)', r'$E$ (V/m)', r'$E_x$ (V/m)', r'$E_y$ (V/m)', r'$E_z$ (V/m)']
+    
+        g = graph+5
+        
+        values = np.array([np.max(data[int(g)][i_ant[a-1]:i_ant[a]]) for a in range(n_ant)]).reshape(n_ant,1)
+        
+    puntos = np.hstack((np.array(ant_coord)[:,:2], values))
+    
+    x, y, z = puntos.T[0], puntos.T[1], puntos.T[2]
+    
+    fig = plt.figure(figsize=(8,6))
+
+    if d3:
+        ax = fig.add_subplot(111, projection = '3d')
+        ax.plot_trisurf(x,y,z, cmap = 'gnuplot', alpha = .9)
+        ax.set_xlabel('x [m]', size = 14)
+        ax.set_ylabel('y [m]', size = 14)
+        ax.set_zlabel(labels[graph-1], size = 14)
+        
+        ax.xaxis.set_tick_params(labelsize=12)
+        ax.yaxis.set_tick_params(labelsize=12)
+        ax.zaxis.set_tick_params(labelsize=12)
+        
+        title = 'h = '+ str(height)+' km, '+ str(freq_list[f])+' MHz' if domain =='f' else 'h = '+ str(height)+' km'
+        ax.set_title(title, size = 14)
+        
+    else:
+        ax = fig.add_subplot(111)
+        sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = 750)
+        
+        cbar = fig.colorbar(sc)
+        cbar.set_label(labels[graph-1], size = 14, rotation = 270, labelpad = 30)
+        cbar.ax.tick_params(labelsize=12)
+        
+        ax.set_xlabel('x [m]', size = 14)
+        ax.set_ylabel('y [m]', size = 14)
+        
+        ax.xaxis.set_tick_params(labelsize=12)
+        ax.yaxis.set_tick_params(labelsize=12)
+        
+        title = 'h = '+ str(height)+' km, '+ str(freq_list[f])+' MHz' if domain =='f' else 'h = '+ str(height)+' km'
+        ax.set_title(title, size = 14)
+        
+    plt.tight_layout()
+    
+    return fig
+
 ################################# EJEMPLOS Aires_Plot ##################################
 # ---------------------------------------------------------------------------------------
 

@@ -32,6 +32,11 @@ Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo,
 
 	* los archivos que comienzan por Desarrollo... son una representacion grafica del desarrollo en la atmosfera de cada componente de la cascada. 
 
+Radio_UG:
+
+Caracterizacion de la emision en radio en cascadas hacia arriba (por ahora solo una prueba):
+	
+	Run1_prueba: Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false 
 Codigos:
 
 Programas en Python para tratamiento de datos, graficas y geometria de cascadas:

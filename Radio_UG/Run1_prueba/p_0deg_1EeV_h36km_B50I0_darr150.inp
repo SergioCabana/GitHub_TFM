@@ -1,0 +1,211 @@
+#################################################
+####  File created by NuSimPreparator v0.11  ####
+###############################################
+
+TaskName p_0deg_1EeV_h36km_B50I0_darr150
+
+
+AddSpecialParticle UProton ./uprimary Proton
+
+PrimaryParticle UProton
+PrimaryEnergy 1 EeV
+PrimaryZenAngle 0 deg
+PrimaryAzimAngle 0 deg Magnetic
+
+GeomagneticField 50 uT 0 deg 0.0 deg
+
+GroundAltitude 0 m
+
+TotalShowers 1
+RunsPerProcess Infinite
+RandomSeed 0.1618033
+
+ElectronCutEnergy 80 keV
+ElectronRoughCut  80 keV
+GammaCutEnergy 80 keV
+GammaRoughCut 80 keV
+
+#InjectionAltitude 100km
+SetGlobal ALTITUDE 0.0
+
+ForceModelName SIBYLL 
+ThinningEnergy 0.0001 Relative
+ThinningWFactor 0.06
+
+#Output Handling
+ObservingLevels 510
+PerShowerData Full
+SaveNotInFile lgtpcles All
+SaveNotInFile grdpcles All
+ExportPerShower
+
+#ZHAireS
+
+ZHAireS On
+FresnelTime On
+FresnelFreq On
+TimeDomainBin 0.3 ns
+
+AddFrequency 100
+AddFrequency 300
+AddFrequency 500
+
+
+# There is a total of 157 antennas for this whole event.
+AddAntenna  -900   -600   35999.9
+AddAntenna  -900   -450   35999.9
+AddAntenna  -900   -300   35999.9
+AddAntenna  -900   -150   35999.9
+AddAntenna  -900   0   35999.9
+AddAntenna  -900   150   35999.9
+AddAntenna  -900   300   35999.9
+AddAntenna  -900   450   35999.9
+AddAntenna  -900   600   35999.9
+AddAntenna  -750   -750   35999.9
+AddAntenna  -750   -600   35999.9
+AddAntenna  -750   -450   35999.9
+AddAntenna  -750   -300   35999.9
+AddAntenna  -750   -150   36000
+AddAntenna  -750   0   36000
+AddAntenna  -750   150   36000
+AddAntenna  -750   300   35999.9
+AddAntenna  -750   450   35999.9
+AddAntenna  -750   600   35999.9
+AddAntenna  -750   750   35999.9
+AddAntenna  -600   -900   35999.9
+AddAntenna  -600   -750   35999.9
+AddAntenna  -600   -600   35999.9
+AddAntenna  -600   -450   36000
+AddAntenna  -600   -300   36000
+AddAntenna  -600   -150   36000
+AddAntenna  -600   0   36000
+AddAntenna  -600   150   36000
+AddAntenna  -600   300   36000
+AddAntenna  -600   450   36000
+AddAntenna  -600   600   35999.9
+AddAntenna  -600   750   35999.9
+AddAntenna  -600   900   35999.9
+AddAntenna  -450   -900   35999.9
+AddAntenna  -450   -750   35999.9
+AddAntenna  -450   -600   36000
+AddAntenna  -450   -450   36000
+AddAntenna  -450   -300   36000
+AddAntenna  -450   -150   36000
+AddAntenna  -450   0   36000
+AddAntenna  -450   150   36000
+AddAntenna  -450   300   36000
+AddAntenna  -450   450   36000
+AddAntenna  -450   600   36000
+AddAntenna  -450   750   35999.9
+AddAntenna  -450   900   35999.9
+AddAntenna  -300   -900   35999.9
+AddAntenna  -300   -750   35999.9
+AddAntenna  -300   -600   36000
+AddAntenna  -300   -450   36000
+AddAntenna  -300   -300   36000
+AddAntenna  -300   -150   36000
+AddAntenna  -300   0   36000
+AddAntenna  -300   150   36000
+AddAntenna  -300   300   36000
+AddAntenna  -300   450   36000
+AddAntenna  -300   600   36000
+AddAntenna  -300   750   35999.9
+AddAntenna  -300   900   35999.9
+AddAntenna  -150   -900   35999.9
+AddAntenna  -150   -750   36000
+AddAntenna  -150   -600   36000
+AddAntenna  -150   -450   36000
+AddAntenna  -150   -300   36000
+AddAntenna  -150   -150   36000
+AddAntenna  -150   0   36000
+AddAntenna  -150   150   36000
+AddAntenna  -150   300   36000
+AddAntenna  -150   450   36000
+AddAntenna  -150   600   36000
+AddAntenna  -150   750   36000
+AddAntenna  -150   900   35999.9
+AddAntenna  0   -900   35999.9
+AddAntenna  0   -750   36000
+AddAntenna  0   -600   36000
+AddAntenna  0   -450   36000
+AddAntenna  0   -300   36000
+AddAntenna  0   -150   36000
+AddAntenna  0   0   36000
+AddAntenna  0   150   36000
+AddAntenna  0   300   36000
+AddAntenna  0   450   36000
+AddAntenna  0   600   36000
+AddAntenna  0   750   36000
+AddAntenna  0   900   35999.9
+AddAntenna  150   -900   35999.9
+AddAntenna  150   -750   36000
+AddAntenna  150   -600   36000
+AddAntenna  150   -450   36000
+AddAntenna  150   -300   36000
+AddAntenna  150   -150   36000
+AddAntenna  150   0   36000
+AddAntenna  150   150   36000
+AddAntenna  150   300   36000
+AddAntenna  150   450   36000
+AddAntenna  150   600   36000
+AddAntenna  150   750   36000
+AddAntenna  150   900   35999.9
+AddAntenna  300   -900   35999.9
+AddAntenna  300   -750   35999.9
+AddAntenna  300   -600   36000
+AddAntenna  300   -450   36000
+AddAntenna  300   -300   36000
+AddAntenna  300   -150   36000
+AddAntenna  300   0   36000
+AddAntenna  300   150   36000
+AddAntenna  300   300   36000
+AddAntenna  300   450   36000
+AddAntenna  300   600   36000
+AddAntenna  300   750   35999.9
+AddAntenna  300   900   35999.9
+AddAntenna  450   -900   35999.9
+AddAntenna  450   -750   35999.9
+AddAntenna  450   -600   36000
+AddAntenna  450   -450   36000
+AddAntenna  450   -300   36000
+AddAntenna  450   -150   36000
+AddAntenna  450   0   36000
+AddAntenna  450   150   36000
+AddAntenna  450   300   36000
+AddAntenna  450   450   36000
+AddAntenna  450   600   36000
+AddAntenna  450   750   35999.9
+AddAntenna  450   900   35999.9
+AddAntenna  600   -900   35999.9
+AddAntenna  600   -750   35999.9
+AddAntenna  600   -600   35999.9
+AddAntenna  600   -450   36000
+AddAntenna  600   -300   36000
+AddAntenna  600   -150   36000
+AddAntenna  600   0   36000
+AddAntenna  600   150   36000
+AddAntenna  600   300   36000
+AddAntenna  600   450   36000
+AddAntenna  600   600   35999.9
+AddAntenna  600   750   35999.9
+AddAntenna  600   900   35999.9
+AddAntenna  750   -750   35999.9
+AddAntenna  750   -600   35999.9
+AddAntenna  750   -450   35999.9
+AddAntenna  750   -300   35999.9
+AddAntenna  750   -150   36000
+AddAntenna  750   0   36000
+AddAntenna  750   150   36000
+AddAntenna  750   300   35999.9
+AddAntenna  750   450   35999.9
+AddAntenna  750   600   35999.9
+AddAntenna  750   750   35999.9
+AddAntenna  900   -600   35999.9
+AddAntenna  900   -450   35999.9
+AddAntenna  900   -300   35999.9
+AddAntenna  900   -150   35999.9
+AddAntenna  900   0   35999.9
+AddAntenna  900   150   35999.9
+AddAntenna  900   300   35999.9
+AddAntenna  900   450   35999.9
+AddAntenna  900   600   35999.9

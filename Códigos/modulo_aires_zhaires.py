@@ -503,7 +503,7 @@ def plot_shower_dev(data, thetas, max_height = 100, \
 
 
 def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlims=[], \
-                   ylims = [], legend = True):
+                   ylims = [], legend = True, formato = '-'):
     ''' Codigos de graficas en dominio temporal
 
     A vs. t, antenas especificadas  = 1
@@ -616,7 +616,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
             labels =  [magnitudes[g%10-1]+', '+lbl_coords[g//10-1] for g in graphs]
             
         for i in range(len(graphs)):#g, data in list(zip(graphs, graph_list)):
-            ax.plot(graph_list[i][0], graph_list[i][1], 'o', label = labels[i])
+            ax.plot(graph_list[i][0], graph_list[i][1], formato, label = labels[i])
             
         ax.set_xlabel('Dist. to shower core (m)', size = 12)
      
@@ -630,7 +630,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
         index = 0
         for i in range(len(graphs)):#g, data, a in list(zip(graphs, graph_list, antenas)):
             for j in range(len(antenas[i])):
-                ax.plot(graph_list[index][0], graph_list[index][1], label = labels[i]+'%d'%antenas[i][j])
+                ax.plot(graph_list[index][0], graph_list[index][1], formato, label = labels[i]+'%d'%antenas[i][j])
                 index += 1
         ax.set_xlabel('t (ns)')
         
@@ -735,7 +735,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     if plot_maxs_vs_coords:
         
         for g, ant, f in list(zip(graphs, antenas, freq)):
-            coord = g // 10 -1
+            coord = (g // 10) -1
             g     = g % 10
             for frecuencia in f:
                 x = np.array([ant_coord[a-1][coord] for a in ant])

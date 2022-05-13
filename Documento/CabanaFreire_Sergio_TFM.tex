@@ -75,7 +75,7 @@
 	
 	\newcommand\EspecialidadeMaster{Especialidad en Física Nuclear y de Partículas}  % <-- Deixar valeiro no caso de TFG, e decir introducir {}. No caso de TFM, e IMPORTANTE que conste: Esta considerado un requisito para obter a especialidade da titulacion do master que a devandita especialidade conste no TFM,  sucedendo que na implementacion informatica da USC ao facer a solicitude de defensa de TFM na secretaria virtual a unica opcion onde introducir a especialidade e no propio campo do titulo do traballo. Por eso, a mencion de especialidade debe facerse como unha addenda ao titulo de TFM, a modo de subtitulo - en particular, na secretaria virtual, este subtitulo ou mencion a especialidade debe incluirse no mesmo campo informatico do titulo de TFM (por exemplo introducir no campo titulo do TFM "Estudio de superconductores ultrarelativistas. Especialidad en Fisica Fundamental." Asi vai aparecer tamen no expediente academico do estudante.)
 	
-	\newcommand\DataDefensa{Junio 2022} %<-Mes e ano da presentacion
+	\newcommand\DataDefensa{Julio 2022} %<-Mes e ano da presentacion
 	
 	\begin{center}
 		%{\sc\large\color{usc} \sc Universidade de Santiago de Compostela}
@@ -164,14 +164,14 @@
 	
 	El autor del trabajo declara que e presente es un trabajo original. Autoriza asimismo al control por personal de la Universidade de Santiago de Compostela de la mencionada originalidad, eventualmente mediante el empleo de bases de datos y la inclusi\'on en ellas.
 	
-	En Santiago de Compostela, a X de junio de 2022. Firmado,\vspace{3cm}
+	En Santiago de Compostela, a X de julio de 2022. Firmado,\vspace{3cm}
 	
 	
 	{\sl Autorizaci\'on del autor a la difusi\'on del trabajo}
 	
 	 El autor autoriza a la difusi\'on del trabajo a los efectos considerados en los vigentes reglamentos de TFG y TFM de la Universidade de Santiago de Compostela (Artículo 11.3) y de TFM del M\'aster en F\'{\i}sica (Artículo 33), entendiendo que esta autorizaci\'on no infl\'uye en la propiedad intelectual del trabajo ni a la posibilidad de publicar el mismo total o parcialmente por otros medios. Autoriza asimismo a que la Facultad de F\'{\i}sica de esa Universidad disponga de copia electr\'onica del trabajo para su archivo, consulta y empleo para usos acad\'emicos y de investigaci\'on con la menci\'on espec\'{\i}fica al autor. 
 	
-	En Santiago de Compostela, a X de junio de 2022. Firmado,\
+	En Santiago de Compostela, a X de julio de 2022. Firmado,\
 	
 	\thispagestyle{empty}
 	\pagebreak
@@ -221,15 +221,54 @@
 	
 	%%%%%%% Incluimos as seccións que sexan necesarias
 	\section{Introducción}\label{sec1}
+	Comentar un poquito de rayos cosmicos, flujo escaso a altas energias -> EAS
+	
+	Comentar importancia de neutrinos en astronomia y astrofisica, problemas para detectar
+	
+	Radiodeteccion de EAS, otra opcion, neutrino tau cascada hacia arriba (Tierra como blanco)
 	\clearpage
 	\section{Cascadas atmosféricas}\label{sec2}
-	Fisica, conceptos, etc
+%	Fisica, conceptos, etc
+%	
+%	Comentar AIRES
+%	
+%	Meter simulaciones de desarrollo UG, CompUGDG
+
+Las cascadas atmosféricas, como hemos visto, representan la opción más importante para lograr estudiar la radiación cósmica mas energética. Debido a los escasos flujos ($<1\,\mathrm{m^{-2}y^{-1}}$ a partir de $E=10^{15}\,\mathrm{eV}$), la detección directa de estas partículas, por ejemplo en detectores situados fuera de la atmósfera, se hace inviable. Por ello, el estudio de la radiación cósmica en esta región de energías se realiza observando las consecuencias de las interacciones de estas partículas en la atmósfera. 
+
+\subsection{Desarrollo de cascadas en la atmósfera}\label{sec21}
+
+Cuando un rayo cósmico de muy alta energía (por ejemplo un protón) llega a las capas superiores de la atmósfera e interacciona con la materia presente en el medio, producirá un número elevado de partículas secundarias, a su vez de altas energías, que volverán a generar más partículas sucesivamente. De este modo, se desarrolla una \textit{cascada} de partículas propagándose a través de la atmósfera, en el que el número de partículas continúa aumentando progresivamente, hasta que la energía de las partículas no es suficiente para mantener el crecimiento (i.e., se alcanza un máximo del desarrollo). Gracias al elevado número de partículas producidas en esta clase de eventos (hasta $10^{11}$ para las partículas primarias más energéticas), su estudio es posible mediante diversas técnicas (detectores de partículas a nivel de suelo, estudio de la fluorescencia provocada por las partículas provocadas en la atmósfera, medidas de la radiación \v{C}erenkov, ...). En cierto modo, la atmósfera actúa como un calorímetro que permite extraer información acerca de la energía y dirección de llegada del rayo cósmico primario, a partir de la deposición de energía en el medio, en forma de una cascada atmosférica.
+
+No obstante, usar la atmósfera como medio de detección tiene, evidentemente, las desventajas de que se trata de un medio inhomogéneo, ya que la densidad de la misma decrece con la altitud, $\rho = \rho(h)$. Como ejemplo, uno de los modelos más simples para la dependencia de la densidad con la altura es un decrecimiento exponencial:
+\begin{equation}
+	\rho(h)=\rho_0\exp\left(-h/h_0\right)\; \;;\;\;\text{donde}\;\rho_0\sim 10^{-3}\,\mathrm{g/cm^3}\;\text{y}\;h_0\sim8\,\mathrm{km}\label{ec21}
+\end{equation}
+
+Naturalmente, este hecho tendrá consecuencias importantes en el desarrollo de la cascada. Fundamentalmente, el efecto se deberá a que, a mayor densidad, mayor probabilidad de interacción para las partículas producidas. Para tener en cuenta esta cuestión, gran parte de la discusión que haremos acerca del desarrollo de cascadas atmosféricas no se hará en términos de distancias, sino de cantidad de materia atravesada o \textit{profundidad}, $X$. Dicha profundidad puede medirse en la dirección vertical ($X_v$) o a lo largo del eje del desarrollo de la cascada (Fig. \ref{shower_params}):
+\begin{equation}
+	X_v=\int_{h}^\infty\rho(h)dh\;\;;\;\;X_s=\int_{h}^\infty\rho(h)dl=\int_h^{\infty}\frac{\rho(h)dh}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h\right)^2}}}\label{ec22}
+\end{equation}
+Gracias a estas definiciones, podremos estudiar el desarrollo de cascadas en términos de magnitudes que inmediatamente incorporan la inhomogeneidad de la atmósfera, por lo que no profundizaremos más en los modelos que describen la atmósfera y pasaremos a cuestiones de mayor interés para el objetivo de este trabajo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{figures/cascadas/shower_params}
+	\caption{Esquema de una cascada atmosférica. Definición de profundidad vertical e inclinada (\textit{slanted}). $R_T$ es el radio de la Tierra.}
+	\label{shower_params}
+\end{figure}
+
+A la hora de estudiar cascadas atmosféricas, debemos considerar tres \textit{componentes} bien difereciadas:
+\begin{itemize}
+	\item\textit{Componente electromagnética}: 
+	\item\textit{Componente hadrónica}:
+	\item\textit{Componente muónica}:
+\end{itemize}
+	Poner aqui componentes y procesos mas importantes, diferencias, etc (comentarios en el Gaisser, Spurio EAS), longitud de interaccion, longitud de desintegracion
 	
-	Comentar AIRES
-	
-	Meter simulaciones de desarrollo UG, CompUGDG
-	\subsection{Desarrollo de cascadas en la atmósfera}\label{sec21}
+	Acabar comentando un poquito de AIRES
 	\subsection{Caracterización de las cascadas hacia arriba}\label{sec22}
+	Cosas de Carac\_UG y Comp\_UGDG
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
 	El objetivo fundamental de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
@@ -417,9 +456,9 @@ El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos
 
 Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
 
-La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la anchura de los pulsos nos da un orden de magnitud para $f$:
+La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la duración de los pulsos nos da un orden de magnitud para $f$:
 \begin{equation}
-	\omega \Delta t = 2\pi f \Delta t \sim 1\implies f\sim \left(2\pi\Delta t\right)^{-1} \implies \Delta t \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
+	\omega T = 2\pi f T \sim 1\implies f\sim \left(2\pi T\right)^{-1} \implies T \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
 \end{equation} 
 Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
 	\begin{figure}[H]
@@ -463,6 +502,7 @@ Para acabar esta sección, recapitularemos los resultados y conclusiones más im
 	%%%%%%%Bibliografía
 	\clearpage
 	\appendix
+	
 	\markboth{REFERENCIAS}{REFERENCIAS}  
 	\addcontentsline{toc}{section}{Referencias} 
 	\nocite{*}

@@ -417,10 +417,26 @@ El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos
 
 Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
 
-Poner aqui Fraunhofer, que vamos a trabajar en MHz
+La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la anchura de los pulsos nos da un orden de magnitud para $f$:
+\begin{equation}
+	\omega \Delta t = 2\pi f \Delta t \sim 1\implies f\sim \left(2\pi\Delta t\right)^{-1} \implies \Delta t \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
+\end{equation} 
+Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.6\linewidth]{figures/radio/coherence}
+		\caption{Geometría considerada. $D$ se corresponde con el desarrollo lateral de la cascada en el máximo.}
+		\label{coherence}
+	\end{figure}
+Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
 
-Explicar las graficas e interpretar la figura en tiempo, comentar patron de difraccion, ley de airy y resolucion del cono erenkov
+Sabiendo lo anterior, presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. Como vemos en la primera gráfica, en este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada. La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece con la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos decrece con la frecuencia, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
 
+La explicación a este hecho puede encontrarse en fenómenos de tipo difractivo. Podemos ejemplificarlo recordando, e.g., el patrón de Airy, en el que el primer cero del patrón de difracción ocurre cuando, respecto al máximo, observamos bajo un ángulo $\alpha$ tal que:
+\begin{equation}
+	\sin\alpha=1,22\frac{\lambda}{d}\label{ec318}
+\end{equation}  
+donde $d$ es el tamaño típico de la fuente. Evidentemente, a menor (mayor) frecuencia (longitud de onda), debemos irnos hasta un mayor $\alpha$ para encontrar el mínimo del patrón. Es decir, cuanto menor sea la frecuencia mayor será la anchura del pico, como observamos en \ref{freqfieldsgrounds}b
 \begin{figure}[H]
 	\centering
 	\subfigure[Componente a $300\,\mathrm{MHz}$]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground}}
@@ -428,6 +444,15 @@ Explicar las graficas e interpretar la figura en tiempo, comentar patron de difr
 	\caption{Componentes de Fourier del campo eléctrico (componente $y$) en función de la distancia al \textit{core} de la cascada.}
 	\label{freqfieldsgrounds}
 \end{figure} 
+Evidentemente, en la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} estábamos viendo la superposición de todas las componentes de Fourier, y debido a que las dominantes (baja frecuencia) no están resueltas, no se observaba claramente la intersección del cono \v{C}erenkov con el suelo.
+
+Para acabar esta sección, recapitularemos los resultados y conclusiones más importantes:
+\begin{enumerate}
+	\item En cascadas atmosféricas tendremos dos contribuciones fundamentales a la emisión de radiación electromagnética: deflexión geomagnética y efecto Askaryan, cada una con efectos diferentes en la polarización del campo detectado.
+	\item Las expresiones deducidas para el campo eléctrico radiado no asumen ningún mecanismo de emisión, y están integradas en el código ZHAireS empleado para realizar las simulaciones. Como hemos visto, el efecto de ambos mecanismos es evidente en los resultados.
+	\item Las frecuencias de interés se sitúan en la banda de los $\mathrm{MHz}$ (radiofrecuencias). Además, la señal de campo eléctrico detectada tiene una dependencia importante con la frecuencia, tanto en amplitud (mayor a menores frecuencias) como en la resolución de los máximos en torno al ángulo \v{C}erenkov.
+\end{enumerate}
+
 	\clearpage
 
 	\section{Emisión en radio en cascadas hacia arriba}

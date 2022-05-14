@@ -221,11 +221,18 @@
 	
 	%%%%%%% Incluimos as seccións que sexan necesarias
 	\section{Introducción}\label{sec1}
-	Comentar un poquito de rayos cosmicos, flujo escaso a altas energias -> EAS
+	Comentar un poquito de rayos cosmicos, flujo escaso a altas energias -> EAS. 
 	
 	Comentar importancia de neutrinos en astronomia y astrofisica, problemas para detectar
 	
-	Radiodeteccion de EAS, otra opcion, neutrino tau cascada hacia arriba (Tierra como blanco)
+	Detectores suelo, Cerenkov, fluerescencia, ... Radiodeteccion de EAS como otra opcion. Posibilidad de neutrino tau cascada hacia arriba (Tierra como blanco)
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.85\linewidth]{figures/shower_up}
+		\caption{Idea de detección}
+		\label{shower_up}
+	\end{figure}
 	\clearpage
 	\section{Cascadas atmosféricas}\label{sec2}
 %	Fisica, conceptos, etc
@@ -254,18 +261,27 @@ Gracias a estas definiciones, podremos estudiar el desarrollo de cascadas en té
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{figures/cascadas/shower_params}
-	\caption{Esquema de una cascada atmosférica. Definición de profundidad vertical e inclinada (\textit{slanted}). $R_T$ es el radio de la Tierra.}
+	\caption{Esquema de una cascada atmosférica \textit{al uso}. Definición de profundidad vertical e inclinada (\textit{slanted}). $R_T$ es el radio de la Tierra.}
 	\label{shower_params}
 \end{figure}
 
-A la hora de estudiar cascadas atmosféricas, debemos considerar tres \textit{componentes} bien difereciadas:
+Como hemos mencionado en el apartado introductorio, nos interesará estudiar cascadas atmosféricas que se propagan \textit{hacia arriba}, y además iniciadas por la desintegración de un leptón $\tau$. En esta clase de situación, por tanto, tendremos una cascada propagándose desde zonas más a menos densas, y que pueden haber sido iniciadas por leptones o hadrones de alta energía (ya que los abundantes modos de desintegración del $\tau$ permiten la producción de ambos tipos de partículas). Por ello, para poder comprender estos eventos, comenzaremos por repasar brevemente las tres \textit{componentes} diferenciadas que pueden aparecer en una cascada atmosférica y su evolución a lo largo del desarrollo de la misma.
 \begin{itemize}
-	\item\textit{Componente electromagnética}: 
-	\item\textit{Componente hadrónica}:
-	\item\textit{Componente muónica}:
+	\item\textit{Componente electromagnética}: Integrada, fundamentalmente, por fotones, electrones y positrones; que representan las partículas más abundantes en una cascada atmosférica. A altas energías\footnote{ Mayores a la energía crítica $E_C\sim86\,\mathrm{MeV}$, en la que las pérdidas de energía por ionización superan a las de bremsstrahlung.}, las interacciones que multiplican el número de partículas asociadas a esta componente serán la producción de pares ($\gamma+\text{Nuc.}\rightarrow e^+e^-+\text{Nuc.}$) y bremsstrahlung ($e^\pm+\text{Nuc.}\rightarrow e^\pm+\gamma+\text{Nuc.}$). Cuando la energía de las partículas baja lo suficiente, aparecen pérdidas de energía mediante interacciones con los electrones del medio (scattering Compton, ionizaciones y excitaciones, aniquilación $e^+e^-$, ...) que detienen el desarrollo de la cascada.
+	\item\textit{Componente hadrónica}: Integrada por protones, núcleos, piones y demás hadrones y mesones. En este caso, las interacciones más relevantes serán las de producción de piones ($p+\text{Nuc.}\rightarrow\pi^0,\pi^\pm,p,...$ ; $\pi^0+\text{Nuc.}\rightarrow \pi^0,\pi^\pm,...$). Además, a altas energías, el número de partículas producidas en cada interacción será muy superior al de los procesos electromagnéticos ($\gtrsim75$ secundarios en cada interacción). A diferencia de la componente electromagnética, en este caso debemos considerar también procesos de desintegración que alimentarán otras componentes:
+	\begin{itemize}
+		\item $\pi^0\rightarrow\gamma\gamma$ ($\tau\sim8,4\times10^{-17}\,\mathrm{s}$). Alimenta la componente electromagnética.
+		\item  $\pi^+\rightarrow\mu^+\nu_\mu$ ; $\pi^-\rightarrow\mu^-\bar\nu_\mu$ ($\tau\sim2,6\times10^{-8}\,\mathrm{s}$). Alimenta la componente muónica.
+	\end{itemize}
+Dada la pequeña vida media del $\pi^0$, podemos asumir con seguridad que la gran mayoría de piones neutros producidos se desintegran antes de interaccionar. Dado que la producción de cada tipo de pión es equiprobable, en cada interacción podemos tomar la aproximación de que $1/3$ de la energía se \textit{transfiere} a la componente electromagnética, cuyo origen en cascadas iniciadas por hadrones estará precisamente en este proceso. Eventualmente, la mayoría de la energía asociada a hadrones se habrá transferido a la componente EM, y se acabará disipando en ionizaciones y excitaciones del medio.
+
+Por otra parte, la desintegración del pión cargado alimenta la componente muónica, cuyas interacciones con el medio serán prácticamente despreciables, sufriendo muy poca atenuación en la atmósfera. No obstante, la vida media más larga del $\pi^\pm$ hace que las interacciones que multiplican el número de piones sean relevantes hasta que las energías bajan de $\sim 20\,\mathrm{GeV}$.
+	\item\textit{Componente muónica}: Integrada por muones y neutrinos producidos, fundamentalmente, en la desintegración del pión cargado. La interacción de estas partículas en la atmósfera será prácticamente despreciable. Por otra parte, la larga vida media del muón ($\mu\rightarrow e\nu_e\nu_\mu$, $\tau\sim2\times10^{-6}$) hace que en la mayoría de los casos atraviesen la atmósfera sin desintegrarse.
 \end{itemize}
-	Poner aqui componentes y procesos mas importantes, diferencias, etc (comentarios en el Gaisser, Spurio EAS), longitud de interaccion, longitud de desintegracion
+
+En general, el desarrollo de las cascadas atmosféricas está determinado por la competición entre interacción y desintegración que afecta a hadrones y mesones. Si las interacciones dominan, el número de partículas se multiplica y la cascada \textit{crece}, mientras que las desintegraciones alimentan la componente EM y muónica, que \textit{extraen} energía de la cascada y detienen su desarrollo. Mientras que las desintegraciones sólo dependen de la energía de la partícula y el tiempo de propagación, las interacciones dependen de la cantidad de materia atravesada, que como hemos visto depende de la altura en la atmósfera. 
 	
+Comentar distancias de interaccion y desintegracion, por ejemplo con piones
 	Acabar comentando un poquito de AIRES
 	\subsection{Caracterización de las cascadas hacia arriba}\label{sec22}
 	Cosas de Carac\_UG y Comp\_UGDG

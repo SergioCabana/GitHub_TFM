@@ -254,7 +254,7 @@ No obstante, usar la atmósfera como medio de detección tiene, evidentemente, l
 
 Naturalmente, este hecho tendrá consecuencias importantes en el desarrollo de la cascada. Fundamentalmente, el efecto se deberá a que, a mayor densidad, mayor probabilidad de interacción para las partículas producidas. Para tener en cuenta esta cuestión, gran parte de la discusión que haremos acerca del desarrollo de cascadas atmosféricas no se hará en términos de distancias, sino de cantidad de materia atravesada o \textit{profundidad}, $X$. Dicha profundidad puede medirse en la dirección vertical ($X_v$) o a lo largo del eje del desarrollo de la cascada (Fig. \ref{shower_params}):
 \begin{equation}
-	X_v=\int_{h}^\infty\rho(h)dh\;\;;\;\;X_s=\int_{h}^\infty\rho(h)dl=\int_h^{\infty}\frac{\rho(h)dh}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h\right)^2}}}\label{ec22}
+	X_v(h)=\int_{h}^\infty\rho(h')dh'\;\;;\;\;X_s(h,\theta)=\int_{h}^\infty\rho(h')dl=\int_h^{\infty}\frac{\rho(h')dh'}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h'\right)^2}}}\label{ec22}
 \end{equation}
 Gracias a estas definiciones, podremos estudiar el desarrollo de cascadas en términos de magnitudes que inmediatamente incorporan la inhomogeneidad de la atmósfera, por lo que no profundizaremos más en los modelos que describen la atmósfera y pasaremos a cuestiones de mayor interés para el objetivo de este trabajo.
 
@@ -279,11 +279,25 @@ Por otra parte, la desintegración del pión cargado alimenta la componente muó
 	\item\textit{Componente muónica}: Integrada por muones y neutrinos producidos, fundamentalmente, en la desintegración del pión cargado. La interacción de estas partículas en la atmósfera será prácticamente despreciable. Por otra parte, la larga vida media del muón ($\mu\rightarrow e\nu_e\nu_\mu$, $\tau\sim2\times10^{-6}$) hace que en la mayoría de los casos atraviesen la atmósfera sin desintegrarse.
 \end{itemize}
 
-En general, el desarrollo de las cascadas atmosféricas está determinado por la competición entre interacción y desintegración que afecta a hadrones y mesones. Si las interacciones dominan, el número de partículas se multiplica y la cascada \textit{crece}, mientras que las desintegraciones alimentan la componente EM y muónica, que \textit{extraen} energía de la cascada y detienen su desarrollo. Mientras que las desintegraciones sólo dependen de la energía de la partícula y el tiempo de propagación, las interacciones dependen de la cantidad de materia atravesada, que como hemos visto depende de la altura en la atmósfera. 
-	
-Comentar distancias de interaccion y desintegracion, por ejemplo con piones
-	Acabar comentando un poquito de AIRES
+En general, el desarrollo de las cascadas atmosféricas está determinado por la competición entre interacción y desintegración que afecta a hadrones y mesones. Si las interacciones dominan, el número de partículas se multiplica y la cascada \textit{crece}, mientras que las desintegraciones alimentan la componente EM y muónica, que \textit{extraen} energía de la cascada y detienen su desarrollo. Mientras que las desintegraciones sólo dependen de la energía de la partícula y el tiempo de propagación, las interacciones dependen de la cantidad de materia atravesada, que como hemos visto depende de la altura en la atmósfera. Puesto que en discusiones posteriores será de utilidad, presentaremos los conceptos de \textit{distancia de interacción y desintegración} con el ejemplo de los piones:
+\begin{itemize}
+	\item \textit{Distancia de interacción,} $\lambda_I\,\left[\mathrm{g/cm^2}\right]$: Cantidad de materia que debe atravesarse para que, en promedio, ocurra una interacción. En uds. de distancia, $d_I\sim\lambda_I/\rho(h)$. Para el caso de los piones interaccionando con aire:
+\begin{equation}
+		\lambda_I=70-120\,\mathrm{g/cm^2}\label{ec23}
+\end{equation}
+
+\item \textit{Distancia de desintegración, }$d_{dec}\,\left[\mathrm{m}\right]$: Distancia promedio que recorre una partícula antes de decaer. Depende de la vida media en reposo y la energía. En el caso de los piones:
+\begin{equation}
+	d_{dec}=\gamma c\tau=\frac{E}{mc^2}c\tau\left\{\begin{array}{l}\pi^\pm\rightarrow d_{dec}=\gamma\left(7,8 \,\mathrm{m}\right)\\
+\pi^0\rightarrow d_{dec}=\gamma\left(2,5\times10^{-8}\,\mathrm{m}\right)\end{array}\right.
+\label{ec24}
+\end{equation}
+\end{itemize}
+Naturalmente, la energía a la que $d_{dec}\sim\lambda/\rho$ determina el punto en que las interacciones comienzan a verse superadas por las desintegraciones. Por lo tanto, estas magnitudes nos permiten estimar, de manera sencilla, en qué fase del desarrollo se encuentra cada componente de la cascada. Además, vemos claramente las dependencias tanto con la densidad como con la energía en \eqref{ec23} y \eqref{ec24}. Por lo tanto, podemos intuir que habrá diferencias sustanciales entre una cascada \textit{habitual} en que las partículas de mayor energía aparecen en las zonas menos densas de la atmósfera, y una cascada hacia arriba en que las partículas más energéticas aparecen en la región de mayor densidad para propagarse hacia zonas menos densas. Exploraremos esta posibilidad a continuación.
+
 	\subsection{Caracterización de las cascadas hacia arriba}\label{sec22}
+	Comentar un poquito de AIRES
+	
 	Cosas de Carac\_UG y Comp\_UGDG
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
@@ -425,7 +439,7 @@ Mediante esta técnica, puede simularse el campo eléctrico radiado por una casc
  
 Mostraremos ahora algunos ejemplos de resultados típicos de ZHAireS, que nos permitirán poner de manifiesto algunas de las ideas desarrolladas hasta el momento. El primer caso que planteamos es el de una cascada vertical ($\theta=0$) iniciada por un protón de energía inicial $E=10^{17}\,\mathrm{eV}$. El campo magnético terrestre se ha supuesto, por simplicidad, horizontal (i.e., paralelo al plano del suelo) y de magnitud $23\,\mathrm{\mu T}$, y se han situado antenas en las cuatro direcciones relativas al \textit{core} de la cascada (N, S, E, W). Los resultados de la simulación se presentan en las Figs. \ref{EW_field} y \ref{NS_field}. Aunque a simple vista no es evidente, dichos resultados son un ejemplo perfecto para ver los efectos de los mecanismos de emisión que discutimos en la sec. \ref{sec31}. 
 
-Empecemos por la Fig. \ref{EW_field}, en la que presentamos la componente $y$ del campo eléctrico, i.e., la componente en la dirección Este-Oeste (EW). Como vemos, la forma de la señal es muy similar en todas las posiciones, con un pulso de duración $\sim \mathrm{ns}$ cuya amplitud decrece con la distancia al \textit{core} de la cascada. Sin embargo, aparece una diferencia muy interesante en los máximos: tanto en las antenas al Norte y Sur se alcanzan los mismos valores aproximadamente, mientras que en las antenas al Este (Oeste) se llega a valores algo superiores (inferiores). En este efecto es donde podemos apreciar la competición entre la deflexión geomagnética y el efecto Askaryan. Recordando las Figs. \ref{Geomag_deflexion} y \ref{Askaryan}, es evidente que el efecto Askaryan no modifica de manera sustancial la componente $y$ del campo si nos situamos al Norte o al Sur, mientras que aporta una contribución e signo positivo (negativo) al Este (Oeste). Por ello, el campo observado en el Este es ligeramente superior al del Oeste, mientras que este efecto no aparece en observaciones al Norte o Sur.
+Empecemos por la Fig. \ref{EW_field}, en la que presentamos la componente $y$ del campo eléctrico, i.e., la componente en la dirección Este-Oeste (EW). Como vemos, la forma de la señal es muy similar en todas las posiciones, con un pulso de duración $\sim \mathrm{ns}$ cuya amplitud decrece con la distancia al \textit{core} de la cascada. Sin embargo, aparece una diferencia muy interesante en los máximos: tanto en las antenas al Norte y Sur se alcanzan los mismos valores aproximadamente, mientras que en las antenas al Este (Oeste) se llega a valores algo superiores (inferiores). En este efecto es donde podemos apreciar la competición entre la deflexión geomagnética y el efecto Askaryan. Recordando las Figs. \ref{Geomag_deflexion} y \ref{Askaryan}, es evidente que el efecto Askaryan no modifica de manera sustancial la componente $y$ del campo si nos situamos al Norte o al Sur, mientras que aporta una contribución que se añade (resta) al campo generado por deflexión geomagnética al Este (Oeste). Por ello, el campo observado en el Este es ligeramente superior al del Oeste, mientras que este efecto no aparece en observaciones al Norte o Sur.
 
 
 \begin{figure}[H]
@@ -435,7 +449,7 @@ Empecemos por la Fig. \ref{EW_field}, en la que presentamos la componente $y$ de
 	\\
 	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_E}}
 	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_W}}
-	\caption{Componente $y$ (EW) del campo eléctrico radiado por una cascada vertical iniciada por un protón de $10^{17}\,\mathrm{eV}$, en diferentes puntos de observación. La señal a $400\,\mathrm{m}$ se ha multiplicado por un factor $20$ para hacerla visible.}
+	\caption{Componente $y$ (E$\rightarrow$W) del campo eléctrico radiado por una cascada vertical iniciada por un protón de $10^{17}\,\mathrm{eV}$, en diferentes puntos de observación. La señal a $400\,\mathrm{m}$ se ha multiplicado por un factor $20$ para hacerla visible.}
 	\label{EW_field}
 \end{figure}
 
@@ -447,7 +461,7 @@ Si nos centramos en la componente $x$ del campo, es decir, en la dirección Nort
 	\\
 	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_E}}
 	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_W}}
-	\caption{Equivalente a Fig. \ref{EW_field} para la componente $x$ (NS) del campo.}
+	\caption{Equivalente a Fig. \ref{EW_field} para la componente $x$ (S$\rightarrow$N) del campo.}
 	\label{NS_field}
 \end{figure}
 

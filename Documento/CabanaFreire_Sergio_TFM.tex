@@ -48,6 +48,7 @@
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
+\numberwithin{table}{section}
 
 \renewcommand{\spanishtablename}{Tabla} %Denominacion para tablas
 \renewcommand{\spanishabstractname}{} %Denominacion para el abstract
@@ -268,7 +269,7 @@ Gracias a estas definiciones, podremos estudiar el desarrollo de cascadas en té
 Como hemos mencionado en el apartado introductorio, nos interesará estudiar cascadas atmosféricas que se propagan \textit{hacia arriba}, y además iniciadas por la desintegración de un leptón $\tau$. En esta clase de situación, por tanto, tendremos una cascada propagándose desde zonas más a menos densas, y que pueden haber sido iniciadas por leptones o hadrones de alta energía (ya que los abundantes modos de desintegración del $\tau$ permiten la producción de ambos tipos de partículas). Por ello, para poder comprender estos eventos, comenzaremos por repasar brevemente las tres \textit{componentes} diferenciadas que pueden aparecer en una cascada atmosférica y su evolución a lo largo del desarrollo de la misma.
 \begin{itemize}
 	\item\textit{Componente electromagnética}: Integrada, fundamentalmente, por fotones, electrones y positrones; que representan las partículas más abundantes en una cascada atmosférica. A altas energías\footnote{ Mayores a la energía crítica $E_C\sim86\,\mathrm{MeV}$, en la que las pérdidas de energía por ionización superan a las de bremsstrahlung.}, las interacciones que multiplican el número de partículas asociadas a esta componente serán la producción de pares ($\gamma+\text{Nuc.}\rightarrow e^+e^-+\text{Nuc.}$) y bremsstrahlung ($e^\pm+\text{Nuc.}\rightarrow e^\pm+\gamma+\text{Nuc.}$). Cuando la energía de las partículas baja lo suficiente, aparecen pérdidas de energía mediante interacciones con los electrones del medio (scattering Compton, ionizaciones y excitaciones, aniquilación $e^+e^-$, ...) que detienen el desarrollo de la cascada.
-	\item\textit{Componente hadrónica}: Integrada por protones, núcleos, piones y demás hadrones y mesones. En este caso, las interacciones más relevantes serán las de producción de piones ($p+\text{Nuc.}\rightarrow\pi^0,\pi^\pm,p,...$ ; $\pi^0+\text{Nuc.}\rightarrow \pi^0,\pi^\pm,...$). Además, a altas energías, el número de partículas producidas en cada interacción será muy superior al de los procesos electromagnéticos ($\gtrsim75$ secundarios en cada interacción). A diferencia de la componente electromagnética, en este caso debemos considerar también procesos de desintegración que alimentarán otras componentes:
+	\item\textit{Componente hadrónica}: Integrada por protones, núcleos, piones y demás hadrones. En este caso, las interacciones más relevantes serán las de producción de piones ($p+\text{Nuc.}\rightarrow\pi^0,\pi^\pm,p,...$ ; $\pi^0+\text{Nuc.}\rightarrow \pi^0,\pi^\pm,...$). Además, a altas energías, el número de partículas producidas en cada interacción será muy superior al de los procesos electromagnéticos ($\gtrsim75$ secundarios en cada interacción). A diferencia de la componente electromagnética, en este caso debemos considerar también procesos de desintegración que alimentarán otras componentes:
 	\begin{itemize}
 		\item $\pi^0\rightarrow\gamma\gamma$ ($\tau\sim8,4\times10^{-17}\,\mathrm{s}$). Alimenta la componente electromagnética.
 		\item  $\pi^+\rightarrow\mu^+\nu_\mu$ ; $\pi^-\rightarrow\mu^-\bar\nu_\mu$ ($\tau\sim2,6\times10^{-8}\,\mathrm{s}$). Alimenta la componente muónica.
@@ -288,16 +289,53 @@ En general, el desarrollo de las cascadas atmosféricas está determinado por la
 
 \item \textit{Distancia de desintegración, }$d_{dec}\,\left[\mathrm{m}\right]$: Distancia promedio que recorre una partícula antes de decaer. Depende de la vida media en reposo y la energía. En el caso de los piones:
 \begin{equation}
-	d_{dec}=\gamma c\tau=\frac{E}{mc^2}c\tau\left\{\begin{array}{l}\pi^\pm\rightarrow d_{dec}=\gamma\left(7,8 \,\mathrm{m}\right)\\
+	d_{dec}=\gamma\beta c\tau\sim\frac{E}{mc^2}c\tau\left\{\begin{array}{l}\pi^\pm\rightarrow d_{dec}=\gamma\left(7,8 \,\mathrm{m}\right)\\
 \pi^0\rightarrow d_{dec}=\gamma\left(2,5\times10^{-8}\,\mathrm{m}\right)\end{array}\right.
 \label{ec24}
 \end{equation}
 \end{itemize}
 Naturalmente, la energía a la que $d_{dec}\sim\lambda/\rho$ determina el punto en que las interacciones comienzan a verse superadas por las desintegraciones. Por lo tanto, estas magnitudes nos permiten estimar, de manera sencilla, en qué fase del desarrollo se encuentra cada componente de la cascada. Además, vemos claramente las dependencias tanto con la densidad como con la energía en \eqref{ec23} y \eqref{ec24}. Por lo tanto, podemos intuir que habrá diferencias sustanciales entre una cascada \textit{habitual} en que las partículas de mayor energía aparecen en las zonas menos densas de la atmósfera, y una cascada hacia arriba en que las partículas más energéticas aparecen en la región de mayor densidad para propagarse hacia zonas menos densas. Exploraremos esta posibilidad a continuación.
 
-	\subsection{Caracterización de las cascadas hacia arriba}\label{sec22}
-	Comentar un poquito de AIRES
+	\subsection{Caracterización de cascadas atmosféricas hacia arriba}\label{sec22}
+	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$, $\pi^\pm$ y $\pi^0$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo con el que se desarrolla la cascada. 
 	
+	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de la cascada en un número de horas de CPU \textit{asumibles}\footnote{Típicamente, entre 2 y 4 horas por cascada simulada.}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
+	
+	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la siguiente Tabla se recogen las partículas e interacciones consideradas en la simulación:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{clc}
+		\hline
+		\multicolumn{2}{c}{Partícula}                                                                   & Interacciones                         \\ \hline
+		\multicolumn{2}{c}{\multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}$\gamma$\\ $e^\pm$\end{tabular}}} & Efectos Compton y fotoeléctrico       \\
+		\multicolumn{2}{c}{}                                                                            & Bremsstrahlung y producción de pares  \\
+		\multicolumn{2}{c}{}                                                                            & Aniquilación $e^+e^-$                 \\
+		\multicolumn{2}{c}{}                                                                            & Emisión de $e^-$ knock-on             \\
+		\multicolumn{2}{c}{}                                                                            & Reacciones fotonucleares, ...         \\ \hline
+		\multicolumn{2}{c}{\multirow{3}{*}{$\mu^\pm$}}                                                  & Bremsstrahlung y producción de pares  \\
+		\multicolumn{2}{c}{}                                                                            & Emisión de $e^-$ knock-on             \\
+		\multicolumn{2}{c}{}                                                                            & Desintegración                        \\ \hline
+		\multicolumn{2}{c}{Neutrinos}                                                                   & Aparición en desintegraciones         \\ \hline
+		\multicolumn{2}{c}{$p,\bar p, n, \bar n, \Lambda$}                                              & Colisiones hadrónicas y núcleo-núcleo \\
+		\multicolumn{2}{c}{$\pi^0, \pi^\pm, K^0_{L,S}, K^\pm$}                                          & Emisión de $e^-$ knock-on             \\
+		\multicolumn{2}{c}{Núcleos $Z\leq 36$}                                                          & Desintegraciones                      \\ \hline
+	\end{tabular}
+\caption{Partículas e interacciones consideradas en AIRES (v. 2.6)}
+\end{table}
+
+El estudio de la evolución de la cascada en AIRES se puede realizar, entre otras maneras, estableciendo una serie de \textit{niveles de observación} a lo largo del desarrollo. En cada uno de ellos, se registran las partículas que lo atraviesan y su energía, permitiendo obtener el desarrollo del número de partículas y su energía. Los niveles de observación se disponen equiespaciados en profundidad atravesada, bien a lo largo del eje de desarrollo de la cascada ($X_s$) o en la dirección vertical ($X_v$):
+\clearpage
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.7\linewidth]{figures/cascadas/AIRES_planos}
+		\caption{Disposiciones posibles de los niveles de observación en AIRES, en el ejemplo de una cascada hacia arriba. Izq.: A lo largo del eje del desarrollo. Der.: Dirección vertical.}
+		\label{AIRES_planos}
+	\end{figure}
+	
+Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir profundidad atravesada a altura o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}.
+
+Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera. En primer lugar, presentaremos resultados de AIRES variando el ángulo de la cascada, la energía del primario y la altura de la primera interacción; y después haremos una comparativa entre cascadas de igual inclinación e iniciadas por el mismo primario, pero propagándose hacia arriba o hacia abajo.
+
 	Cosas de Carac\_UG y Comp\_UGDG
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
@@ -418,9 +456,9 @@ Más allá del comentario anterior, podemos extraer dos conclusiones importantes
 
 Precisamente el último punto resulta de especial interés en este trabajo, ya que nuestro último objetivo será caracterizar la emisión de radio en cascadas atmosféricas hacia arriba mediante simulaciones. En el siguiente apartado nos detendremos en el algoritmo empleado en las mismas, y mostraremos algunos resultados sencillos que nos permitirán poner en contexto el desarrollo que hemos realizado en este apartado.
 
-	\subsection{Caracterización de la radiación en simulaciones Monte Carlo}\label{sec32}
+	\subsection{Simulación y caracterización de la radiación}\label{sec32}
 
-Las simulaciones de la emisión electromagnética asociada a cascadas atmosféricas se ha realizado recurriendo al código ZHAireS, que combina la simulación del desarrollo de cascadas atmosféricas mediante AIRES con el algoritmo ZHS para calcular el campo eléctrico radiado. El desarrollo de la sección anterior será suficiente para describir, al menos de manera cualitativa, el funcionamiento de dicho algoritmo:
+Las simulaciones de la emisión electromagnética asociada a cascadas atmosféricas se ha realizado recurriendo al código ZHAireS \cite{AlvarezMuniz2012}, que combina la simulación del desarrollo de cascadas atmosféricas mediante AIRES con el algoritmo ZHS para calcular el campo eléctrico radiado. El desarrollo de la sección anterior será suficiente para describir, al menos de manera cualitativa, el funcionamiento de dicho algoritmo:
 	\begin{itemize}
 		\item Las trayectorias de las partículas son discretizadas en \textit{sectores}, en los cuales la velocidad de la partícula se toma constante.. Los parámetros de cada sector (energía, dirección, ...) se obtienen de AIRES.
 		\item En cada paso de la simulación, la partícula se propagará a lo largo de un \textit{sector}, entre $t$ y $t+\Delta t$. Introduciendo las posiciones de observación (antenas) en la simulación, las expresiones \eqref{ec315} y \eqref{ec316} permiten calcular el campo eléctrico asociado al sector, tanto en dominio temporal como de frecuencias.

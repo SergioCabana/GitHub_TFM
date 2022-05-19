@@ -54,6 +54,7 @@ Programas en Python para tratamiento de datos, graficas y geometria de cascadas:
 		plot_shower_dev   : Representacion del desarrollo longitudinal de cascadas. Utiliza outputs de AiresPlot
 		ZHAireS_Plot_t    : Graficas de outputs de ZHAireS en dominio temporal
 		ZHAireS_Plot_f    : Graficas de outputs de ZHAireS en dominio de frecuencias
+		FFT               : Transformada de Fourier rapida de outputs en tiempo de ZHAireS.
 		ZHAireS_arrayplot : Graficas de campo electrico (output ZHAireS) en un array 2d de antenas a cierta altura, en dominio t o f
 
 Documento: 

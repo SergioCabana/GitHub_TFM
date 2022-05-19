@@ -1,8 +1,10 @@
-import numpy as np
+import numpy             as np
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-import pandas as pd
+import matplotlib        as mpl
+import pandas            as pd
 import os
+
+from scipy.fftpack       import fft, fftfreq, fftshift
 
 
 colores = ['k', 'royalblue', 'r', 'gold', 'limegreen', 'navy', 'crimson', 'turquoise', 'darkorange', 'darkgreen']
@@ -235,7 +237,7 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
         
         Energy distrib. at ground    = 4
         
-        
+        Energy Long. Dev (per part) = 5
         
         CADA PARTICULA TIENE UN NUMERO:
 
@@ -314,8 +316,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
 
 
     lbl     = [r'$\gamma$', 'p', r'$e\pm$' , r'$\mu\pm$', r'$\pi\pm$', r'$K\pm$', 'Other neutral pcles.', 'All chgd. pcles.', 'All pcles.']
-    xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]']
-    ylabels = ['N', 'E [GeV]', 'E [GeV]', 'N', 'N']
+    xlabels = [r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', r'$X_v$ [$g/cm^2$]', 'Distance to core [m]', 'E [GeV]', r'$X_v$ [$g/cm^2$]']
+    ylabels = ['N', 'E [GeV]', 'E [GeV]', 'N', 'N', 'E per part. [GeV]']
     
     fig = plt.figure()
     ax  = fig.add_subplot(111)
@@ -324,42 +326,129 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
     
     export = []
     data   = []
-
-    for subdir, dirs, files in os.walk(rootdir):
-        for file in files:
-            for p in pcles:
-                if file.endswith(ext[graf][p]) and all([c in file for c in const]): 
-                    # si es grafica y particula adecuada, y cumple constraints
-                    for extra in extras:
-                        if extra == '' or extra in file:
-                            data.append([subdir + os.sep + file, p, extra])
     
-    if len(data) != len(extras)*len(pcles):
-        raise TypeError('Faltan archivos necesarios para la grafica que se pide')
+    if graf != 5:
         
-    orden = []
-    for p in pcles:
-        for extra in extras:
-            for serie in data:
-                if p in serie and extra in serie:
-                    orden.append(serie) 
-                    # solo para que la leyenda salga en el orden de extras
-                
-    data = orden  
+        for subdir, dirs, files in os.walk(rootdir):
+            for file in files:
+                for p in pcles:
+                    if file.endswith(ext[graf][p]) and all([c in file for c in const]): 
+                        # si es grafica y particula adecuada, y cumple constraints
+                        for extra in extras:
+                            if extra == '' or extra in file:
+                                data.append([subdir + os.sep + file, p, extra])
+        
+        if len(data) != len(extras)*len(pcles):
+            raise TypeError('Faltan archivos necesarios para la grafica que se pide')
+            
+        orden = []
+        for p in pcles:
+            for extra in extras:
+                for serie in data:
+                    if p in serie and extra in serie:
+                        orden.append(serie) 
+                        # solo para que la leyenda salga en el orden de extras
+                    
+        data = orden
+        
+    else:
+        data_n = []
+        data_E = []
+        for subdir, dirs, files in os.walk(rootdir):
+            for file in files:
+                for p in pcles:
+                    if file.endswith(ext[0][p]) and all([c in file for c in const]): 
+                        # si es grafica y particula adecuada, y cumple constraints (numero)
+                        for extra in extras:
+                            if extra == '' or extra in file:
+                                data_n.append([subdir + os.sep + file, p, extra])
+                    elif file.endswith(ext[1][p]) and all([c in file for c in const]): 
+                        # si es grafica y particula adecuada, y cumple constraints (energia)
+                        for extra in extras:
+                            if extra == '' or extra in file:
+                                data_E.append([subdir + os.sep + file, p, extra])
+        
+        if len(data_n) != len(extras)*len(pcles) or len(data_n) != len(data_E):
+            raise TypeError('Faltan archivos necesarios para la grafica que se pide')
+        
+        orden_n, orden_E = [], []
+        for p in pcles:
+            for extra in extras:
+                for serie in data_n:
+                    if p in serie and extra in serie:
+                        orden_n.append(serie) 
+                for serie in data_E:
+                    if p in serie and extra in serie:
+                        orden_E.append(serie) 
+                        # solo para que la leyenda salga en el orden de extras
+                    
+        data_n, data_E = orden_n, orden_E
 
     ang = [t*np.pi/180. for t in ang]
     
     angle_index  = 0
     h_index = 0
     
-    for file, p, extra in data:
-        values, grd = readfile(file)
+    if graf != 5:
+        for file, p, extra in data:
+            values, grd = readfile(file)
+            
+            xvalues = values[:,0]
+            yvalues = values[:,1]
         
-        xvalues = values[:,0]
-        yvalues = values[:,1]
+            if any([graf == i for i in [0,1,2]]): # depth in x axis
+                if DistAlongAxis:
+                    if slant or 'Xs' in const:
+                        raise TypeError('DistAlongAxis trabaja con datos Xv originales')
+                    else:
+                        if firstin:
+                            xvalues = [Long(inj_h[h_index], ang[angle_index]) - Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
+                            if UG:
+                                xvalues = [-x for x in xvalues]
+                        else: 
+                            xvalues = [Long(gcm2toh(xv), ang[angle_index]) for xv in xvalues]
+                        
+                        angle_index  += 1
+                        h_index += 1
+                        
+                        
+                elif slant:
+                    if firstin:
+                        xvalues =  xvalues - Xs_of_injh(inj_h[h_index], ang[angle_index], step) if inj_h[h_index] != 0  else xvalues - grd
+                        if UG:
+                            xvalues = [-x for x in xvalues]
+                    else:
+                        xvalues = grd-xvalues if UG else xvalues
+    
+                    # depth traversed in upward direction, starting from first interaction
+                    # consistency check
+                    print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))
+                    angle_index  += 1
+                    h_index += 1
+                    
+            if extra == '' or omitextra:
+                ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
+                export.append([lbl[p], xvalues, yvalues])
+                
+            else:
+                extra = 'Primary $'+extra[1:-1]+'$' if extra.startswith('_') and extra.endswith('_') else extra
+                # esta linea es solo por si tenemos un extra particula, que se da como _p_ con mi notacion
+                extra = extra[1:] if extra.startswith('_') else extra
+                ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
+                export.append([lbl[p]+', '+extra, xvalues, yvalues])
+            
+    else: #graf = 5
+        for dataset_n, dataset_E in list(zip(data_n, data_E)):
+             
+            file_n, p, extra = dataset_n
+            file_E, _, _     = dataset_E
+            
+            values_n, grd = readfile(file_n)
+            values_E, grd = readfile(file_E)
+            
+            xvalues = values_n[:,0]
+            yvalues = np.array([a/b if b!=0 else 0 for a, b in list(zip(values_E[:,1], values_n[:,1]))])
         
-        
-        if any([graf == i for i in [0,1,2]]): # depth in x axis
             if DistAlongAxis:
                 if slant or 'Xs' in const:
                     raise TypeError('DistAlongAxis trabaja con datos Xv originales')
@@ -373,8 +462,8 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                     
                     angle_index  += 1
                     h_index += 1
-                    
-                    
+                        
+                        
             elif slant:
                 if firstin:
                     xvalues =  xvalues - Xs_of_injh(inj_h[h_index], ang[angle_index], step) if inj_h[h_index] != 0  else xvalues - grd
@@ -388,24 +477,24 @@ def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='lin
                 print('Check: GRD (Aires): %.2f  GRD (Xs_of_injh): %.2f'%(grd, Xs_of_injh(0, ang[angle_index], step)))
                 angle_index  += 1
                 h_index += 1
+                    
+            if extra == '' or omitextra:
+                ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
+                export.append([lbl[p], xvalues, yvalues])
                 
-        if extra == '' or omitextra:
-            ax.step(xvalues, yvalues, where = 'mid', label = lbl[p], linewidth = 2.0)
-            export.append([lbl[p], xvalues, yvalues])
-            
-        else:
-            extra = 'Primary $'+extra[1:-1]+'$' if extra.startswith('_') and extra.endswith('_') else extra
-            # esta linea es solo por si tenemos un extra particula, que se da como _p_ con mi notacion
-            extra = extra[1:] if extra.startswith('_') else extra
-            ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
-            export.append([lbl[p]+', '+extra, xvalues, yvalues])
+            else:
+                extra = 'Primary $'+extra[1:-1]+'$' if extra.startswith('_') and extra.endswith('_') else extra
+                # esta linea es solo por si tenemos un extra particula, que se da como _p_ con mi notacion
+                extra = extra[1:] if extra.startswith('_') else extra
+                ax.step(xvalues, yvalues, where = 'mid', label = lbl[p]+', '+extra, linewidth = 2.0)
+                export.append([lbl[p]+', '+extra, xvalues, yvalues])
             
     ax.set_xlabel(xlabels[graf], size = 12)
     ax.set_ylabel(ylabels[graf], size = 12) 
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
         
-    if any([graf == i for i in [0,1,2]]): # depth in x axis
+    if any([graf == i for i in [0,1,2,5]]): # depth in x axis
         if UG:
             if DistAlongAxis:
                 if firstin:
@@ -803,7 +892,130 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     return fig
 
 
-def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
+def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
+        ylims = [], legend = True, formato = '-'):
+
+    ''' Tranformada de Fourier rapida de output de ZHAireS en tiempo
+    
+    Codigos de graficas en dominio temporal
+
+    A vs. t, antenas especificadas  = 1
+    
+    Ax vs. t, antenas especificadas = 2
+    
+    Ay vs. t, antenas especificadas = 3
+    
+    Az vs. t, antenas especificadas = 4
+    
+    E vs. t, antenas especificadas  = 5
+    
+    Ex vs. t, antenas especificadas = 6
+    
+    Ey vs. t, antenas especificadas = 7
+    
+    Ez vs. t, antenas especificadas = 8
+    
+    
+    ESPECIFICACION DE GRAFICAS Y ANTENAS:
+        El index de antenas empieza en 1 como en Aires
+        
+        Si queremos más de una grafica, damos: 
+            graphs = [11, 13]
+        Podemos especificar que antenas entran en cada grafica:
+            antenas = [[1,2,3,4,5], [6,7,8,9,10]]
+            
+        Siempre una lista de antenas por grafica
+        
+        Si se quieren poner todas
+            antenas = 'all'
+            
+            
+    '''
+    
+    data_time = np.loadtxt(file, comments = '#').T
+    
+    if len(antenas) != len(graphs):
+        raise TypeError('longitud equivocada')
+        
+    n_ant               = int(max(data_time[1])) #numero de antenas
+    
+    ant_coord           = [] # aqui guardamos las coordenadas de las antenas
+    
+    i_ant = []
+    for i in range(n_ant):
+        index = list(data_time[1]).index(i+1)
+        i_ant.append(index)
+        ant_coord.append([data_time[2][index], data_time[3][index], data_time[4][index]])
+        # con esto ya tenemos las coordenadas de las antenas
+    
+    i_ant.append(len(data_time.T))
+    
+    if antenas == 'all':
+        antenas = [[i+1 for i in range(n_ant)] for _ in range(len(graphs))]
+    
+    graph_list = []
+    '''
+    Para poder hacer mas de una grafica en el mismo canvas, guardamos en una lista
+    los puntos a representar:
+        graph_list = [[xs_1, ys_1], [xs_2, ys_2], ...]
+    '''
+    
+    for i in range(len(graphs)):
+        for a in antenas[i]:
+            x = data_time[5][i_ant[a-1]:i_ant[a]]
+            y = data_time[5+graphs[i]][i_ant[a-1]:i_ant[a]]
+            
+            N = len(y) # number of signal points
+            
+            dT = (x[1]-x[0])*1e-9 #time bin in ns
+            
+            xf = np.abs(fftfreq(N, dT)*1e-6) #frequencies in MHz
+            
+            
+            yf = np.abs(fft(y))/N # FFT of data
+            
+            graph_list.append([xf, yf])
+            
+    fig = plt.figure()
+    ax  = fig.add_subplot(111)
+    plt.xticks(fontsize = 12)
+    plt.yticks(fontsize = 12)
+    
+    magnitudes = [r'$A$ (V/m/MHz)', r'$A_x$ (V/m/MHz)', r'$A_y$ (V/m/MHz)', r'$A_z$ (V/m/MHz)', r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
+    lbl_coords = ['N-S', 'E-W', 'Vertical']
+    labels     = []
+
+    if all([(g-graphs[0])==0 for g in graphs]):
+        labels = ['Antena ' for _ in range(len(graphs))]
+        ax.set_ylabel(magnitudes[graphs[0]-1], size = 12)
+        
+    else:
+        labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
+        
+    index = 0
+    for i in range(len(graphs)):#g, data, a in list(zip(graphs, graph_list, antenas)):
+        for j in range(len(antenas[i])):
+            ax.plot(graph_list[index][0], graph_list[index][1], formato, linewidth = 2., label = labels[i]+'%d'%antenas[i][j])
+            index += 1
+    ax.set_xlabel('f (MHz)', size = 12)
+        
+        
+    if legend:
+        ax.legend(loc='best', prop={'size':12})
+    
+    ax.set_xscale(xscale)
+    ax.set_yscale(yscale)
+    
+    if len(xlims)>0:
+        ax.set_xlim(xlims)
+    if len(ylims)>0:
+        ax.set_ylim(ylims)
+        
+    plt.tight_layout()
+    return fig
+
+
+def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir=''):
     ''' Grafica de campo electrico en un array 2d de antenas
         En dominio t, se representa el maximo alcanzado para la variable 
         pedida en cada antena
@@ -844,6 +1056,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
         
         domain: datos en dominio de frecuencia ('f') o tiempo ('t')
             Si se escoge 'f', debe introducirse manualmente la frecuencia deseada
+            
+        lims: lista, limites para la escala de colores (eje z)
         
         d3: bool, plot 2d con mapa de calor o superficie 3d
         
@@ -873,6 +1087,7 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
     
     n_ant     = int(max(data[1])) #numero de antenas
     
+    
     ant_coord = [] # aqui guardamos las coordenadas de las antenas
     
     i_ant     = []
@@ -885,7 +1100,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
     
     i_ant.append(len(data.T))
 
-    height = int(ant_coord[0][2]/1000) 
+
+    height = round(100 - ant_coord[0][2]/1000) 
     
     if domain == 'f':
         labels = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
@@ -898,7 +1114,6 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
         g = graph+6
         
         values = np.array([data[int(g)][i_ant[a]+f] for a in range(n_ant)]).reshape(n_ant,1)
-    
     else:
         
         labels = [r'$A$ (V/m)', r'$A_x$ (V/m)', r'$A_y$ (V/m)', r'$A_z$ (V/m)', r'$E$ (V/m)', r'$E_x$ (V/m)', r'$E_y$ (V/m)', r'$E_z$ (V/m)']
@@ -927,10 +1142,16 @@ def ZHAireS_arrayplot(graph, file, domain = 'f',  d3 = False, rootdir=''):
         title = 'h = '+ str(height)+' km, '+ str(freq_list[f])+' MHz' if domain =='f' else 'h = '+ str(height)+' km'
         ax.set_title(title, size = 14)
         
+        if len(lims) > 0:
+            ax.set_zlim(lims)
+        
     else:
         ax = fig.add_subplot(111)
-        sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = 750)
         
+        if len(lims) > 0:
+            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", vmin = lims[0], vmax = lims[1], marker = 's', s = 750)
+        else:
+            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = 750)
         cbar = fig.colorbar(sc)
         cbar.set_label(labels[graph-1], size = 14, rotation = 270, labelpad = 30)
         cbar.ax.tick_params(labelsize=12)

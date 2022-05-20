@@ -299,7 +299,7 @@ Naturalmente, la energía a la que $d_{dec}\sim\lambda/\rho$ determina el punto 
 	\subsection{Caracterización de cascadas atmosféricas hacia arriba}\label{sec22}
 	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$, $\pi^\pm$ y $\pi^0$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo con el que se desarrolla la cascada. 
 	
-	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de la cascada en un número de horas de CPU \textit{asumibles}\footnote{Típicamente, entre 2 y 4 horas por cascada simulada.}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
+	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de la cascada en un número de horas de CPU \textit{asumibles}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
 	
 	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la siguiente Tabla se recogen las partículas e interacciones consideradas en la simulación:
 \begin{table}[H]
@@ -315,7 +315,7 @@ Naturalmente, la energía a la que $d_{dec}\sim\lambda/\rho$ determina el punto 
 		\multicolumn{2}{c}{\multirow{3}{*}{$\mu^\pm$}}                                                  & Bremsstrahlung y producción de pares  \\
 		\multicolumn{2}{c}{}                                                                            & Emisión de $e^-$ knock-on             \\
 		\multicolumn{2}{c}{}                                                                            & Desintegración                        \\ \hline
-		\multicolumn{2}{c}{Neutrinos}                                                                   & Aparición en desintegraciones         \\ \hline
+		\multicolumn{2}{c}{$\nu$'s}                                                                   & Aparición en desintegraciones         \\ \hline
 		\multicolumn{2}{c}{$p,\bar p, n, \bar n, \Lambda$}                                              & Colisiones hadrónicas y núcleo-núcleo \\
 		\multicolumn{2}{c}{$\pi^0, \pi^\pm, K^0_{L,S}, K^\pm$}                                          & Emisión de $e^-$ knock-on             \\
 		\multicolumn{2}{c}{Núcleos $Z\leq 36$}                                                          & Desintegraciones                      \\ \hline
@@ -502,13 +502,30 @@ Si nos centramos en la componente $x$ del campo, es decir, en la dirección Nort
 	\caption{Equivalente a Fig. \ref{EW_field} para la componente $x$ (S$\rightarrow$N) del campo.}
 	\label{NS_field}
 \end{figure}
+A partir de estos resultados, podemos plantearnos la pregunta de \textit{qué} banda de frecuencias será de interés a la hora de estudiar la emisión electromagnética en cascadas atmosféricas. El enfoque más directo para responder a esa pregunta es estudiar la transformada de Fourier de las señales en tiempo. Por ello, presentamos como ejemploen la Fig. \ref{E_fields_FFT} el campo eléctrico en el dominio de frecuencias\footnote{ Aplicando una transformación de Fourier rápida (FFT) a la señal en tiempo simulada, sin recurrir al output de ZHAireS en frecuencias.} correspondiente a las Figs. \ref{EW_field}a y \ref{NS_field}a. Como vemos, el espectro mantiene un comportamiento \textit{suave} hasta aproximadamente $10-100\,\mathrm{MHz}$, en que la coherencia de la señal desaparece. Por ello, podemos adelantar que la banda de interés estará entre las decenas y centenas de $\mathrm{MHz}$, i.e., en las radiofrecuencias. Una justificación muy simple a que la emisión se produzca de manera coherente en esta banda de frecuencia puede hacerse en términos de un modelo geométrico muy sencillo, representando la cascada como un frente de partículas de cierta anchura y \textit{grosor}. Como vemos en la Fig. \ref{coherence}, a un observador a gran distancia (en el régimen de Fraunhofer) llegarían señales con retardos debidos al desarrollo longitudinal, lateral y al propio grosor del frente.
 
-El siguiente caso que plantearemos es el de una cascada inclinada, iniciada por una partícula primaria de mayor energía. Concretamente, se ha simulado una cascada iniciada por un protón de energía $E=10^{19}\,\mathrm{eV}$, con una trayectoria de ángulo cenital $\theta=70^{\circ}$. En este caso, se ha supuesto un campo magnético ligeramente diferente\footnote{ Concretamente, este campo magnético es similar al que se encuentra en el Polo Sur, una localización de especial interés experimental para el estudio de la radiación cósmica.}, de magnitud $55\,\mathrm{\mu T}$ y ángulo de inclinación $I = 72,42^\circ$; mientras que las antenas se han situado a lo largo de las direcciones NS y EW (Fig. \ref{ANITApaper_showscheme}). Esta configuración nos permitirá estudiar algo más en detalle el campo eléctrico observado en función de la distancia a la cascada.
+\begin{figure}[H]
+	\centering
+	\subfigure[Componente $y$ del campo, al Norte de la cascada.]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_N_Fourier}}
+	\subfigure[Componente $x$ del campo, al Norte de la cascada.]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_N_Fourier}}
+	\caption{Transformada de Fourier de las señales en tiempo.}
+	\label{E_fields_FFT}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{figures/radio/coherence_v2}
+	\caption{Modelo geométrico sencillo. (a), (b) y (c) representan las contribuciones respectivas del desarrollo longitudinal, lateral y de la anchura del frente a los retardos en la señal.}
+	\label{coherence}
+\end{figure}
+
+Por lo tanto, las emisiones serán coherentes a frecuencias $f\lesssim\Delta t_{max}^{-1}$ (i.e., $\lambda\gtrsim c\Delta t_{max}$, longitudes de onda comparables a las dimensiones de la cascada), donde el máximo de los tres retardos determina el límite a la coherencia. En el caso concreto de cascadas en aire, puede comprobarse\footnote{El modelo geométrico anterior permite hallar fácilmente $\Delta t_{L}=\frac{n}{c}L\cos{\theta}$, $\Delta t_{R}=\frac{n}{c}R\sin{\theta}$. $\Delta t_D$ depende de la forma del frente. Valores típicos: $L\sim 5-10\,\mathrm{km}$, $R\sim100\,\mathrm{m}$, $D\sim6\,\mathrm{m}$, $\theta\sim\theta_c\sim1^\circ$, $n\sim1,0003$} que el retardo máximo corresponde a la contribución del \textit{grosor} del frente, $\Delta t_D\sim 20\,\mathrm{ns}$. Por ello, las frecuencias de interés en cascadas atmosféricas se sitúan en $f\sim\left(20\,\mathrm{ns}\right)^{-1}\sim50\,\mathrm{MHz}$. Aunque el anterior es un modelo muy simple,será suficiente para obtener una intuición del origen de la emisión en radiofrecuencias.
+
+El siguiente caso que plantearemos es el de una cascada inclinada, iniciada por una partícula primaria de mayor energía. Concretamente, se ha simulado una cascada iniciada por un protón de energía $E=10^{19}\,\mathrm{eV}$, con una trayectoria de ángulo cenital $\theta=70^{\circ}$. En este caso, se ha supuesto un campo magnético ligeramente diferente\footnote{ Concretamente, este campo magnético es similar al que se encuentra en el Polo Sur, una localización de especial interés experimental para el estudio de la radiación cósmica.}, de magnitud $55\,\mathrm{\mu T}$ y ángulo de inclinación $I = 72,42^\circ$; mientras que las antenas se han situado a lo largo de las direcciones NS y EW (Fig. \ref{ANITApaper_showscheme}). Esta configuración nos permitirá estudiar algo más en detalle el campo eléctrico observado en función de la posición respecto a la cascada.
 
 Como mencionamos en el primer apartado de esta sección, el máximo de la emisión ocurre cuando el ángulo de observación coincide con el ángulo \v{C}erenkov. Por ello, en el suelo se registrará el máximo del campo eléctrico en las antenas que observen el máximo del desarrollo de la cascada bajo un ángulo $\theta_C$; ya que en la posición del máximo de la cascada es donde existe un mayor número de partículas, cuya radiación será la contribución dominante a toda la emisión. Por ello, el pico de $\vect{E}$ aparecerá en la intersección del suelo con el cono \v{C}erenkov, cuyo vértice se sitúa en el máximo de la cascada. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6\linewidth]{figures/radio/ANITApaper_showscheme}
+	\includegraphics[width=.5\linewidth]{figures/radio/ANITApaper_showscheme}
 	\caption{Configuración planteada. Se situaron 50 antenas a lo largo de cada eje, hasta $1500\,\mathrm{m}$ del \textit{core} de la cascada. El máximo de emisión se espera en la intersección del cono \v{C}erenkov con el suelo.}
 	\label{ANITApaper_showscheme}
 \end{figure}
@@ -516,28 +533,28 @@ Como mencionamos en el primer apartado de esta sección, el máximo de la emisi�
 Evidentemente, para una cascada inclinada la intersección del cono \v{C}erenkov con el suelo no será una circunferencia sino una elipse. Si para esta configuración representamos el máximo de la componente EW del campo eléctrico registrado en cada antena, obtenemos la siguiente figura:
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.65\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_t_ground}
+	\includegraphics[width=.6\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_t_ground}
 	\caption{Máximo del campo eléctrico registrado en las antenas a nivel del suelo de la configuración \ref{ANITApaper_showscheme}. Se representan los valores en los dos ejes (NS, EW).}
 	\label{downgoing_p_10EeV_70deg_Ey_t_ground}
 \end{figure}
 El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos bien definidos a lo largo de los dos ejes. Si bien puede intuirse un comportamiento así en las antenas situadas a lo largo de la dirección NS, no ocurre así para la dirección EW.
 
-Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
+%Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
 
-La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la duración de los pulsos nos da un orden de magnitud para $f$:
-\begin{equation}
-	\omega T = 2\pi f T \sim 1\implies f\sim \left(2\pi T\right)^{-1} \implies T \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
-\end{equation} 
-Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=.6\linewidth]{figures/radio/coherence}
-		\caption{Geometría considerada. $D$ se corresponde con el desarrollo lateral de la cascada en el máximo.}
-		\label{coherence}
-	\end{figure}
-Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
+%La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la duración de los pulsos nos da un orden de magnitud para $f$:
+%\begin{equation}
+%	\omega T = 2\pi f T \sim 1\implies f\sim \left(2\pi T\right)^{-1} \implies T \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
+%\end{equation} 
+%Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
+%	\begin{figure}[H]
+%		\centering
+%		\includegraphics[width=.6\linewidth]{figures/radio/coherence}
+%		\caption{Geometría considerada. $D$ se corresponde con el desarrollo lateral de la cascada en el máximo.}
+%		\label{coherence}
+%	\end{figure}
+%Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
 
-Sabiendo lo anterior, presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. Como vemos en la primera gráfica, en este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada. La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece con la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos decrece con la frecuencia, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
+Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. En este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada. La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece con la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos decrece con la frecuencia, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
 
 La explicación a este hecho puede encontrarse en fenómenos de tipo difractivo. Podemos ejemplificarlo recordando, e.g., el patrón de Airy, en el que el primer cero del patrón de difracción ocurre cuando, respecto al máximo, observamos bajo un ángulo $\alpha$ tal que:
 \begin{equation}
@@ -559,8 +576,7 @@ Para acabar esta sección, recapitularemos los resultados y conclusiones más im
 	\item Las expresiones deducidas para el campo eléctrico radiado no asumen ningún mecanismo de emisión, y están integradas en el código ZHAireS empleado para realizar las simulaciones. Como hemos visto, el efecto de ambos mecanismos es evidente en los resultados.
 	\item Las frecuencias de interés se sitúan en la banda de los $\mathrm{MHz}$ (radiofrecuencias). Además, la señal de campo eléctrico detectada tiene una dependencia importante con la frecuencia, tanto en amplitud (mayor a menores frecuencias) como en la resolución de los máximos en torno al ángulo \v{C}erenkov.
 \end{enumerate}
-
-	\clearpage
+\clearpage
 
 	\section{Emisión en radio en cascadas hacia arriba}
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 

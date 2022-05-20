@@ -592,7 +592,7 @@ def plot_shower_dev(data, thetas, max_height = 100, \
 
 
 def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlims=[], \
-                   ylims = [], legend = True, formato = '-'):
+                   ylims = [], legend = True, formato = '-', labels = []):
     ''' Codigos de graficas en dominio temporal
 
     A vs. t, antenas especificadas  = 1
@@ -634,6 +634,8 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
         
         Si se quieren poner todas
             antenas = 'all'
+            
+    labels : lista de strings, labels que queremos explicitamente
 
 '''
     data_time = np.loadtxt(file, comments = '#').T
@@ -695,14 +697,16 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     
     magnitudes = [r'$A$ (V/m)', r'$A_x$ (V/m)', r'$A_y$ (V/m)', r'$A_z$ (V/m)', r'$E$ (V/m)', r'$E_x$ (V/m)', r'$E_y$ (V/m)', r'$E_z$ (V/m)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
-    labels     = []
+    autolabel = False
     
     if plot_maxs_vs_coords:
         if all([((g%10-1)-(graphs[0]%10-1))==0 for g in graphs]):
-            labels = [lbl_coords[g//10-1] for g in graphs]
+            if len(labels)<1:
+                labels = [lbl_coords[g//10-1] for g in graphs]
             ax.set_ylabel(magnitudes[graphs[0]%10-1], size = 12)
         else:
-            labels =  [magnitudes[g%10-1]+', '+lbl_coords[g//10-1] for g in graphs]
+            if len(labels)<1:
+                labels =  [magnitudes[g%10-1]+', '+lbl_coords[g//10-1] for g in graphs]
             
         for i in range(len(graphs)):#g, data in list(zip(graphs, graph_list)):
             ax.plot(graph_list[i][0], graph_list[i][1], formato, label = labels[i])
@@ -711,15 +715,20 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
      
     else:
         if all([(g-graphs[0])==0 for g in graphs]):
-            labels = ['Antena ' for _ in range(len(graphs))]
+            if len(labels)<1:
+                autolabel = True
+                labels = ['Antena ' for _ in range(len(graphs))]
             ax.set_ylabel(magnitudes[graphs[0]-1], size = 12)
             
         else:
-            labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
+            if len(labels)<1:
+                autolabel = True
+                labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
         index = 0
         for i in range(len(graphs)):#g, data, a in list(zip(graphs, graph_list, antenas)):
             for j in range(len(antenas[i])):
-                ax.plot(graph_list[index][0], graph_list[index][1], formato, label = labels[i]+'%d'%antenas[i][j])
+                label = labels[i]+'%d'%antenas[i][j] if autolabel else labels[index]
+                ax.plot(graph_list[index][0], graph_list[index][1], formato, label = label)
                 index += 1
         ax.set_xlabel('t (ns)')
         
@@ -738,7 +747,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     return fig
 
 def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear', xlims=[], \
-                   ylims = [], legend = True, formato = '-'):
+                   ylims = [], legend = True, formato = '-', labels = []):
     ''' Codigos de graficas en dominio de frecuencias
 
     E vs. f, antenas especificadas  = 2
@@ -779,6 +788,8 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
      para cada grafico
      
         freq = [[i's donde i es el indice en la lista de frecuencias que sale], ...]
+                 
+    labels : lista de strings, labels que queremos explicitamente
 '''
     data_time = np.loadtxt(file, comments = '#').T
     
@@ -847,16 +858,17 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     plt.yticks(fontsize = 12)
     magnitudes = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
-    labels = []
+    autolabel = False
     
     if plot_maxs_vs_coords:
         if all([((g%10-1)-(graphs[0]%10-1))==0 for g in graphs]):
-            
-            labels = [lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
+            if len(labels) < 1:
+                labels = [lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
             
             ax.set_ylabel(magnitudes[graphs[0]%10-2], size = 12)
         else:
-            labels =  [magnitudes[graphs[i]%10-2]+', '+lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
+            if len(labels) < 1:
+                labels =  [magnitudes[graphs[i]%10-2]+', '+lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
             
         for i in range(len(graph_list)):
             ax.plot(graph_list[i][0], graph_list[i][1], formato, label = labels[i])
@@ -865,16 +877,21 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
      
     else:
         if all([(g-graphs[0])==0 for g in graphs]):
-            labels = ['Antena ' for _ in range(len(graphs))]
+            if len(labels) < 1:
+                autolabel = True
+                labels = ['Antena ' for _ in range(len(graphs))]
             ax.set_ylabel(magnitudes[graphs[0]-2], size = 12)
             
         else:
-            labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
+            if len(labels)<1:
+                autolabel = True
+                labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
             
         for i in range(len(graphs)):#g, data, a in list(zip(graphs, graph_list, antenas)):
             for j in range(len(antenas[i])):
                 index = i*len(antenas[i])+j
-                ax.plot(graph_list[index][0], graph_list[index][1], formato, label = labels[i]+'%d'%antenas[i][j])
+                label = labels[i]+'%d'%antenas[i][j] if autolabel else labels[index]
+                ax.plot(graph_list[index][0], graph_list[index][1], formato, label = label)
         ax.set_xlabel('Freq (MHz)')
         
         
@@ -893,7 +910,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 
 
 def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
-        ylims = [], legend = True, formato = '-'):
+        ylims = [], legend = True, formato = '-', labels = []):
 
     ''' Tranformada de Fourier rapida de output de ZHAireS en tiempo
     
@@ -929,7 +946,7 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
         Si se quieren poner todas
             antenas = 'all'
             
-            
+    labels: lista de str, labels explicitos para cada grafico        
     '''
     
     data_time = np.loadtxt(file, comments = '#').T
@@ -971,7 +988,6 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
             
             xf = np.abs(fftfreq(N, dT)*1e-6) #frequencies in MHz
             
-            
             yf = np.abs(fft(y))/N # FFT of data
             
             graph_list.append([xf, yf])
@@ -983,19 +999,24 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
     
     magnitudes = [r'$A$ (V/m/MHz)', r'$A_x$ (V/m/MHz)', r'$A_y$ (V/m/MHz)', r'$A_z$ (V/m/MHz)', r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
-    labels     = []
 
+    autolabel = False
     if all([(g-graphs[0])==0 for g in graphs]):
-        labels = ['Antena ' for _ in range(len(graphs))]
+        if len(labels) < 1:
+            autolabel = True
+            labels = ['Antena ' for _ in range(len(graphs))]
         ax.set_ylabel(magnitudes[graphs[0]-1], size = 12)
         
     else:
-        labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
+        if len(labels)<1:
+            autolabel = True
+            labels =  [magnitudes[g-1]+', Antena ' for g in graphs]
         
     index = 0
     for i in range(len(graphs)):#g, data, a in list(zip(graphs, graph_list, antenas)):
         for j in range(len(antenas[i])):
-            ax.plot(graph_list[index][0], graph_list[index][1], formato, linewidth = 2., label = labels[i]+'%d'%antenas[i][j])
+            label = labels[i]+'%d'%antenas[i][j] if autolabel else labels[index]
+            ax.plot(graph_list[index][0], graph_list[index][1], formato, linewidth = 2., label = label)
             index += 1
     ax.set_xlabel('f (MHz)', size = 12)
         

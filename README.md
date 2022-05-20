@@ -28,15 +28,24 @@ Comparacion del desarrollo de cascadas atmosféricas hacia arriba y hacia abajo,
 	
 	Primary p, E = 1EeV, h = 0 (100) km, theta = 0 (180) deg : comparativas de desarrollo hacia arriba y abajo para e, mu, pi, k, y demas particulas neutras vs Xs
 
-	Ídem para 50-130 deg y 85-95 deg; y para desarrollo de energia
+	Ídem para 50-130 deg y 85-95 deg; y para desarrollo de energia y desarrollo de energia promedio
+
+	ComparativaPrimarios: Desarrollos longitudinales hacia arriba y abajo, para primario proton o electron. Comparativas para e, mu, pi, demas particulas neutras vs Xs
+	
 
 	* los archivos que comienzan por Desarrollo... son una representacion grafica del desarrollo en la atmosfera de cada componente de la cascada. 
+
+Radio:
+
+Simulaciones de la emision en radio, para una cascada vertical hacia abajo. Señal en tiempo y transformada de Fourier
+
 
 Radio_UG:
 
 Caracterizacion de la emision en radio en cascadas hacia arriba (por ahora solo una prueba):
 	
 	Run1_prueba: Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false 
+
 Codigos:
 
 Programas en Python para tratamiento de datos, graficas y geometria de cascadas:

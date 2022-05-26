@@ -1036,7 +1036,7 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
     return fig
 
 
-def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir=''):
+def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir='', box_size = 750):
     ''' Grafica de campo electrico en un array 2d de antenas
         En dominio t, se representa el maximo alcanzado para la variable 
         pedida en cada antena
@@ -1083,6 +1083,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         d3: bool, plot 2d con mapa de calor o superficie 3d
         
         rootdir: directorio con archivos, necesario en caso de error leyendo
+        
+        box_size: tamaño de cuadraditos, ajustar si sale mal
     '''
     try:
         data = np.loadtxt(file, comments = '#').T
@@ -1170,9 +1172,9 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         ax = fig.add_subplot(111)
         
         if len(lims) > 0:
-            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", vmin = lims[0], vmax = lims[1], marker = 's', s = 750)
+            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", vmin = lims[0], vmax = lims[1], marker = 's', s = box_size)
         else:
-            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = 750)
+            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = box_size)
         cbar = fig.colorbar(sc)
         cbar.set_label(labels[graph-1], size = 14, rotation = 270, labelpad = 30)
         cbar.ax.tick_params(labelsize=12)

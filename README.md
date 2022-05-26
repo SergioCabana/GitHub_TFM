@@ -42,9 +42,12 @@ Simulaciones de la emision en radio, para una cascada vertical hacia abajo. Señ
 
 Radio_UG:
 
-Caracterizacion de la emision en radio en cascadas hacia arriba (por ahora solo una prueba):
+Caracterizacion de la emision en radio en cascadas hacia arriba:
 	
-	Run1_prueba: Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false 
+	Run1_prueba: Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false
+
+	Vertical   : Resultados para cascadas verticales
+		     Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false (usando uprimary) 
 
 Codigos:
 

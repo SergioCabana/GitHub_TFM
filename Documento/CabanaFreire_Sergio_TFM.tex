@@ -250,19 +250,19 @@ Cuando un rayo cósmico de muy alta energía (por ejemplo un protón) llega a la
 
 No obstante, usar la atmósfera como medio de detección tiene, evidentemente, las desventajas de que se trata de un medio inhomogéneo, ya que la densidad de la misma decrece con la altitud, $\rho = \rho(h)$. Como ejemplo, uno de los modelos más simples para la dependencia de la densidad con la altura es un decrecimiento exponencial:
 \begin{equation}
-	\rho(h)=\rho_0\exp\left(-h/h_0\right)\; \;;\;\;\text{donde}\;\rho_0\sim 10^{-3}\,\mathrm{g/cm^3}\;\text{y}\;h_0\sim8\,\mathrm{km}\label{ec21}
+	\rho(h)=\rho_0\exp\left(-h/h_0\right)\; \;;\;\;\text{donde}\;\rho_0\sim1,23\times 10^{-3}\,\mathrm{g/cm^3}\;\text{y}\;h_0\sim8,13\,\mathrm{km}\label{ec21}
 \end{equation}
 
 Naturalmente, este hecho tendrá consecuencias importantes en el desarrollo de la cascada. Fundamentalmente, el efecto se deberá a que, a mayor densidad, mayor probabilidad de interacción para las partículas producidas. Para tener en cuenta esta cuestión, gran parte de la discusión que haremos acerca del desarrollo de cascadas atmosféricas no se hará en términos de distancias, sino de cantidad de materia atravesada o \textit{profundidad}, $X$. Dicha profundidad puede medirse en la dirección vertical ($X_v$) o a lo largo del eje del desarrollo de la cascada (Fig. \ref{shower_params}):
 \begin{equation}
-	X_v(h)=\int_{h}^\infty\rho(h')dh'\;\;;\;\;X_s(h,\theta)=\int_{h}^\infty\rho(h')dl=\int_h^{\infty}\frac{\rho(h')dh'}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h'\right)^2}}}\label{ec22}
+	X_v(h)=\int_{h}^\infty\rho(h')dh'\;\;;\;\;X_s(h,\theta)=\int_{h}^\infty\rho(h')dl=\int_h^{\infty}\rho(h')\frac{dh'}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h'\right)^2}}}\label{ec22}
 \end{equation}
 Gracias a estas definiciones, podremos estudiar el desarrollo de cascadas en términos de magnitudes que inmediatamente incorporan la inhomogeneidad de la atmósfera, por lo que no profundizaremos más en los modelos que describen la atmósfera y pasaremos a cuestiones de mayor interés para el objetivo de este trabajo.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.7\linewidth]{figures/cascadas/shower_params}
-	\caption{Esquema de una cascada atmosférica \textit{al uso}. Definición de profundidad vertical e inclinada (\textit{slanted}). $R_T$ es el radio de la Tierra.}
+	\caption{Esquema simplificado de una cascada atmosférica \textit{al uso}. Definición de profundidad vertical e inclinada (\textit{slanted}). $R_T$ es el radio de la Tierra.}
 	\label{shower_params}
 \end{figure}
 
@@ -327,15 +327,59 @@ El estudio de la evolución de la cascada en AIRES se puede realizar, entre otra
 \clearpage
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=.7\linewidth]{figures/cascadas/AIRES_planos}
+		\includegraphics[width=.6\linewidth]{figures/cascadas/AIRES_planos}
 		\caption{Disposiciones posibles de los niveles de observación en AIRES, en el ejemplo de una cascada hacia arriba. Izq.: A lo largo del eje del desarrollo. Der.: Dirección vertical.}
 		\label{AIRES_planos}
 	\end{figure}
 	
-Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir profundidad atravesada a altura o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}.
+Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir profundidad atravesada a altura o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}. Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera.
 
-Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera. En primer lugar, presentaremos resultados de AIRES variando el ángulo de la cascada, la energía del primario y la altura de la primera interacción; y después haremos una comparativa entre cascadas de igual inclinación e iniciadas por el mismo primario, pero propagándose hacia arriba o hacia abajo.
+Fundamentalmente, existen cuatro aspectos básicos que afectarán al desarrollo de estas cascadas: el ángulo de inclinación, la altura en la atmósfera a la que ocurre la primera interacción, y la naturaleza y energía de la partícula primaria que inicia la cascada. Para estudiar los efectos de cada una de estas cuestiones, presentaremos y discutiremos a continuación una serie de resultados de simulaciones con AIRES variando cada una de las magnitudes que acabamos de mencionar.
+\begin{itemize}
+	\item \textit{Ángulo de la cascada}:
+\end{itemize}
+	La dependencia del desarrollo con el ángulo de inclinación del eje de la cascada es evidente si recordamos la dependencia de la densidad con la altura en la atmósfera. Para ilustrar esta idea, hemos representado en la Fig. \ref{Profatravesadavsang} la cantidad de materia atravesada desde el nivel del suelo hacia arriba para varios ángulos, usando una expresión equivalente\footnote{ Simplemente integrando entre $0$ y $h$.} a \eqref{ec22}. Como vemos, la cantidad de materia atravesada en la atmósfera aumenta cuanto más \textit{horizontal} sea la cascada por lo que esperaremos, por ejemplo, la producción de un mayor número de partículas en ese caso, al dominar las interacciones en regiones más densas.
+	
+	Antes de presentar más resultados, debemos comentar el criterio empleado para los ángulos de inclinación de la cascada: para cascadas \textit{hacia abajo}, indicaremos el ángulo en el intervalo $\theta\in[0^\circ, 90^\circ]$ (Fig. \ref{shower_params}), mientras que en cascadas hacia arriba, por consistencia, daremos el ángulo en el intervalo  $\theta\in[90^\circ, 180^\circ]$, siendo $
+	90^\circ$ ($180^\circ$) una cascada horizontal (vertical hacia arriba).
+\clearpage
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/cascadas/Profatravesadavsang}
+		\caption{Cantidad de materia atravesada a lo largo del eje de la cascada (hacia arriba) en función de la altura en la atmósfera, para varios ángulos. El gradiente de color que representa la atmósfera sigue la dependencia \eqref{ec21}, empleada para realizar esta gráfica. Se ha tenido en cuenta la curvatura de la Tierra,  la primera imagen es meramente ilustrativa.}
+		\label{Profatravesadavsang}
+	\end{figure}
 
+Con esto en mente, presentamos en la Fig. \ref{Carac_UG_vardeg} los resultados de la simulación en AIRES del desarrollo longitudinal de electrones, positrones, muones y piones cargados para cascadas hacia arriba iniciadas por un protón de energía $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera, para varios ángulos de inclinación.
+
+Comentarios que se me ocurren:
+\begin{itemize}
+	\item Dependencia del numero de particulas con angulo, como se esperaba
+	\item Electrones: En funcion de Xs igual el maximo, no hay desintegraciones. A partir de 20 km corte importante, se acaba casi la materia ver Fig. \ref{Profatravesadavsang}. Perdidas de energia con el medio, de nuevo a menor angulo mayor perdida vs distancia
+	\item Muones: Posicion del maximo movida frente a Xs. Posible efecto de desintegraciones y relacion con piones cargados, no aparece en electrones. Cambio de pendiente al final en Xv desintegracion
+	\item Piones cargados: Perfil similar a muones, con retardo (relacion por desintegraciones). 10 veces menos que muones, acumulacion ?
+	\item Particulas por debajo de la primera interaccion en las graficas, sobre todo en muones a 95 deg. Efecto de desarrollo lateral y eleccion de planos
+\end{itemize}
+\begin{figure}[H]
+	\centering
+	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_e}}
+	\\
+	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_mu}}
+	\\
+	\subfigure[$\pi^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_pi}}
+	\caption{Desarrollo de electrones, muones y piones, en una cascada iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera.}
+	\label{Carac_UG_vardeg}
+\end{figure}
+
+\begin{itemize}
+	\item \textit{Altura de la primera interacción}
+\end{itemize}
+\begin{itemize}
+	\item \textit{Energía del primario}
+\end{itemize}
+\begin{itemize}
+	\item \textit{Naturaleza del primario}
+\end{itemize}
 	Cosas de Carac\_UG y Comp\_UGDG
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}

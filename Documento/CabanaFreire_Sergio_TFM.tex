@@ -371,13 +371,42 @@ Por último, en las gráficas del desarrollo frente a la distancia recorrida en 
 \begin{itemize}
 	\item \textit{Altura de la primera interacción}
 \end{itemize}
+El punto de la atmósfera en que ocurra la primera interacción, y por lo tanto comience el desarrollo de la cascada, afectará sustancialmente a dos cuestiones: el número de partículas producidas y la posición del máximo de la cascada. Para verlo, presentamos a continuación resultados de AIRES para el desarrollo de electrones, positrones y muones en una cascada de ángulo $\theta=95^\circ$ iniciada por un protón de energía $1\,\mathrm{EeV}$:
+\begin{figure}[H]
+	\centering
+	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_e}}
+	\\
+	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_mu}}
+
+	\caption{Desarrollo de electrones y muones en una cascada a $95^\circ$ iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a varias alturas.}
+	\label{Carac_UG_varh}
+\end{figure}
+En primer lugar, la posición del máximo de la cascada cambia con la altura, un resultado evidente ya que estamos modificando el punto en que se inicia la cascada. Por su parte, en las gráficas frente a profundidad y distancia  alo largo del eje volvemos a encontrar los mismos efectos que en el caso de la Fig. \ref{Carac_UG_vardeg}, sólo que ahora la diferencia en la materia atravesada viene dada por la altura de \textit{inyección} del primario y no por el ángulo de la cascada; pero la interpretación es la misma.
+
+Quizá el efecto más interesante aparece en el número máximo de partículas. En el caso de los electrones apenas hay cambios con la altura, mientras que para los muones se aprecia un decrecimiento considerable al aumentar la altura. Como habíamos comentado, el desarrollo de las cascadas atmosféricas es tal que, eventualmente, la mayor parte de la energía acaba transfiriéndose a la componente electromagnética (a través de la desintegración de piones neutros, por ejemplo). Por ello, dado que la energía del primario es constante en estas simulaciones y las alturas consideradas son suficientemente bajas para que la cascada complete su desarrollo, el número de electrones es aproximadamente el mismo en todos los casos. No ocurre así con la producción de muones, que depende básicamente de las interacciones hadrónicas que dan lugar a piones cargados. Al aumentar la altura, debe recorrerse cada vez más distancia para atravesar la misma cantidad de materia, reduciendo la tasa de interacciones y por tanto el número de muones que se produce. El mismo efecto se observa en la producción de piones, que no incluimos al verse representada en la evolución del número de muones.
 \begin{itemize}
 	\item \textit{Energía del primario}
 \end{itemize}
+Naturalmente, el desarrollo de la cascada estará muy afectado por la energía de la partícula primaria que la origina. Cunato mayor sea esta, mayor será el número de interacciones que ocurran así como el número de partículas producidas en cada interacción. Por ello, una de las consecuencias fundamentales de una mayor o menor energía del primario aparecerá en el número de partículas máximo. Como ejemplo, presentamos a continuación los resultados de la simulación de cascadas a $95^\circ$ iniciadas por un protón de energía variable, interaccionando a $5\,\mathrm{km}$ de altura: 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_varE_95deg_5km}
+	\caption{Desarrollo de electrones, muones y piones en una cascada a $95^\circ$ iniciada por un protón de energía variable interaccionando a $5\,\mathrm{km}$ de altura.}
+	\label{Carac_UG_varE}
+\end{figure}
+Como vemos, el número máximo de partículas producidas presenta una dependencia inequívoca con la energía del primario, $E_0$. De manera explícita, la tendencia que se espera tanto a partir de modelos teóricos como de simulaciones como las que hemos realizado es:
+\begin{equation}
+	N_{max}^{e}\propto E_0\;\;;\;\;N_{max}^{\mu}\propto E_0^\beta\;\text{con}\;\beta\sim0,85\label{ec25}
+\end{equation}
+Nuetro resultado, a simple vista, concuerda con esta tendencia (\textit{grosso modo}, aumentar $E_0$ en un factor 10 aumenta $N_{max}$ en un orden de magnitud). Más allá de lo anterior, las gráficas \ref{Carac_UG_varE} permiten mostrar claramente un efecto que habíamos mencionado: hacia el final de la cascada, aparecen cambios de pendiente en el desarrollo de $e^\pm$ y $\mu^\pm$ asociados a la desintegración de estos últimos.
 \begin{itemize}
 	\item \textit{Naturaleza del primario}
 \end{itemize}
-	Cosas de Carac\_UG y Comp\_UGDG
+Hasta ahora, sólo hemos considerado cascadas iniciadas por un protón. Por ello, esta clase de cascadas presentan las tres componentes que discutimos al inicio de esta sección (electromagnética, hadrónica y muónica). Sin embargo, en cascadas iniciadas, por ejemplo, por un electrón o un fotón, no esperaríamos la aparición de componentes hadrónica o muónica, al menos no al mismo nivel que en cascadas iniciadas por protones o núcleos. \textbf{Modos de desintegracion del tau para justificar ?}
+
+$\bullet$ comentar aqui ya las diferencias, no ponerlas en Comp\_UGDG ?
+
+$\bullet$ Comp\_UGDG: Hacer selección
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
 	El objetivo fundamental de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
@@ -439,7 +468,7 @@ donde $\hat{\vect{n}}_{\text{shower}}$ representa la dirección del desarrollo d
 	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_1}}
 	\hspace{10mm}
 	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_2}}
-	\caption{Campo eléctrico radiado por efecto de la deflexión geomagnética. (a) Dirección del campo $\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ en una antena prueba al este de una cascada vertical. (b) Dirección esperada para el campo eléctrico radiado en una cascada vertical (se indica la posición del observador de la fig. a). Las direcciones N, S, E, W hacen referencia al polo norte magnético.}
+	\caption{Campo eléctrico radiado por efecto de la deflexión geomagnética. (a) Dirección del campo $\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ en una antena prueba al oeste de una cascada vertical. (b) Dirección esperada para el campo eléctrico radiado en una cascada vertical (se indica la posición del observador de la fig. a). Las direcciones N, S, E, W hacen referencia al polo norte magnético.}
 	\label{Geomag_deflexion}
 \end{figure}
 

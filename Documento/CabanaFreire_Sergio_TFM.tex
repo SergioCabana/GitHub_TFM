@@ -345,21 +345,19 @@ Fundamentalmente, existen cuatro aspectos básicos que afectarán al desarrollo 
 \clearpage
 	\begin{figure}[H]
 		\centering
-		\includegraphics[width=.8\linewidth]{figures/cascadas/Profatravesadavsang}
+		\includegraphics[width=.7\linewidth]{figures/cascadas/Profatravesadavsang}
 		\caption{Cantidad de materia atravesada a lo largo del eje de la cascada (hacia arriba) en función de la altura en la atmósfera, para varios ángulos. El gradiente de color que representa la atmósfera sigue la dependencia \eqref{ec21}, empleada para realizar esta gráfica. Se ha tenido en cuenta la curvatura de la Tierra,  la primera imagen es meramente ilustrativa.}
 		\label{Profatravesadavsang}
 	\end{figure}
 
 Con esto en mente, presentamos en la Fig. \ref{Carac_UG_vardeg} los resultados de la simulación en AIRES del desarrollo longitudinal de electrones, positrones, muones y piones cargados para cascadas hacia arriba iniciadas por un protón de energía $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera, para varios ángulos de inclinación.
 
-Comentarios que se me ocurren:
-\begin{itemize}
-	\item Dependencia del numero de particulas con angulo, como se esperaba
-	\item Electrones: En funcion de Xs igual el maximo, no hay desintegraciones. A partir de 20 km corte importante, se acaba casi la materia ver Fig. \ref{Profatravesadavsang}. Perdidas de energia con el medio, de nuevo a menor angulo mayor perdida vs distancia
-	\item Muones: Posicion del maximo movida frente a Xs. Posible efecto de desintegraciones y relacion con piones cargados, no aparece en electrones. Cambio de pendiente al final en Xv desintegracion
-	\item Piones cargados: Perfil similar a muones, con retardo (relacion por desintegraciones). 10 veces menos que muones, acumulacion ?
-	\item Particulas por debajo de la primera interaccion en las graficas, sobre todo en muones a 95 deg. Efecto de desarrollo lateral y eleccion de planos
-\end{itemize}
+La primera observación que podemos hacer es que, como acabamos de mencionar, el máximo número de partículas producido en la cascada decrece al aumentar el ángulo, i.e., cuanto más \textit{vertical} se sitúa el eje de la cascada. Por otra parte, vemos en las gráficas correspondientes del desarrollo frente a la profundidad atravesada \textit{a lo largo} del eje de la cascada que el máximo de la cascada ocurre aproximadamente en la misma posición, un resultado natural ya que esperamos que la producción de partículas dependa de la materia atravesada. Al tener en cuenta la inclinación, es evidente que las cascadas más verticales deberán recorrer más distancia para atravesar la misma cantidad de materia, por lo que los máximos aparecen desplazados en $X_v$ (véanse Figs. \ref{AIRES_planos} y \ref{Profatravesadavsang}). 
+
+No obstante, en las gráficas frente a $X_s$ observamos, para el caso de los muones y piones cargados, que la posición del máximo cambia ligeramente con el ángulo, algo que no ocurre en el caso de los electrones. La diferencia entre ambos casos es la existencia de desintegraciones. Al aumentar el ángulo de la cascada, la región densa se abandona en menos tiempo, provocando que la contribución de las desintegraciones de las partículas menos energéticas aparezca antes. De hecho, apreciamos en la gráfica de desarrollo de muones frente a $X_v$, un ligero cambio de pendiente hacia el final del desarrollo, que señala la aparición de desintegraciones. Vemos además que el comportamiento de los desarrollos de piones cargados y muones es muy similar, con cierto \textit{retardo} que nos indica que el origen de los muones está en la desintegración del pión cargado.
+
+Por último, en las gráficas del desarrollo frente a la distancia recorrida en la atmósfera, el ligero desplazamiento en las posiciones de los máximos de nuevo señala el hecho de que, cuanto mayor sea el ángulo, más altura debe alcanzarse en la atmósfera para atravesar la cantidad de materia necesaria para alcanzar el máximo. Además, en el caso de los $e^\pm$ donde la caída del número de partículas se debe a la pérdida de energía con el medio es más rápida cuanto menor el ángulo, debido a que en ese caso aún habrá materia con la que interaccionar \textit{por delante}.
+
 \begin{figure}[H]
 	\centering
 	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_e}}
@@ -367,10 +365,9 @@ Comentarios que se me ocurren:
 	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_mu}}
 	\\
 	\subfigure[$\pi^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_pi}}
-	\caption{Desarrollo de electrones, muones y piones, en una cascada iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera.}
+	\caption{Desarrollo de electrones, muones y piones, en una cascada iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura. Profundidad a lo largo del eje y distancia se miden desde el punto de primera interacción, i.e,  $h=5\,\mathrm{km}$. Los cortes en las gráficas vs. $X_s$ ($e^\pm$, $\mu^\pm$) marcan el final de la atmósfera.}
 	\label{Carac_UG_vardeg}
 \end{figure}
-
 \begin{itemize}
 	\item \textit{Altura de la primera interacción}
 \end{itemize}

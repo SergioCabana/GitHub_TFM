@@ -1036,7 +1036,8 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
     return fig
 
 
-def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir='', box_size = 750):
+def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir='', box_size = 750,\
+                      export = True):
     ''' Grafica de campo electrico en un array 2d de antenas
         En dominio t, se representa el maximo alcanzado para la variable 
         pedida en cada antena
@@ -1085,6 +1086,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         rootdir: directorio con archivos, necesario en caso de error leyendo
         
         box_size: tamaño de cuadraditos, ajustar si sale mal
+        
+        export: True si devuelve datos np.array([xs, ys, zs])
     '''
     try:
         data = np.loadtxt(file, comments = '#').T
@@ -1190,8 +1193,8 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         
     plt.tight_layout()
     
-    return fig
-
+    if export:
+        return np.array([x, y, z])
 ################################# EJEMPLOS Aires_Plot ##################################
 # ---------------------------------------------------------------------------------------
 

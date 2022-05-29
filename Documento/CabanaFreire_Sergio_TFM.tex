@@ -226,7 +226,9 @@
 	
 	Comentar importancia de neutrinos en astronomia y astrofisica, problemas para detectar
 	
-	Detectores suelo, Cerenkov, fluerescencia, ... Radiodeteccion de EAS como otra opcion. Posibilidad de neutrino tau cascada hacia arriba (Tierra como blanco)
+	Detectores suelo, Cerenkov, fluerescencia, ... Radiodeteccion de EAS como otra opcion. Posibilidad de neutrino tau (comentar por que tau) cascada hacia arriba (Tierra como blanco). 
+	
+	Cascadas casi horizontales, comentar propuestas experimentales para pbservar radiación, ...
 	
 	\begin{figure}[H]
 		\centering
@@ -246,14 +248,14 @@ Las cascadas atmosféricas, como hemos visto, representan la opción más import
 
 \subsection{Desarrollo de cascadas en la atmósfera}\label{sec21}
 
-Cuando un rayo cósmico de muy alta energía (por ejemplo un protón) llega a las capas superiores de la atmósfera e interacciona con la materia presente en el medio, producirá un número elevado de partículas secundarias, a su vez de altas energías, que volverán a generar más partículas sucesivamente. De este modo, se desarrolla una \textit{cascada} de partículas propagándose a través de la atmósfera, en el que el número de partículas continúa aumentando progresivamente, hasta que la energía de las partículas no es suficiente para mantener el crecimiento (i.e., se alcanza un máximo del desarrollo). Gracias al elevado número de partículas producidas en esta clase de eventos (hasta $10^{11}$ para las partículas primarias más energéticas), su estudio es posible mediante diversas técnicas (detectores de partículas a nivel de suelo, estudio de la fluorescencia provocada por las partículas provocadas en la atmósfera, medidas de la radiación \v{C}erenkov, ...). En cierto modo, la atmósfera actúa como un calorímetro que permite extraer información acerca de la energía y dirección de llegada del rayo cósmico primario, a partir de la deposición de energía en el medio, en forma de una cascada atmosférica.
+Cuando un rayo cósmico de muy alta energía (por ejemplo un protón) llega a las capas superiores de la atmósfera e interacciona con la materia presente en el medio, producirá un número elevado de partículas secundarias, a su vez de altas energías, que volverán a generar más partículas sucesivamente. De este modo, se desarrolla una \textit{cascada} de partículas propagándose a través de la atmósfera, en el que el número de partículas continúa aumentando progresivamente, hasta que la energía de las partículas no es suficiente para mantener el crecimiento (i.e., se alcanza un máximo del desarrollo). Gracias al elevado número de partículas producidas en esta clase de eventos (hasta $10^{11}$ para las partículas primarias más energéticas), su estudio es posible mediante diversas técnicas (detectores de partículas a nivel de suelo, estudio de la fluorescencia provocada por las partículas en la atmósfera, medidas de la radiación \v{C}erenkov, ...). En cierto modo, la atmósfera actúa como un calorímetro que permite extraer información acerca de la energía y dirección de llegada del rayo cósmico primario, a partir de la deposición de energía en el medio, en forma de una cascada atmosférica.
 
 No obstante, usar la atmósfera como medio de detección tiene, evidentemente, las desventajas de que se trata de un medio inhomogéneo, ya que la densidad de la misma decrece con la altitud, $\rho = \rho(h)$. Como ejemplo, uno de los modelos más simples para la dependencia de la densidad con la altura es un decrecimiento exponencial:
 \begin{equation}
 	\rho(h)=\rho_0\exp\left(-h/h_0\right)\; \;;\;\;\text{donde}\;\rho_0\sim1,23\times 10^{-3}\,\mathrm{g/cm^3}\;\text{y}\;h_0\sim8,13\,\mathrm{km}\label{ec21}
 \end{equation}
 
-Naturalmente, este hecho tendrá consecuencias importantes en el desarrollo de la cascada. Fundamentalmente, el efecto se deberá a que, a mayor densidad, mayor probabilidad de interacción para las partículas producidas. Para tener en cuenta esta cuestión, gran parte de la discusión que haremos acerca del desarrollo de cascadas atmosféricas no se hará en términos de distancias, sino de cantidad de materia atravesada o \textit{profundidad}, $X$. Dicha profundidad puede medirse en la dirección vertical ($X_v$) o a lo largo del eje del desarrollo de la cascada (Fig. \ref{shower_params}):
+Naturalmente, este hecho tendrá consecuencias importantes en el desarrollo de la cascada. Fundamentalmente, el efecto se deberá a que, a mayor densidad, mayor probabilidad de interacción para las partículas producidas. Para tener en cuenta esta cuestión, gran parte de la discusión que haremos acerca del desarrollo de cascadas atmosféricas no se hará en términos de distancias, sino de cantidad de materia atravesada o \textit{profundidad}, $X$. Dicha profundidad puede medirse en la dirección vertical ($X_v$) o a lo largo del eje ($X_s$) del desarrollo de la cascada (Fig. \ref{shower_params}):
 \begin{equation}
 	X_v(h)=\int_{h}^\infty\rho(h')dh'\;\;;\;\;X_s(h,\theta)=\int_{h}^\infty\rho(h')dl=\int_h^{\infty}\rho(h')\frac{dh'}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h'\right)^2}}}\label{ec22}
 \end{equation}
@@ -280,7 +282,7 @@ Por otra parte, la desintegración del pión cargado alimenta la componente muó
 	\item\textit{Componente muónica}: Integrada por muones y neutrinos producidos, fundamentalmente, en la desintegración del pión cargado. La interacción de estas partículas en la atmósfera será prácticamente despreciable. Por otra parte, la larga vida media del muón ($\mu\rightarrow e\nu_e\nu_\mu$, $\tau\sim2\times10^{-6}$) hace que en la mayoría de los casos atraviesen la atmósfera sin desintegrarse.
 \end{itemize}
 
-En general, el desarrollo de las cascadas atmosféricas está determinado por la competición entre interacción y desintegración que afecta a hadrones y mesones. Si las interacciones dominan, el número de partículas se multiplica y la cascada \textit{crece}, mientras que las desintegraciones alimentan la componente EM y muónica, que \textit{extraen} energía de la cascada y detienen su desarrollo. Mientras que las desintegraciones sólo dependen de la energía de la partícula y el tiempo de propagación, las interacciones dependen de la cantidad de materia atravesada, que como hemos visto depende de la altura en la atmósfera. Puesto que en discusiones posteriores será de utilidad, presentaremos los conceptos de \textit{distancia de interacción y desintegración} con el ejemplo de los piones:
+En general, el desarrollo de las cascadas atmosféricas está determinado por la competición entre interacción y desintegración que afecta a los hadrones. Si las interacciones dominan, el número de partículas se multiplica y la cascada \textit{crece}, mientras que las desintegraciones alimentan la componente EM y muónica, que \textit{extraen} energía de la cascada y detienen su desarrollo. Mientras que las desintegraciones sólo dependen de la energía de la partícula y el tiempo de propagación, las interacciones dependen de la cantidad de materia atravesada, que como hemos visto depende de la altura en la atmósfera. Puesto que en discusiones posteriores será de utilidad, presentaremos los conceptos de \textit{distancia de interacción y desintegración} con el ejemplo de los piones:
 \begin{itemize}
 	\item \textit{Distancia de interacción,} $\lambda_I\,\left[\mathrm{g/cm^2}\right]$: Cantidad de materia que debe atravesarse para que, en promedio, ocurra una interacción. En uds. de distancia, $d_I\sim\lambda_I/\rho(h)$. Para el caso de los piones interaccionando con aire:
 \begin{equation}
@@ -297,11 +299,11 @@ En general, el desarrollo de las cascadas atmosféricas está determinado por la
 Naturalmente, la energía a la que $d_{dec}\sim\lambda/\rho$ determina el punto en que las interacciones comienzan a verse superadas por las desintegraciones. Por lo tanto, estas magnitudes nos permiten estimar, de manera sencilla, en qué fase del desarrollo se encuentra cada componente de la cascada. Además, vemos claramente las dependencias tanto con la densidad como con la energía en \eqref{ec23} y \eqref{ec24}. Por lo tanto, podemos intuir que habrá diferencias sustanciales entre una cascada \textit{habitual} en que las partículas de mayor energía aparecen en las zonas menos densas de la atmósfera, y una cascada hacia arriba en que las partículas más energéticas aparecen en la región de mayor densidad para propagarse hacia zonas menos densas. Exploraremos esta posibilidad a continuación.
 
 	\subsection{Caracterización de cascadas atmosféricas hacia arriba}\label{sec22}
-	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$, $\pi^\pm$ y $\pi^0$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo con el que se desarrolla la cascada. 
+	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$, $\pi^\pm$ y $\pi^0$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo con el que se desarrolla la cascada. Naturalmente, el crecimiento del número de partículas cargadas en la atmósfera marcará la emisión de radiación en cascadas atmosféricas, así que nos detendremos en estudiar este aspecto en esta sección antes de avanzar en el objetivo de este trabajo.
 	
 	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de la cascada en un número de horas de CPU \textit{asumibles}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
 	
-	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la siguiente Tabla se recogen las partículas e interacciones consideradas en la simulación:
+	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la siguiente Tabla se recogen las partículas e interacciones consideradas en las simulaciones:
 \begin{table}[H]
 	\centering
 	\begin{tabular}{clc}
@@ -332,7 +334,8 @@ El estudio de la evolución de la cascada en AIRES se puede realizar, entre otra
 		\label{AIRES_planos}
 	\end{figure}
 	
-Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir profundidad atravesada a altura o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}. Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera.
+%Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. 
+Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir la posición de los planos de observación a alturas o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}, lo que nos permitirá estudiar el desarrollo de las cascadas en varios términos. Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera.
 
 Fundamentalmente, existen cuatro aspectos básicos que afectarán al desarrollo de estas cascadas: el ángulo de inclinación, la altura en la atmósfera a la que ocurre la primera interacción, y la naturaleza y energía de la partícula primaria que inicia la cascada. Para estudiar los efectos de cada una de estas cuestiones, presentaremos y discutiremos a continuación una serie de resultados de simulaciones con AIRES variando cada una de las magnitudes que acabamos de mencionar.
 \begin{itemize}
@@ -402,7 +405,24 @@ Nuetro resultado, a simple vista, concuerda con esta tendencia (\textit{grosso m
 \begin{itemize}
 	\item \textit{Naturaleza del primario}
 \end{itemize}
-Hasta ahora, sólo hemos considerado cascadas iniciadas por un protón. Por ello, esta clase de cascadas presentan las tres componentes que discutimos al inicio de esta sección (electromagnética, hadrónica y muónica). Sin embargo, en cascadas iniciadas, por ejemplo, por un electrón o un fotón, no esperaríamos la aparición de componentes hadrónica o muónica, al menos no al mismo nivel que en cascadas iniciadas por protones o núcleos. \textbf{Modos de desintegracion del tau para justificar ?}
+Hasta ahora, sólo hemos considerado cascadas iniciadas por un protón. Por ello, esta clase de cascadas presentan las tres componentes que discutimos al inicio de esta sección (electromagnética, hadrónica y muónica). Sin embargo, en cascadas iniciadas, por ejemplo, por un electrón o un fotón, no esperaríamos la aparición de componentes hadrónica o muónica, al menos no al mismo nivel que en cascadas iniciadas por protones o núcleos. Particularmente, en el caso que nos interesa podremos tener ambas situaciones, debido a los numerosos canales de desintegración del leptón $\tau$. Para estudiar esta clase de efectos, presentaremos a continuación resultados de simulaciones en AIRES en los que compararemos cascadas iniciadas por un protón o un electrón. Por simplicidad, y por ser un caso de particular interés dada la propuesta experimental que se planteó en \ref{sec1}, estudiaremos el caso de una cascada inclinada a $95^\circ$ iniciada por una partícula de $1\,\mathrm{EeV}$ que interacciona en las capas bajas de la atmósfera, a nivel del suelo:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_pe_1EeV_95deg_0km}
+	\caption{Desarrollo de electrones, muones y piones en una cascada a $95^\circ$ iniciada por un protón o un electrón de $1\,\mathrm{EeV}$ interaccionando a $0\,\mathrm{km}$ de altura}
+	\label{Carac_UG_varprim}
+\end{figure}
+
+Como vemos inmediatamente, las cascadas iniciadas por protones presentan, respecto a una cascada iniciada por un electrón, un número de muones y piones superior en un orden de magnitud, aproximadamente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_pe_1EeV_95deg_0km_egyperpart}
+	\caption{Energía promedio a lo largo del desarrollo de electrones, muones y piones en una cascada a $95^\circ$ iniciada por un protón o un electrón de $1\,\mathrm{EeV}$ interaccionando a $0\,\mathrm{km}$ de altura}
+	\label{Carac_UG_varprim_egyperpart}
+\end{figure}
+Comentar diferencia en evolucion de electrones, pero que el pico es igual. INtentar razonar por que la cola de electrones en proton es mas alta
 
 $\bullet$ comentar aqui ya las diferencias, no ponerlas en Comp\_UGDG ?
 
@@ -588,26 +608,38 @@ A partir de estos resultados, podemos plantearnos la pregunta de \textit{qué} b
 	\label{coherence}
 \end{figure}
 
-Por lo tanto, las emisiones serán coherentes a frecuencias $f\lesssim\Delta t_{max}^{-1}$ (i.e., $\lambda\gtrsim c\Delta t_{max}$, longitudes de onda comparables a las dimensiones de la cascada), donde el máximo de los tres retardos determina el límite a la coherencia. En el caso concreto de cascadas en aire, puede comprobarse\footnote{El modelo geométrico anterior permite hallar fácilmente $\Delta t_{L}=\frac{n}{c}L\cos{\theta}$, $\Delta t_{R}=\frac{n}{c}R\sin{\theta}$. $\Delta t_D$ depende de la forma del frente. Valores típicos: $L\sim 5-10\,\mathrm{km}$, $R\sim100\,\mathrm{m}$, $D\sim6\,\mathrm{m}$, $\theta\sim\theta_c\sim1^\circ$, $n\sim1,0003$} que el retardo máximo corresponde a la contribución del \textit{grosor} del frente, $\Delta t_D\sim 20\,\mathrm{ns}$. Por ello, las frecuencias de interés en cascadas atmosféricas se sitúan en $f\sim\left(20\,\mathrm{ns}\right)^{-1}\sim50\,\mathrm{MHz}$. Aunque el anterior es un modelo muy simple,será suficiente para obtener una intuición del origen de la emisión en radiofrecuencias.
+Por lo tanto, las emisiones serán coherentes a frecuencias $f\lesssim\Delta t_{max}^{-1}$ (i.e., $\lambda\gtrsim c\Delta t_{max}$, longitudes de onda comparables a las dimensiones de la cascada), donde el máximo de los tres retardos determina el límite a la coherencia. En el caso concreto de cascadas en aire, puede comprobarse\footnote{El modelo geométrico anterior permite hallar fácilmente $\Delta t_{L}=\frac{n}{c}L\cos{\theta}$, $\Delta t_{R}=\frac{n}{c}R\sin{\theta}$. $\Delta t_D$ depende de la forma del frente. Valores típicos: $L\sim 5-10\,\mathrm{km}$, $R\sim100\,\mathrm{m}$, $D\sim6\,\mathrm{m}$, $\theta\sim\theta_c\sim1^\circ$, $n\sim1,0003$} que el retardo máximo corresponde a la contribución del \textit{grosor} del frente, $\Delta t_D\sim 20\,\mathrm{ns}$. Por ello, las frecuencias de interés en cascadas atmosféricas se sitúan en $f\sim\left(20\,\mathrm{ns}\right)^{-1}\sim50\,\mathrm{MHz}$. Aunque el anterior es un modelo muy simple, será suficiente para obtener una intuición del origen de la emisión en radiofrecuencias.
 
 El siguiente caso que plantearemos es el de una cascada inclinada, iniciada por una partícula primaria de mayor energía. Concretamente, se ha simulado una cascada iniciada por un protón de energía $E=10^{19}\,\mathrm{eV}$, con una trayectoria de ángulo cenital $\theta=70^{\circ}$. En este caso, se ha supuesto un campo magnético ligeramente diferente\footnote{ Concretamente, este campo magnético es similar al que se encuentra en el Polo Sur, una localización de especial interés experimental para el estudio de la radiación cósmica.}, de magnitud $55\,\mathrm{\mu T}$ y ángulo de inclinación $I = 72,42^\circ$; mientras que las antenas se han situado a lo largo de las direcciones NS y EW (Fig. \ref{ANITApaper_showscheme}). Esta configuración nos permitirá estudiar algo más en detalle el campo eléctrico observado en función de la posición respecto a la cascada.
 
-Como mencionamos en el primer apartado de esta sección, el máximo de la emisión ocurre cuando el ángulo de observación coincide con el ángulo \v{C}erenkov. Por ello, en el suelo se registrará el máximo del campo eléctrico en las antenas que observen el máximo del desarrollo de la cascada bajo un ángulo $\theta_C$; ya que en la posición del máximo de la cascada es donde existe un mayor número de partículas, cuya radiación será la contribución dominante a toda la emisión. Por ello, el pico de $\vect{E}$ aparecerá en la intersección del suelo con el cono \v{C}erenkov, cuyo vértice se sitúa en el máximo de la cascada. 
+Como mencionamos en el primer apartado de esta sección, el máximo de la emisión ocurre cuando el ángulo de observación coincide con el ángulo \v{C}erenkov. Además, hemos visto en la sección \ref{sec2} cómo el desarrollo de cascadas atmosféricas presenta, a cierta profundidad en la atmósfera que depende de los parámetros del primario, un máximo claro del número de partículas. Por ello, en el suelo se registrará el máximo del campo eléctrico en las antenas que observen dicho máximo de la cascada bajo un ángulo $\theta_C$, i.e, en la intersección del suelo con el cono \v{C}erenkov. 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.5\linewidth]{figures/radio/ANITApaper_showscheme}
-	\caption{Configuración planteada. Se situaron 50 antenas a lo largo de cada eje, hasta $1500\,\mathrm{m}$ del \textit{core} de la cascada. El máximo de emisión se espera en la intersección del cono \v{C}erenkov con el suelo.}
+	\includegraphics[width=.65\linewidth]{figures/radio/ANITApaper_showscheme}
+	\caption{Configuración planteada. Se situaron 50 antenas a lo largo de cada eje, hasta $1500\,\mathrm{m}$ del \textit{core} de la cascada. El máximo de emisión se espera en la intersección del cono \v{C}erenkov., cuyo vértice se sitúa en el máximo del desarrollo.}
 	\label{ANITApaper_showscheme}
 \end{figure}
 
-Evidentemente, para una cascada inclinada la intersección del cono \v{C}erenkov con el suelo no será una circunferencia sino una elipse. Si para esta configuración representamos el máximo de la componente EW del campo eléctrico registrado en cada antena, obtenemos la siguiente figura:
+Evidentemente, para una cascada inclinada la intersección del cono \v{C}erenkov con el suelo no será una circunferencia sino una elipse. Si para esta configuración representamos el máximo de la componente EW del campo eléctrico registrado en cada antena, obtenemos el resultado de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground}. El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos bien definidos a lo largo de los dos ejes. Si bien puede intuirse un comportamiento así en las antenas situadas a lo largo de la dirección NS, no ocurre así para la dirección EW.
+
+Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. En este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada.
+
+\clearpage
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_t_ground}
+	\includegraphics[width=.65\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_t_ground}
 	\caption{Máximo del campo eléctrico registrado en las antenas a nivel del suelo de la configuración \ref{ANITApaper_showscheme}. Se representan los valores en los dos ejes (NS, EW).}
 	\label{downgoing_p_10EeV_70deg_Ey_t_ground}
 \end{figure}
-El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos bien definidos a lo largo de los dos ejes. Si bien puede intuirse un comportamiento así en las antenas situadas a lo largo de la dirección NS, no ocurre así para la dirección EW.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Componente $y$ del campo a $300\,\mathrm{MHz}$]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground}}
+	\subfigure[Componentes a varias frecuencias a lo largo de la dirección EW]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_varfreq_groundEW}}
+	\caption{Componentes de Fourier del campo eléctrico (componente $y$) en función de la distancia al \textit{core} de la cascada.}
+	\label{freqfieldsgrounds}
+\end{figure} 
+
 
 %Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
 
@@ -624,20 +656,14 @@ El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos
 %	\end{figure}
 %Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
 
-Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. En este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada. La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece con la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos decrece con la frecuencia, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
+ La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece con la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos decrece con la frecuencia, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
 
 La explicación a este hecho puede encontrarse en fenómenos de tipo difractivo. Podemos ejemplificarlo recordando, e.g., el patrón de Airy, en el que el primer cero del patrón de difracción ocurre cuando, respecto al máximo, observamos bajo un ángulo $\alpha$ tal que:
 \begin{equation}
 	\sin\alpha=1,22\frac{\lambda}{d}\label{ec318}
 \end{equation}  
 donde $d$ es el tamaño típico de la fuente. Evidentemente, a menor (mayor) frecuencia (longitud de onda), debemos irnos hasta un mayor $\alpha$ para encontrar el mínimo del patrón. Es decir, cuanto menor sea la frecuencia mayor será la anchura del pico, como observamos en \ref{freqfieldsgrounds}b
-\begin{figure}[H]
-	\centering
-	\subfigure[Componente $y$ del campo a $300\,\mathrm{MHz}$]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground}}
-	\subfigure[Componentes a varias frecuencias a lo largo de la dirección EW]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_varfreq_groundEW}}
-	\caption{Componentes de Fourier del campo eléctrico (componente $y$) en función de la distancia al \textit{core} de la cascada.}
-	\label{freqfieldsgrounds}
-\end{figure} 
+
 Evidentemente, en la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} estábamos viendo la superposición de todas las componentes de Fourier, y debido a que las dominantes (baja frecuencia) no están resueltas, no se observaba claramente la intersección del cono \v{C}erenkov con el suelo.
 
 Para acabar esta sección, recapitularemos los resultados y conclusiones más importantes:

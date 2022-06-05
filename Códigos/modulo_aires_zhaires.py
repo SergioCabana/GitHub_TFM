@@ -220,6 +220,113 @@ def Xs_of_injh(inj_h, theta, step):
         
     return Xs
 
+
+def ZHAireS_file_mixer(file, rootdir, domain = 'f'):
+    ''' Combina archivos de output de ZHAireS en uno unico, en el caso de que 
+        hayan hecho falta varias runs con varios conjuntos de antenas
+        
+        files: lista de archivos que se quieren unir
+        rootdir : directorio general, donde se guardara el nuevo archivo
+        domain  : tipo de outut (tiempo 't', frecuencia 'f')
+    '''
+    
+    datasets = []
+    n_ant = 0
+    
+    for i in range(len(file)):
+        try:
+            data = np.loadtxt(file[i], comments = '#').T
+
+        except ValueError:
+            if rootdir == '':
+                print('Error leyendo, prueba a poner rootdir')
+            else:
+                print('Error leyendo, estamos en ello ...')
+                
+                name = 'timefresnel-rootnew_'+str(i+1)+'.dat' if domain == 't' else 'freqfresnel-rootnew_'+str(i+1)+'.dat'
+                fileout = rootdir + name
+                
+                f = open(file[i],'r')
+                filedata = f.read()
+                f.close()
+            
+                newdata = filedata.replace("-"," -")
+            
+                f = open(fileout,'w')
+                f.write(newdata)
+                f.close()
+                print('Archivo corregido: ', fileout)
+                
+            data = pd.read_csv(fileout, comment = '#', delimiter = '\s+').to_numpy().T
+        
+        data[1] = data[1]+n_ant
+        
+        n_ant = np.max(data[1])
+        
+        datasets.append(data)
+        
+        
+    new_file = 'timefresnel-root_mix.dat' if domain == 't' else 'freqfresnel-root_mix.dat'
+    
+    output   = rootdir + new_file 
+
+    
+    if domain == 'f':
+        
+        header = ' -----------Freq Fresnel file----------\n'
+        header += ' Archivos combinados: \n'
+        for archivo in file:
+            header += ' '+archivo+'\n'
+        header += ' \n'
+        header += ' Columns: \n'
+        header += '        1 - Shower Number\n'
+        header += '        2 - Antenna Number\n'
+        header += '        3 - Antenna X (m)\n'
+        header += '        4 - Antenna Y (m)\n'
+        header += '        5 - Antenna Z (m)\n'
+        header += '        6 - Frequency #\n'
+        header += '        7 - Frequency (MHz)\n'
+        header += '        8 - |E| (V/M MHz)\n'
+        header += '        9 -  Ex  (V/M MHz)\n'
+        header += '        10 - Ey  (V/M MHz)\n'
+        header += '        11 - Ez  (V/M MHz)\n'
+        header += '\n'
+        header += ' new shower    1\n'
+        header += '\n' 
+        
+    elif domain == 't':
+        
+        header = ' -----------Time Fresnel file----------\n'
+        header += ' Archivos combinados: \n'
+        for archivo in file:
+            header += ' '+archivo+'\n'
+        header += ' \n'
+        header += 'Columns: \n'
+        header += '        1 - Shower Number\n'
+        header += '        2 - Antenna Number\n'
+        header += '        3 - Antenna X (m)\n'
+        header += '        4 - Antenna Y (m)\n'
+        header += '        5 - Antenna Z (m)\n'
+        header += '        6 - Time (ns)\n'
+        header += '        7 - |A| (V/M)\n'
+        header += '        8 -  Ax  (V/M)\n'
+        header += '        9 -  Ay  (V/M)\n'
+        header += '        10 - Az  (V/M)\n'
+        header += '        11 -|E| (V/M)\n'
+        header += '        12 - Ex  (V/M)\n'
+        header += '        13 - Ey  (V/M)\n'
+        header += '        14 - Ez  (V/M)\n'
+        header += '\n'
+        header += ' new shower    1\n'
+        header += '\n' 
+        
+    full_data = np.hstack(tuple(d for d in datasets))
+    
+    np.savetxt(output, full_data.T, fmt = '%.3e', header = header)
+    
+    return output
+
+
 def Aires_Plot(graf, pcles, rootdir, const, extras, xscale='linear', yscale='linear', \
             xlims = [], ylims=[], legend = True, loc_leg = 'best', cols = 1, omitextra=False, \
             UG = False, slant = False, DistAlongAxis = False, firstin = True, \
@@ -592,7 +699,7 @@ def plot_shower_dev(data, thetas, max_height = 100, \
 
 
 def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlims=[], \
-                   ylims = [], legend = True, formato = '-', labels = []):
+                   ylims = [], legend = True, formato = '-', labels = [], size = 12):
     ''' Codigos de graficas en dominio temporal
 
     A vs. t, antenas especificadas  = 1
@@ -636,6 +743,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
             antenas = 'all'
             
     labels : lista de strings, labels que queremos explicitamente
+    size   : tamaño de letra
 
 '''
     data_time = np.loadtxt(file, comments = '#').T
@@ -674,7 +782,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     if plot_maxs_vs_coords:
         
         for g, ant in list(zip(graphs, antenas)):
-            coord = g // 10 -1
+            coord = g // 10 - 1 
             g = g % 10
             x = np.array([ant_coord[a-1][coord] for a in ant])
             y = np.array([np.max(data_time[int(5+g)][i_ant[a-1]:i_ant[a]]) for a in ant])
@@ -692,8 +800,8 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     
     fig = plt.figure()
     ax  = fig.add_subplot(111)
-    plt.xticks(fontsize = 12)
-    plt.yticks(fontsize = 12)
+    plt.xticks(fontsize = size)
+    plt.yticks(fontsize = size)
     
     magnitudes = [r'$A$ (V/m)', r'$A_x$ (V/m)', r'$A_y$ (V/m)', r'$A_z$ (V/m)', r'$E$ (V/m)', r'$E_x$ (V/m)', r'$E_y$ (V/m)', r'$E_z$ (V/m)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
@@ -703,7 +811,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
         if all([((g%10-1)-(graphs[0]%10-1))==0 for g in graphs]):
             if len(labels)<1:
                 labels = [lbl_coords[g//10-1] for g in graphs]
-            ax.set_ylabel(magnitudes[graphs[0]%10-1], size = 12)
+            ax.set_ylabel(magnitudes[graphs[0]%10-1], size = size)
         else:
             if len(labels)<1:
                 labels =  [magnitudes[g%10-1]+', '+lbl_coords[g//10-1] for g in graphs]
@@ -711,14 +819,14 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
         for i in range(len(graphs)):#g, data in list(zip(graphs, graph_list)):
             ax.plot(graph_list[i][0], graph_list[i][1], formato, label = labels[i])
             
-        ax.set_xlabel('Dist. to shower core (m)', size = 12)
+        ax.set_xlabel('Dist. a core (m)', size = size)
      
     else:
         if all([(g-graphs[0])==0 for g in graphs]):
             if len(labels)<1:
                 autolabel = True
                 labels = ['Antena ' for _ in range(len(graphs))]
-            ax.set_ylabel(magnitudes[graphs[0]-1], size = 12)
+            ax.set_ylabel(magnitudes[graphs[0]-1], size = size)
             
         else:
             if len(labels)<1:
@@ -734,7 +842,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
         
         
     if legend:
-        ax.legend(loc='best', prop={'size':12})
+        ax.legend(loc='best', prop={'size':size})
     
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
@@ -747,7 +855,7 @@ def ZHAireS_Plot_t(graphs, antenas, file, xscale='linear', yscale='linear', xlim
     return fig
 
 def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear', xlims=[], \
-                   ylims = [], legend = True, formato = '-', labels = []):
+                   ylims = [], legend = True, formato = '-', labels = [], size = 12):
     ''' Codigos de graficas en dominio de frecuencias
 
     E vs. f, antenas especificadas  = 2
@@ -790,6 +898,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         freq = [[i's donde i es el indice en la lista de frecuencias que sale], ...]
                  
     labels : lista de strings, labels que queremos explicitamente
+    size   : tamaño de letra
 '''
     data_time = np.loadtxt(file, comments = '#').T
     
@@ -854,8 +963,8 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
     
     fig = plt.figure()
     ax  = fig.add_subplot(111)
-    plt.xticks(fontsize = 12)
-    plt.yticks(fontsize = 12)
+    plt.xticks(fontsize = size)
+    plt.yticks(fontsize = size)
     magnitudes = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
     lbl_coords = ['N-S', 'E-W', 'Vertical']
     autolabel = False
@@ -865,7 +974,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
             if len(labels) < 1:
                 labels = [lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
             
-            ax.set_ylabel(magnitudes[graphs[0]%10-2], size = 12)
+            ax.set_ylabel(magnitudes[graphs[0]%10-2], size = size)
         else:
             if len(labels) < 1:
                 labels =  [magnitudes[graphs[i]%10-2]+', '+lbl_coords[graphs[i]//10-1]+', '+str(freq_list[f])+' MHz'  for i in range(len(graphs)) for f in freq[i]]
@@ -873,14 +982,14 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         for i in range(len(graph_list)):
             ax.plot(graph_list[i][0], graph_list[i][1], formato, label = labels[i])
             
-        ax.set_xlabel('Dist. to shower core (m)', size = 12)
+        ax.set_xlabel('Dist. a core (m)', size = size)
      
     else:
         if all([(g-graphs[0])==0 for g in graphs]):
             if len(labels) < 1:
                 autolabel = True
                 labels = ['Antena ' for _ in range(len(graphs))]
-            ax.set_ylabel(magnitudes[graphs[0]-2], size = 12)
+            ax.set_ylabel(magnitudes[graphs[0]-2], size = size)
             
         else:
             if len(labels)<1:
@@ -896,7 +1005,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
         
         
     if legend:
-        ax.legend(loc='best', prop={'size':12})
+        ax.legend(loc='best', prop={'size':size})
     
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
@@ -910,7 +1019,7 @@ def ZHAireS_Plot_f(graphs, antenas, freq, file, xscale='linear', yscale='linear'
 
 
 def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
-        ylims = [], legend = True, formato = '-', labels = []):
+        ylims = [], legend = True, formato = '-', labels = [], size = 12):
 
     ''' Tranformada de Fourier rapida de output de ZHAireS en tiempo
     
@@ -946,7 +1055,8 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
         Si se quieren poner todas
             antenas = 'all'
             
-    labels: lista de str, labels explicitos para cada grafico        
+    labels: lista de str, labels explicitos para cada grafico  
+    size  : tamaño de letra     
     '''
     
     data_time = np.loadtxt(file, comments = '#').T
@@ -994,18 +1104,17 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
             
     fig = plt.figure()
     ax  = fig.add_subplot(111)
-    plt.xticks(fontsize = 12)
-    plt.yticks(fontsize = 12)
+    plt.xticks(fontsize = size)
+    plt.yticks(fontsize = size)
     
     magnitudes = [r'$A$ (V/m/MHz)', r'$A_x$ (V/m/MHz)', r'$A_y$ (V/m/MHz)', r'$A_z$ (V/m/MHz)', r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
-    lbl_coords = ['N-S', 'E-W', 'Vertical']
 
     autolabel = False
     if all([(g-graphs[0])==0 for g in graphs]):
         if len(labels) < 1:
             autolabel = True
             labels = ['Antena ' for _ in range(len(graphs))]
-        ax.set_ylabel(magnitudes[graphs[0]-1], size = 12)
+        ax.set_ylabel(magnitudes[graphs[0]-1], size = size)
         
     else:
         if len(labels)<1:
@@ -1018,11 +1127,11 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
             label = labels[i]+'%d'%antenas[i][j] if autolabel else labels[index]
             ax.plot(graph_list[index][0], graph_list[index][1], formato, linewidth = 2., label = label)
             index += 1
-    ax.set_xlabel('f (MHz)', size = 12)
+    ax.set_xlabel('f (MHz)', size = size)
         
         
     if legend:
-        ax.legend(loc='best', prop={'size':12})
+        ax.legend(loc='best', prop={'size':size})
     
     ax.set_xscale(xscale)
     ax.set_yscale(yscale)
@@ -1036,8 +1145,8 @@ def FFT(file, graphs, antenas, xscale='log', yscale='log', xlims=[], \
     return fig
 
 
-def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir='', box_size = 750,\
-                      export = True):
+def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir='',\
+                      export = True, xoffset=0, yoffset=0, height = '', draw_ant = False, aspect = 'auto'):
     ''' Grafica de campo electrico en un array 2d de antenas
         En dominio t, se representa el maximo alcanzado para la variable 
         pedida en cada antena
@@ -1074,7 +1183,7 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         
         graph: numero que indica la grafica que queremos, segun lo anterior
         
-        file: archivo de datos. Output estandar de ZHAireS
+        file: archivo de datos. Output estandar de ZHAireS o ZHAireS_file_mixer
         
         domain: datos en dominio de frecuencia ('f') o tiempo ('t')
             Si se escoge 'f', debe introducirse manualmente la frecuencia deseada
@@ -1088,6 +1197,15 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         box_size: tamaño de cuadraditos, ajustar si sale mal
         
         export: True si devuelve datos np.array([xs, ys, zs])
+        
+        xoffset, yoffset: para centrar la grafica, coordenadas del "centro" de cascada [km]
+        
+        height: altura a mano
+        
+        draw_ant: indicar explicitamente posicion de antenas en mapa 2d
+        
+        aspect: proporcion de los ejes, defalut 'auto' (normal en matplotlib)
+            poniendo 'equal' las escalas en ejes x e y se hacen iguales
     '''
     try:
         data = np.loadtxt(file, comments = '#').T
@@ -1097,7 +1215,7 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
             print('Error leyendo, prueba a poner rootdir')
         else:
             print('Error leyendo, estamos en ello ...')
-            fileout = rootdir+'timefresnel-rootnew.dat'
+            fileout = rootdir+'timefresnel-rootnew.dat' if domain == 't' else rootdir+'freqfresnel-rootnew.dat'
             f = open(file,'r')
             filedata = f.read()
             f.close()
@@ -1113,7 +1231,6 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
     
     n_ant     = int(max(data[1])) #numero de antenas
     
-    
     ant_coord = [] # aqui guardamos las coordenadas de las antenas
     
     i_ant     = []
@@ -1127,7 +1244,7 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
     i_ant.append(len(data.T))
 
 
-    height = round(100 - ant_coord[0][2]/1000) 
+    height = round(100 - ant_coord[0][2]/1000) if height == '' else height  #altura
     
     if domain == 'f':
         labels = [r'$E$ (V/m/MHz)', r'$E_x$ (V/m/MHz)', r'$E_y$ (V/m/MHz)', r'$E_z$ (V/m/MHz)']
@@ -1150,15 +1267,15 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         
     puntos = np.hstack((np.array(ant_coord)[:,:2], values))
     
-    x, y, z = puntos.T[0], puntos.T[1], puntos.T[2]
+    x, y, z = puntos.T[0]/1000-xoffset, puntos.T[1]/1000-yoffset, puntos.T[2]
     
     fig = plt.figure(figsize=(8,6))
-
+    
     if d3:
         ax = fig.add_subplot(111, projection = '3d')
         ax.plot_trisurf(x,y,z, cmap = 'gnuplot', alpha = .9)
-        ax.set_xlabel('x [m]', size = 14)
-        ax.set_ylabel('y [m]', size = 14)
+        ax.set_xlabel('x [km]', size = 14)
+        ax.set_ylabel('y [km]', size = 14)
         ax.set_zlabel(labels[graph-1], size = 14)
         
         ax.xaxis.set_tick_params(labelsize=12)
@@ -1170,20 +1287,36 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         
         if len(lims) > 0:
             ax.set_zlim(lims)
-        
+            
     else:
+        
+        df = pd.DataFrame.from_dict(np.array([x, y, z]).T)
+        
+        df.columns = ['x [km]', 'y [km]', labels[graph -1]]
+        
+        pivotted = df.pivot('y [km]','x [km]',labels[graph -1]).to_numpy()
+        
+        ny, nx = pivotted.shape
+        
+        x_min, x_max, y_min, y_max =  min(x), max(x), min(y), max(y)
+        
+        deltax, deltay = (x_max-x_min)/(nx), (y_max-y_min)/(ny)
+        
+        extent = [x_min-deltax/2, x_max+deltax/2, y_min-deltay/2, y_max+deltay/2]
+
         ax = fig.add_subplot(111)
         
         if len(lims) > 0:
-            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", vmin = lims[0], vmax = lims[1], marker = 's', s = box_size)
+            sc = ax.imshow(pivotted , origin = 'lower', cmap = 'gnuplot', aspect = 'auto', extent = extent, vmin = lims[0], vmax = lims[1])
         else:
-            sc = ax.scatter(x,y, c=z, cmap ="gnuplot", marker = 's', s = box_size)
+            sc = ax.imshow(pivotted , origin = 'lower', cmap = 'gnuplot', aspect = 'auto', extent = extent)
+            
         cbar = fig.colorbar(sc)
         cbar.set_label(labels[graph-1], size = 14, rotation = 270, labelpad = 30)
         cbar.ax.tick_params(labelsize=12)
         
-        ax.set_xlabel('x [m]', size = 14)
-        ax.set_ylabel('y [m]', size = 14)
+        ax.set_xlabel('x [km]', size = 14)
+        ax.set_ylabel('y [km]', size = 14)
         
         ax.xaxis.set_tick_params(labelsize=12)
         ax.yaxis.set_tick_params(labelsize=12)
@@ -1192,9 +1325,15 @@ def ZHAireS_arrayplot(graph, file, domain = 'f', lims = [],  d3 = False, rootdir
         ax.set_title(title, size = 14)
         
     plt.tight_layout()
+    plt.axis(aspect)
+    
+    if draw_ant:
+        ax.scatter(x, y, marker = '1', color = 'k')
     
     if export:
         return np.array([x, y, z])
+    
+    
 ################################# EJEMPLOS Aires_Plot ##################################
 # ---------------------------------------------------------------------------------------
 

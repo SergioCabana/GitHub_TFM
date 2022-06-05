@@ -50,6 +50,8 @@ Caracterizacion de la emision en radio en cascadas hacia arriba:
 		     Primary p, E = 1EeV, theta = 0deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false (usando uprimary)
 	45deg      : Resultado para cascada inclinada a 45deg, 36km 
 		     Primary p, E = 1EeV, theta = 45deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false (usando uprimary)
+	85deg      : Resultados para cascadas inclinada a 85deg, observacion a 5km, 36km 
+		     Primary p, E = 1EeV, theta = 85deg, B = 50uT, I = 0deg, grd = 0km, invertphi = false (usando uprimary)	
 
 Codigos:
 

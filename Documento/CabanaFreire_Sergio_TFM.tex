@@ -230,6 +230,8 @@
 	
 	Cascadas casi horizontales, comentar propuestas experimentales para pbservar radiación, ...
 	
+	Mencionar experimentos, BEACON, ANITA, PUEO, ...
+	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=.85\linewidth]{figures/shower_up}
@@ -483,13 +485,13 @@ Por último, haremos un breve comentario acerca del desarrollo de las partícula
 
 Para terminar esta sección, recapitularemos algunos resultados relevantes:
 
-\begin{itemize}
+\begin{enumerate}
 	\item Las cascadas atmosféricas hacia arriba presentan un elevado número de partículas cargadas en el máximo ($\sim 10^8-10^{10}$), que a su vez aumenta con la inclinación de la cascada. 
 	\item La altura de la primera interacción afecta a la posición del máximo en la atmósfera, aunque no influye demasiado en el número total de partículas cargadas producidas (siempre que la primera interacción no ocurra por encima de las decenas de $\mathrm{km}$)
 	\item La energía del primario está altamente relacionada con el número máximo de partículas producidas en cascadas atmosféricas, manteniendo una dependencia prácticamente lineal.
 	\item La naturaleza hadrónica o leptónica se refleja en el desarrollo tardío de la cascada, en que los electrones aparecen \textit{retardados} debido a la contribución muónica. La diferencia en el número de partículas entre ambos casos es pequeña comparada con el efecto de la energía del primario.
 	\item Las cascadas hacia arriba presentan máximos muy localizados en las proximidades del nivel del suelo y con una elevada producción de partículas, comparadas con cascadas hacia abajo.
-\end{itemize}
+\end{enumerate}
 \clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
 	El objetivo fundamental de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
@@ -738,18 +740,23 @@ Para acabar esta sección, recapitularemos los resultados y conclusiones más im
 \clearpage
 
 	\section{Emisión en radio en cascadas hacia arriba}
+	Partiendo de los desarrollos y resultados que hemos presentado en secciones anteriores, podemos pasar al objetivo final de este trabajo: la descripción y caracterización de la emisión en radiofrecuencias producida por cascadas atmosféricas \textit{hacia arriba}. Concretamente, nos interesará describir mediante simulaciones la radiación asociada a cascadas muy inclinadas iniciadas por la desintegración de un leptón $\tau$, originado a partir de un neutrino tau de origen astrofísico.  
+	
+	Antes de pasar a discutir la emisión en dichos eventos, podemos servirnos de desarrollos previos para, en cierto modo, adelantar el comportamiento que esperamos, algo que nos permitirá llegar a una interpretación clara de nuestros resultados. En primer lugar, hemos visto en la sección \ref{sec3} que los picos de emisión se sitúan en las posiciones que observan el máximo del desarrollo bajo el ángulo \v{C}erenkov. En cascadas hacia arriba ocurrirá exactamente lo mismo, salvo que (evidentemente) las dimensiones del \textit{anillo} \v{C}erenkov aumentarán con la altura en la atmósfera. Un ejemplo de este comportamiento se presenta en la Fig. \ref{Comparativa_20_36km}, en la que presentamos varias componentes de campo eléctrico obtenidas en simulaciones con ZHAireS de una cascada vertical hacia arriba. Aunque la observación de un evento similar es altamente improbable, muestra claramente el comportamiento esperado.
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=1.\linewidth]{figures/Radio_UG/Comparativa_20_36km}
-		\caption{Componentes de Fourier del campo eléctrico generado por una cascada vertical hacia arriba ($\theta=180^\circ$) iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a nivel del suelo, observadas a $20$ y $36\,\mathrm{km}$ de altura.}
+		\caption{Componentes de Fourier del campo eléctrico generado por una cascada vertical hacia arriba ($\theta=180^\circ$) iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a nivel del suelo, observadas a $20$ y $36\,\mathrm{km}$ de altura. La línea punteada señala el eje de la cascada.}
 		\label{Comparativa_20_36km}
 	\end{figure}
+De la misma manera que en el caso discutido en la sec. \ref{sec32}, la inclinación del eje de la cascada hará que, a cada altura, los máximos de la emisión se dispongan en una elipse, de nuevo asociada al cono \v{C}erenkov. No obstante, existirá una ligera diferencia respecto al caso de las cascadas hacia abajo. Para mostrarla claramente, presentamos en la Fig. \ref{Comparativa_0_45deg} el resultado de simulaciones de ZHAireS para una cascada iniciada por protón a $0\,\mathrm{km}$ de altura, con el eje en la dirección vertical o inclinado a $45^\circ$ (\textit{hacia arriba}, $\theta=135^\circ$). Para la cascada inclinada, apreciamos claramente que el campo eléctrico observado es más intenso al oeste del eje de la cascada ($y>0$), justo al contrario de lo que ocurría en cascadas hacia abjo (Fig. \ref{EW_field}). La razón para este comportamiento es simplemente el hecho de que, en este caso, el nivel de observación se sitúa por encima del máximo de la cascada, que además se desarrolla en el sentido opuesto. Debido a este cambio, las contribuciones de la deflexión geomagnética y efecto Askaryan se añadirán en posiciones al oeste en lugar de al este. En la Fig. \ref{Polarizacion_UG} presentamos un esquema similar a las Figs. \ref{Geomag_deflexion}, \ref{Askaryan} aplicado a este caso.
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=1.\linewidth]{figures/Radio_UG/Comparativa_0_45deg}
+	\includegraphics[width=.8\linewidth]{figures/Radio_UG/Comparativa_0_45deg}
 	\caption{Componente a $300\,\mathrm{MHz}$ del campo eléctrico generado por una cascada inclinada (vertical) hacia arriba iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a nivel del suelo, observada a $36\,\mathrm{km}$ de altura.}
 	\label{Comparativa_0_45deg}
 \end{figure}
+
 
 \begin{figure}[H]
 	\centering
@@ -757,13 +764,48 @@ Para acabar esta sección, recapitularemos los resultados y conclusiones más im
 	\caption{Contribuciones a la radiación electromagnética observada por encima del máximo en cascadas hacia arriba.}
 	\label{Polarizacion_UG}
 \end{figure}
+Por todo lo anterior, esperaremos que la emisión en radio asociada a cascadas atmosféricas muy inclinadas y hacia arriba esté marcada por la presencia de una \textit{elipse} \v{C}erenkov cuyas dimensiones aumentarán con la altura de observación. Además, las dos contribuciones fundamentales a la emisión son tales que el campo eléctrico observado será superior en posiciones al oeste del eje de la cascada.
 
-	\begin{figure}[H]
+Con esta breve discusión previa, podemos pasar a estudiar un caso más realista y de mayor interés. Para caracterizar la emisión de radiación en los eventos asociados a las desintegraciones de leptones $\tau$, hemos partido de las siguientes consideraciones:
+
+\begin{itemize}
+	\item El leptón $\tau$ posee numerosos modos de desintegración. Su elevada masa ($\sim 1,8\,\mathrm{GeV}$) permite que, en más de un $60\%$ de las ocasiones, la desintegración sea hadrónica ($\tau^-\rightarrow\text{Had}+\nu_\tau$). En menor proporción la desintegración puede ocurrir a leptones ($\tau^-\rightarrow e^-\bar{\nu}_e\nu_\tau$, $\tau^-\rightarrow \mu^-\bar{\nu}_\mu\nu_\tau$ y sus conjugados). Como vimos en la sec. \ref{sec22}, la naturaleza leptónica o hadrónica de las partículas que inician la cascada no introduce una dependencia fuerte en el número máximo de partículas producidas en el desarrollo. Por ello, y por simplicidad en las simulaciones\footnote{ AIRES no considera leptones $\tau$ en las simulaciones (v. 2.6)}, partiremos de protones como partículas primarias interaccionando a $0\,\mathrm{km}$ de altura. Esta aproximación no restará realismo a los resultados, además de que las cascadas con componente hadrónica serán las más frecuentes en esta clase de eventos dadas las desintegraciones del $\tau$.
+	
+	\item En cascadas muy inclinadas hacia arriba e iniciadas a $0\,\mathrm{km}$ de altura, el máximo del desarrollo se alcanza rápidamente, en las proximidades del nivel del suelo (resultados discutidos en la sec. \ref{sec22}). Estudiaremos el caso de cascadas hacia arriba con $\theta=95^\circ$ en las que la posición del máximo encontrada en las simulaciones fue:
+	\begin{equation}
+		X_{v}^{max}=965\,\mathrm{g/cm^2}\label{ec51}
+	\end{equation} 
+Para un ángulo de $95^\circ$, el máximo del desarrollo (i.e., el vértice del cono \v{C}erenkov) se alcanzaría a una altura de aproximadamente $600\,\mathrm{m}$ sobre el nivel del suelo, muy por debajo de las alturas de observación que consideraremos.
+\end{itemize}
+
+Resumiendo, simularemos la emisión en radio en cascadas atmosféricas a $\theta=95^\circ$ iniciadas por protones interaccionando a $0\,\mathrm{km}$ de altura. Por simplicidad, hemos tomado en todas las simulaciones un campo magnético terrestre totalmente paralelo al suelo y de intensidad $50\,\mathrm{\mu T}$.
+
+Naturalmente, el objetivo fundamental de la observación de la radiación emitida en cascadas atmosféricas debe ser la extracción de información sobre la partícula primaria, fundamentalmente acerca de su naturaleza, energía y dirección de llegada. Para estudiar precisamente cómo dicha información estaría contenida en el campo eléctrico observado, hemos realizado simulaciones para tres valores de energía del primario ($10\,\mathrm{PeV}$, $100\,\mathrm{PeV}$, $1\,\mathrm{EeV}$) y situando las alturas de observación a 5, 36 y 100 $\mathrm{km}$ de altura (siendo las dos primeras especialmente adecuadas para los experimentos BEACON y ANITA respectivamente). Los resultados obtenidos para las componentes de Fourier a $100$, $300$ y $500\,\mathrm{MHz}$ del campo eléctrico se presentan en las Figs. \ref{85deg_varh_536100} (variando altura de observación)  y \ref{85deg_varE} (variando la energía del primario).
+
+Como ya habíamos adelantado, lo primero que observamos son los máximos de campo eléctrico distribuidos en la elipse \v{C}erenkov, que debido a la gran inclinación del eje de la cascada alcanza grandes dimensiones que a su vez aumentan con la altura de observación (desde $\sim30\times5\,\mathrm{km^2}$ a $5\,\mathrm{km}$ de altura hasta $\sim500\times50\,\mathrm{km^2}$ a $100\,\mathrm{km}$). Además, observamos claramente cómo la señal registrada al oeste del eje de la cascada es más intensa, debido precisamente a los mecanismos de deflexión geomagnética y efecto Askaryan contribuyendo de manera \textit{constructiva}. Además, el \textit{anillo} aparece cada vez mejor definido al aumentar la frecuencia a la que observamos, un fenómeno que ya habíamos encontrado en la caracterización general de la radiación emitida en cascadas (Fig. \ref{freqfieldsgrounds})
+
+En lo que respecta a la extracción de información acerca de la naturaleza del primario, es evidente que la \textit{elipse} \v{C}erenkov y su orientación y dimensiones están claramente relacionadas con la dirección de llegada de la partícula primaria. Por ello, la extracción de esta clase de información podría realizarse observando directamente esta estructura, o una parte de la misma, en un array de antenas de diemnsión suficiente. 
+\begin{figure}[H]
 		\centering
 		\includegraphics[width=1.\linewidth]{figures/Radio_UG/85deg_varh_5_36_100}
 		\caption{Componentes de Fourier del campo eléctrico observado a diversas alturas. El origen de coordenadas $xy$ es arbitrario, se ha escogido para apreciar fácilmente las dimensiones del \textit{anillo} \v{C}erenkov.}
 		\label{85deg_varh_536100}
 	\end{figure}
+
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.\linewidth]{figures/Radio_UG/85deg_varE}
+	\caption{Componentes de Fourier del campo eléctrico observado a $36\,\mathrm{km}$ de altura, para diferente energía del protón primario. Omitimos los gráficos ara $E_0=10\,\mathrm{PeV}$, cuya señal es inapreciable en esta escala. El origen de coordenadas $xy$ es arbitrario.}
+	\label{85deg_varE}
+\end{figure}
+Esta clase de enfoque podría ser viable en experimentos a altitudes no muy elevadas con detectores desplegados sobre el suelo (e.g. BEACON), aunque a mayores alturas tanto las dimensiones del cono \v{C}erenkov como la imposibilidad de contar con detectores perfectamente \textit{estáticos} (en globos o incluso en satélites) obliga a emplear otras técnicas, entre las que pueden encontrarse, entre otras, el estudio del tiempo de llegada de la señal al detector (i.e., el máximo de señal ocurrirá ligeramente antes en la zona del detector orientada hacia la dirección de llegada del primario).  
+
+En cualquier caso, debemos quedarnos de lo anterior con que bien el estudio de la forma de la elipse \v{C}erenkov registrada en detectores sobre el suelo como los tiempos de llegada de la señal (entre otras técnicas) permitirían extraer información acerca de la dirección de llegada del primario. Además, la identificación de un evento como los que nos ocupan sería inmediata, ya que la observación de una cascada atmosférica iniciada \textit{por debajo} del horizonte revelaría, casi de manera inequívoca\footnote{ Bajo ciertas condiciones, la radiación emitida en cascadas atmosféricas hacia abajo puede reflejarse en la superficie, aunque esta situación y una cascada realmente originada en capas bajas de la atmósfera puede llegar a distinguirse con el análisis adecuado.}, un origen en la interacción de un neutrino tau de origen astrofísico en el interior de la Tierra.
+
+Más allá de la estructura \textit{espacial} de la señal registrada, es evidente que la intensidad del campo eléctrico observado tiene una dependencia importante tanto con la altura del detector como con la energía de la partícula primaria.
+
+
+Explicar la dependencia $1/d$ que se observa, comentar que a lo mejor eso permite distinguir eventos reflejados o algo así. COmentar dependencia lineal del maximo con la energía del primario y relacionarlo con la producciones de particulas en el maximo del desarrollo, sacar informacion sobre la energia. Comentar que no siempre se va a ver el maximo, pero que el conocimiento de la direccion de llegada y del campo magnético en la zona pueden complementar en cierto modo, mezclando con simulaciones y eso....
 
 \begin{figure}[H]
 	\centering
@@ -771,14 +813,6 @@ Para acabar esta sección, recapitularemos los resultados y conclusiones más im
 	\caption{Valor máximo de las componentes del campo eléctrico registradas en función de la distancia a lo largo del eje de la cascada. Las líneas discontinuas indican el comportamiento $\left|\vect{E}\right|_{max}\propto 1/d$.}
 	\label{Emaxvsd}
 \end{figure}
-
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=1.\linewidth]{figures/Radio_UG/85deg_varE}
-	\caption{Componentes de Fourier del campo eléctrico observado a $36\,\mathrm{km}$ de altura, para diferente energía del protón primario. El origen de coordenadas $xy$ es arbitrario.}
-	\label{85deg_varE}
-\end{figure}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.6\linewidth]{figures/Radio_UG/85deg_varE_36km_Emax_vs_E}

@@ -224,7 +224,7 @@
 	\section{Introducción}\label{sec1}
 	Comentar un poquito de rayos cosmicos, flujo escaso a altas energias -> EAS. 
 	
-	Comentar importancia de neutrinos en astronomia y astrofisica, problemas para detectar
+	Comentar importancia de neutrinos en astronomia y astrofisica, problemas para detectar. Comentar informacion que podrian dar
 	
 	Detectores suelo, Cerenkov, fluerescencia, ... Radiodeteccion de EAS como otra opcion. Posibilidad de neutrino tau (comentar por que tau) cascada hacia arriba (Tierra como blanco). 
 	
@@ -238,6 +238,10 @@
 		\caption{Idea de detección}
 		\label{shower_up}
 	\end{figure}
+	\clearpage
+	2
+	\clearpage
+	3
 	\clearpage
 	\section{Cascadas atmosféricas}\label{sec2}
 %	Fisica, conceptos, etc
@@ -778,51 +782,61 @@ Con esta breve discusión previa, podemos pasar a estudiar un caso más realista
 Para un ángulo de $95^\circ$, el máximo del desarrollo (i.e., el vértice del cono \v{C}erenkov) se alcanzaría a una altura de aproximadamente $600\,\mathrm{m}$ sobre el nivel del suelo, muy por debajo de las alturas de observación que consideraremos.
 \end{itemize}
 
-Resumiendo, simularemos la emisión en radio en cascadas atmosféricas a $\theta=95^\circ$ iniciadas por protones interaccionando a $0\,\mathrm{km}$ de altura. Por simplicidad, hemos tomado en todas las simulaciones un campo magnético terrestre totalmente paralelo al suelo y de intensidad $50\,\mathrm{\mu T}$.
+Resumiendo, simularemos la emisión en radio en cascadas atmosféricas a $\theta=95^\circ$ iniciadas por protones interaccionando a $0\,\mathrm{km}$ de altura. Por simplicidad, hemos tomado en todas las simulaciones un campo magnético terrestre totalmente paralelo al suelo y de intensidad $50\,\mathrm{\mu T}$ e impondremos una dirección de desarrollo hacia el norte magnético (i.e., azimut $\phi=0$). Además, trabajaremos en el dominio de frecuencias para poder obtener resultados claros en los que no haya que considerar la evolución temporal de la señal. 
 
 Naturalmente, el objetivo fundamental de la observación de la radiación emitida en cascadas atmosféricas debe ser la extracción de información sobre la partícula primaria, fundamentalmente acerca de su naturaleza, energía y dirección de llegada. Para estudiar precisamente cómo dicha información estaría contenida en el campo eléctrico observado, hemos realizado simulaciones para tres valores de energía del primario ($10\,\mathrm{PeV}$, $100\,\mathrm{PeV}$, $1\,\mathrm{EeV}$) y situando las alturas de observación a 5, 36 y 100 $\mathrm{km}$ de altura (siendo las dos primeras especialmente adecuadas para los experimentos BEACON y ANITA respectivamente). Los resultados obtenidos para las componentes de Fourier a $100$, $300$ y $500\,\mathrm{MHz}$ del campo eléctrico se presentan en las Figs. \ref{85deg_varh_536100} (variando altura de observación)  y \ref{85deg_varE} (variando la energía del primario).
 
-Como ya habíamos adelantado, lo primero que observamos son los máximos de campo eléctrico distribuidos en la elipse \v{C}erenkov, que debido a la gran inclinación del eje de la cascada alcanza grandes dimensiones que a su vez aumentan con la altura de observación (desde $\sim30\times5\,\mathrm{km^2}$ a $5\,\mathrm{km}$ de altura hasta $\sim500\times50\,\mathrm{km^2}$ a $100\,\mathrm{km}$). Además, observamos claramente cómo la señal registrada al oeste del eje de la cascada es más intensa, debido precisamente a los mecanismos de deflexión geomagnética y efecto Askaryan contribuyendo de manera \textit{constructiva}. Además, el \textit{anillo} aparece cada vez mejor definido al aumentar la frecuencia a la que observamos, un fenómeno que ya habíamos encontrado en la caracterización general de la radiación emitida en cascadas (Fig. \ref{freqfieldsgrounds})
+Como ya habíamos adelantado, lo primero que observamos son los máximos de campo eléctrico distribuidos en la elipse \v{C}erenkov, que debido a la gran inclinación del eje de la cascada alcanza grandes dimensiones, que a su vez aumentan con la altura de observación (desde $\sim30\times5\,\mathrm{km^2}$ a $5\,\mathrm{km}$ de altura hasta $\sim500\times50\,\mathrm{km^2}$ a $100\,\mathrm{km}$). Además, observamos claramente cómo la señal registrada al oeste del eje de la cascada es más intensa, debido precisamente a los mecanismos de deflexión geomagnética y efecto Askaryan contribuyendo de manera \textit{constructiva}. En el caso concreto que hemos simulado, tanto la inclinación como la orientación del eje del desarrollo hacia el norte magnético hacen que la contribución geomagnética (que depende del producto $\hat{\vect{n}}_s\times\vect{B}$) no domine sobre la contribución Askaryan, haciendo que el efecto predicho sea especialmente visible. Además, el \textit{anillo} aparece cada vez mejor definido al aumentar la frecuencia a la que observamos, un fenómeno que ya habíamos encontrado en la caracterización general de la radiación emitida en cascadas (Fig. \ref{freqfieldsgrounds})
 
-En lo que respecta a la extracción de información acerca de la naturaleza del primario, es evidente que la \textit{elipse} \v{C}erenkov y su orientación y dimensiones están claramente relacionadas con la dirección de llegada de la partícula primaria. Por ello, la extracción de esta clase de información podría realizarse observando directamente esta estructura, o una parte de la misma, en un array de antenas de diemnsión suficiente. 
+En lo que respecta a la extracción de información acerca de la naturaleza del primario, es evidente que la \textit{elipse} \v{C}erenkov y su orientación y dimensiones están claramente relacionadas con la dirección de llegada de la partícula primaria. Por ello, la extracción de esta clase de información podría realizarse observando directamente esta estructura, o una parte de la misma, en un array de antenas de dimensión suficiente. 
 \begin{figure}[H]
 		\centering
-		\includegraphics[width=1.\linewidth]{figures/Radio_UG/85deg_varh_5_36_100}
+		\includegraphics[width=.95\linewidth]{figures/Radio_UG/85deg_varh_5_36_100}
 		\caption{Componentes de Fourier del campo eléctrico observado a diversas alturas. El origen de coordenadas $xy$ es arbitrario, se ha escogido para apreciar fácilmente las dimensiones del \textit{anillo} \v{C}erenkov.}
 		\label{85deg_varh_536100}
 	\end{figure}
 
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=1.\linewidth]{figures/Radio_UG/85deg_varE}
-	\caption{Componentes de Fourier del campo eléctrico observado a $36\,\mathrm{km}$ de altura, para diferente energía del protón primario. Omitimos los gráficos ara $E_0=10\,\mathrm{PeV}$, cuya señal es inapreciable en esta escala. El origen de coordenadas $xy$ es arbitrario.}
+	\includegraphics[width=.95\linewidth]{figures/Radio_UG/85deg_varE}
+	\caption{Componentes de Fourier del campo eléctrico observado a $36\,\mathrm{km}$ de altura, para diferente energía del protón primario. Omitimos los gráficos para $E_0=10\,\mathrm{PeV}$, cuya señal es inapreciable en esta escala. El origen de coordenadas $xy$ es arbitrario.}
 	\label{85deg_varE}
 \end{figure}
-Esta clase de enfoque podría ser viable en experimentos a altitudes no muy elevadas con detectores desplegados sobre el suelo (e.g. BEACON), aunque a mayores alturas tanto las dimensiones del cono \v{C}erenkov como la imposibilidad de contar con detectores perfectamente \textit{estáticos} (en globos o incluso en satélites) obliga a emplear otras técnicas, entre las que pueden encontrarse, entre otras, el estudio del tiempo de llegada de la señal al detector (i.e., el máximo de señal ocurrirá ligeramente antes en la zona del detector orientada hacia la dirección de llegada del primario).  
+Esta clase de enfoque podría ser viable en experimentos a altitudes no muy elevadas con detectores desplegados sobre el suelo (e.g. BEACON), aunque a mayores alturas tanto las dimensiones del cono \v{C}erenkov como la imposibilidad de contar con detectores \textit{extensos} ni perfectamente \textit{estáticos} (en globos o incluso en satélites) obliga a emplear otras técnicas, entre las que pueden encontrarse, entre otras, el estudio del tiempo de llegada de la señal al detector (i.e., el máximo de señal ocurrirá ligeramente antes en la zona del detector orientada hacia la dirección de llegada del primario).  
 
-En cualquier caso, debemos quedarnos de lo anterior con que bien el estudio de la forma de la elipse \v{C}erenkov registrada en detectores sobre el suelo como los tiempos de llegada de la señal (entre otras técnicas) permitirían extraer información acerca de la dirección de llegada del primario. Además, la identificación de un evento como los que nos ocupan sería inmediata, ya que la observación de una cascada atmosférica iniciada \textit{por debajo} del horizonte revelaría, casi de manera inequívoca\footnote{ Bajo ciertas condiciones, la radiación emitida en cascadas atmosféricas hacia abajo puede reflejarse en la superficie, aunque esta situación y una cascada realmente originada en capas bajas de la atmósfera puede llegar a distinguirse con el análisis adecuado.}, un origen en la interacción de un neutrino tau de origen astrofísico en el interior de la Tierra.
+En cualquier caso, debemos quedarnos de lo anterior con que bien el estudio de la forma de la elipse \v{C}erenkov registrada en detectores sobre el suelo como los tiempos de llegada de la señal (entre otras técnicas) permitirían extraer información acerca de la dirección de llegada del primario. Por otra parte, el propio patrón de la radiación emitida contiene información acerca de la naturaleza de la partícula primaria. Por ejemplo, en el caso de cascadas hacia abajo en las que es posible contar con arrays de detectores sensibles a la totalidad del anillo \v{C}erenkov, las dimensiones del mismo permitirían estimar la posición del vértice del cono, i.e., del máximo del desarrollo $X_{max}$, que contiene información acerca de la masa del primario\footnote{ Por ejemplo, el máximo de cascadas iniciadas por núcleos ocurre típicamente a mayor altura en la atmósfera que para el caso de protones primarios.}. Por su parte, en el caso mucho más concreto que nos ocupa, la identificación del primario sería prácticamente inmediata, ya que la observación de una cascada atmosférica iniciada \textit{por debajo} del horizonte revelaría, casi de manera inequívoca, un origen en la interacción de un neutrino tau en el interior de la Tierra.
 
-Más allá de la estructura \textit{espacial} de la señal registrada, es evidente que la intensidad del campo eléctrico observado tiene una dependencia importante tanto con la altura del detector como con la energía de la partícula primaria.
+Más allá de la estructura \textit{espacial} de la señal registrada, es evidente que la intensidad del campo eléctrico observado tiene una dependencia importante tanto con la altura del detector como con la energía de la partícula primaria. El interés de esta última cuestión es evidente al ser una de las magnitudes clave que se desea conocer de la partícula primaria; mientras que la dependencia con la altura de la posición de observación puede permitir extraer información acerca de la localización del máximo del desarrollo, de nuevo abriendo la posibilidad de identificar eventos iniciados por neutrinos tau interaccionando en el interior de la Tierra.
 
-
-Explicar la dependencia $1/d$ que se observa, comentar que a lo mejor eso permite distinguir eventos reflejados o algo así. COmentar dependencia lineal del maximo con la energía del primario y relacionarlo con la producciones de particulas en el maximo del desarrollo, sacar informacion sobre la energia. Comentar que no siempre se va a ver el maximo, pero que el conocimiento de la direccion de llegada y del campo magnético en la zona pueden complementar en cierto modo, mezclando con simulaciones y eso....
-
+Para estudiar en algo más de detalle el efecto de estas dos últimas cuestiones, estudiaremos el valor máximo registrado para el campo eléctrico en las simulaciones que se han llevado a cabo. En primer lugar, podemos considerar la variación de dichos valores en función de la energía de la partícula primaria. Los valores correspondientes se presentan en la Fig. \ref{EmaxvsE}. A pesar de estar limitados por el número de simulaciones realizadas, podemos ver claramente que existe una tendencia lineal relacionando la amplitud máxima del campo eléctrico con la energía del primario. La interpretación de este comportamiento se halla en un hecho que ya mencionamos durante la caracterización del desarrollo de cascadas atmosféricas hacia arriba: el número de partículas cargadas producidas en el máximo del desarrollo es aproximadamente proporcional a la energía del primario \eqref{ec25}.
+Puesto que la amplitud del campo eléctrico estará determinada fundamentalmente por la contribución de las partículas cargadas en el máximo (sobre todo $e^\pm$), el comportamiento que observamos en la Fig. \ref{EmaxvsE} debe entenderse como consecuencia directa de la dependencia lineal del número máximo de partículas con la energía:
+\begin{equation}
+	\left|\vect{E}\right|_{max}\propto N_{e}^{max}\propto E_0 \label{ec42}
+\end{equation}
+\clearpage
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6\linewidth]{figures/Radio_UG/85deg_1EeV_varh_Emax_vs_d}
-	\caption{Valor máximo de las componentes del campo eléctrico registradas en función de la distancia a lo largo del eje de la cascada. Las líneas discontinuas indican el comportamiento $\left|\vect{E}\right|_{max}\propto 1/d$.}
-	\label{Emaxvsd}
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.6\linewidth]{figures/Radio_UG/85deg_varE_36km_Emax_vs_E}
+	\includegraphics[width=.5\linewidth]{figures/Radio_UG/85deg_varE_36km_Emax_vs_E}
 	\caption{Valor máximo de las componentes del campo eléctrico registradas a $36\,\mathrm{km}$ de altura en función de la energía del primario. Las líneas discontinuas indican el comportamiento $\left|\vect{E}\right|_{max}\propto E_0$.}
 	\label{EmaxvsE}
 \end{figure}
+Por otra parte, para estudiar la dependencia del máximo observado con la altura del detector, hemos representado en la Fig. \ref{Emaxvsd} la variación de dichos valores con la distancia $d$  desde el nivel del suelo (que aproximadamente se corresponde con la posición del máximo del desarrollo) hasta el nivel de observación impuesto en las simulaciones, medida a lo largo del eje de la cascada (ec. \ref{ec28}). Esta elección se debe a que, para un ángulo $\theta=95^\circ$, la dependencia de la altura con la distancia a la fuente ($d$) no sea lineal.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\linewidth]{figures/Radio_UG/85deg_1EeV_varh_Emax_vs_d}
+	\caption{Valor máximo de las componentes del campo eléctrico registradas en función de la distancia a lo largo del eje de la cascada. Las líneas discontinuas indican el comportamiento $\left|\vect{E}\right|_{max}\propto 1/d$.}
+	\label{Emaxvsd}
+\end{figure}
 
+Como vemos inmediatamente, la amplitud máxima del campo eléctrico registrado decrece como la inversa de la distancia a la fuente. Naturalmente, no esperábamos un comportamiento distinto al estar observando campos de radiación.
 
+Resumiendo, tanto el patrón de radiación emitida en cascadas atmosféricas (i.e., la forma del anillo \v{C}erenkov) como la misma intensidad del campo eléctrico y los tiempos de llegada de la señal pueden permitir extraer información acerca de la partícula primaria. Fundamentalmente, la estructura del anillo \v{C}erenkov y los retardos pueden ayudar a identificar la dirección de llegada del primario, mientras que la intensidad de la señal está relacionada con su energía y con la distancia al máximo del desarrollo, de nuevo relacionada con la dirección de llegada. Además, en los eventos que nos interesan, la determinación de la dirección de llegada implicaría con gran seguridad la identificación del origen de la cascada en un neutrino tau interaccionando en el interior de la Tierra.
 
+Como vemos, la estructura del patrón de radiación contiene información muy valiosa acerca del primario. Sin embargo, en detectores a grandes alturas la observación de una fracción significativa de dicho patrón no es especialmente viable (con la excepción de experimentos basados en detectores sobre el terreno a gran elevación). Además, consideraciones como \eqref{ec42}, Fig. \ref{EmaxvsE} sólo son válidas si se observa el máximo de la emisión, algo que no ocurrirá en general en detectores de tamaño reducido. Esta clase de cuestiones pueden afrontarse con técnicas de análisis más detalladas, cuya explicación en detalle nos obligaría a abandonar el enfoque descriptivo de este trabajo. De manera muy breve, podemos mencionar que las simulaciones de la emisión de radiación con códigos como ZHAireS son fundamentales a la hora de extraer información de datos experimentales, ya que a partir de ellas puede realizarse una comparación entre los valores medidos y los simulados para diversas energías y naturaleza del primario. De esa manera, la información puede extraerse a partir de las condiciones iniciales que, en la simulación, reproduzcan fielmente la observación.
 
+Por otra parte, existen observables que pueden complementar e incluso resultar más ventajosos que la amplitud del campo eléctrico a la hora de trabajar con datos reales. Por ejemplo, la polarización puede aportar información \textit{extra} acerca de la posición del máximo (e.g. mediante estudios detallados de las contribuciones geomagnética y Askaryan), mientras que el estudio del flujo integrado de energía recibida\footnote{ Integral temporal de la intensidad de la señal, $\int dt \left|E\right|^2$} permite trabajar con un observable más estable frente a fluctuaciones y facilita la distinción entre señal y ruido ambiente.
+
+De lo anterior, debemos quedarnos con que mediante el estudio de observables \textit{sencillos} hemos sido capaces de describir la radiación electromagnética emitida en cascadas atmosféricas hacia arriba, y hemos visto que dicha emisión contiene gran cantidad de información acerca de la naturaleza de la partícula primaria, gracias a la que podrían llegar a identificarse (con las técnicas adecuadas) eventos iniciados por neutrinos de altas energías y origen astrofísico.
 	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
 	\section{Conclusiones}
 	

@@ -257,7 +257,6 @@ La razón para considerar únicamente neutrinos tau\footnote{ Aunque en \eqref{e
 Actualmente, existen numerosos experimentos entre cuyos objetivos se sitúan la detección de esta clase de eventos. Entre ellos podemos mencionar BEACON \cite{wissel2021concept}, que aspira a medir el flujo de $\nu_\tau$ con $E>100\,\mathrm{PeV}$ mediante técnicas interferométricas a partir de datos recolectados en arrays de antenas dispuestas sobre montañas a varios $\mathrm{km}$ de altura, o ANITA y su futuro sucesor PUEO \cite{abarr2021payload}, que permiten observar mediante antenas dispuestas en globos a gran altura ($\sim 36\,\mathrm{km}$) la radiación asociada a cascadas iniciadas en interacciones con el hielo de la Antártida.
 
 Este trabajo se enmarca dentro de estas propuestas experimentales, y los desarrollos que haremos a continuación tendrán como objetivo describir y caracterizar tanto cascadas atmosféricas hacia arriba como la emisión en radiofrecuencias asociada, contribuyendo por medio de simulaciones al desarrollo de estas técnicas de detección.
-\clearpage
 	\section{Cascadas atmosféricas}\label{sec2}
 %	Fisica, conceptos, etc
 %	
@@ -320,203 +319,206 @@ Naturalmente, la condición $d_{dec}\sim\lambda_I/\rho$ determina la energía t�
 \begin{equation}
 	d_{dec}\sim\lambda_I/\rho\implies E_{dec}\sim \frac{\lambda_I mc^2}{\rho c \tau}\;.\label{edec}
 \end{equation} Por lo tanto, estas magnitudes nos permiten estimar, de manera sencilla, en qué fase del desarrollo se encuentra cada componente de la cascada. Además, vemos claramente las dependencias tanto con la densidad como con la energía en y \eqref{edec}. Por lo tanto, podemos intuir que habrá diferencias sustanciales entre una cascada \textit{convencional} en la que las partículas de mayor energía se producen en las zonas menos densas de la atmósfera, y una cascada hacia arriba en que las partículas más energéticas aparecen en la región de mayor densidad para propagarse hacia zonas menos densas. Exploraremos esta posibilidad a continuación.
-%
-%	\subsection{Caracterización de cascadas atmosféricas hacia arriba}\label{sec22}
-%	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$ y $\pi^\pm$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo con el que se desarrolla la cascada. Naturalmente, el crecimiento del número de partículas cargadas en la atmósfera marcará la emisión de radiación en cascadas atmosféricas, así que nos detendremos en estudiar este aspecto en esta sección antes de avanzar en el objetivo de este trabajo.
-%	
-%	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de la cascada en un número de horas de CPU \textit{asumibles}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
-%	
-%	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la siguiente Tabla se recogen las partículas e interacciones consideradas en las simulaciones:
-%\begin{table}[H]
-%	\centering
-%	\begin{tabular}{clc}
-%		\hline
-%		\multicolumn{2}{c}{Partícula}                                                                   & Interacciones                         \\ \hline
-%		\multicolumn{2}{c}{\multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}$\gamma$\\ $e^\pm$\end{tabular}}} & Efectos Compton y fotoeléctrico       \\
-%		\multicolumn{2}{c}{}                                                                            & Bremsstrahlung y producción de pares  \\
-%		\multicolumn{2}{c}{}                                                                            & Aniquilación $e^+e^-$                 \\
-%		\multicolumn{2}{c}{}                                                                            & Emisión de $e^-$ knock-on             \\
-%		\multicolumn{2}{c}{}                                                                            & Reacciones fotonucleares, ...         \\ \hline
-%		\multicolumn{2}{c}{\multirow{3}{*}{$\mu^\pm$}}                                                  & Bremsstrahlung y producción de pares  \\
-%		\multicolumn{2}{c}{}                                                                            & Emisión de $e^-$ knock-on             \\
-%		\multicolumn{2}{c}{}                                                                            & Desintegración                        \\ \hline
-%		\multicolumn{2}{c}{$\nu$'s}                                                                   & Aparición en desintegraciones         \\ \hline
-%		\multicolumn{2}{c}{$p,\bar p, n, \bar n, \Lambda$}                                              & Colisiones hadrónicas y núcleo-núcleo \\
-%		\multicolumn{2}{c}{$\pi^0, \pi^\pm, K^0_{L,S}, K^\pm$}                                          & Emisión de $e^-$ knock-on             \\
-%		\multicolumn{2}{c}{Núcleos $Z\leq 36$}                                                          & Desintegraciones                      \\ \hline
-%	\end{tabular}
-%\caption{Partículas e interacciones consideradas en AIRES (v. 2.6)}
-%\end{table}
-%
-%El estudio de la evolución de la cascada en AIRES se puede realizar, entre otras maneras, estableciendo una serie de \textit{niveles de observación} a lo largo del desarrollo. En cada uno de ellos, se registran las partículas que lo atraviesan y su energía, permitiendo obtener el desarrollo longitudinal del número de partículas y su energía. Los niveles de observación se disponen equiespaciados en profundidad atravesada, bien a lo largo del eje de desarrollo de la cascada ($X_s$) o en la dirección vertical ($X_v$):
-%\clearpage
-%	\begin{figure}[H]
-%		\centering
-%		\includegraphics[width=.6\linewidth]{figures/cascadas/AIRES_planos}
-%		\caption{Disposiciones posibles de los niveles de observación en AIRES, en el ejemplo de una cascada hacia arriba. Izq.: A lo largo del eje del desarrollo. Der.: Dirección vertical.}
-%		\label{AIRES_planos}
-%	\end{figure}
-%	
-%%Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. 
-%Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea la parametrización de Linsley.}, podremos convertir la posición de los planos de observación a alturas o distancias \textit{recorridas} en la atmósfera aplicando \eqref{ec22}, lo que nos permitirá estudiar el desarrollo de las cascadas en varios términos. Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera.
-%
-%Fundamentalmente, existen cuatro aspectos básicos que afectarán al desarrollo de estas cascadas: el ángulo de inclinación, la altura en la atmósfera a la que ocurre la primera interacción, y la naturaleza y energía de la partícula primaria que inicia la cascada. Para estudiar los efectos de cada una de estas cuestiones, presentaremos y discutiremos a continuación una serie de resultados de simulaciones con AIRES variando cada una de las magnitudes que acabamos de mencionar.
-%\begin{itemize}
-%	\item \textit{Ángulo de la cascada}:
-%\end{itemize}
-%	La dependencia del desarrollo con el ángulo de inclinación del eje de la cascada es evidente si recordamos la dependencia de la densidad con la altura en la atmósfera. Para ilustrar esta idea, hemos representado en la Fig. \ref{Profatravesadavsang} la cantidad de materia atravesada desde el nivel del suelo hacia arriba para varios ángulos, usando una expresión equivalente\footnote{ Simplemente integrando entre $0$ y $h$.} a \eqref{ec22}. Como vemos, la cantidad de materia atravesada en la atmósfera aumenta cuanto más \textit{horizontal} sea la cascada por lo que esperaremos, por ejemplo, la producción de un mayor número de partículas en ese caso, al dominar las interacciones en regiones más densas.
-%	
-%	Antes de presentar resultados, debemos comentar el criterio empleado para los ángulos de inclinación de la cascada: para cascadas \textit{hacia abajo}, indicaremos el ángulo en el intervalo $\theta\in[0^\circ, 90^\circ]$ (Fig. \ref{shower_params}), mientras que en cascadas hacia arriba, por consistencia, daremos el ángulo en el intervalo  $\theta\in[90^\circ, 180^\circ]$, siendo $
-%	90^\circ$ ($180^\circ$) una cascada horizontal (vertical hacia arriba).
-%\clearpage
-%	\begin{figure}[H]
-%		\centering
-%		\includegraphics[width=.7\linewidth]{figures/cascadas/Profatravesadavsang}
-%		\caption{Cantidad de materia atravesada a lo largo del eje de la cascada (hacia arriba) en función de la altura en la atmósfera, para varios ángulos. El gradiente de color que representa la atmósfera sigue la dependencia \eqref{ec21}, empleada para realizar esta gráfica. Se ha tenido en cuenta la curvatura de la Tierra,  la primera imagen es meramente ilustrativa.}
-%		\label{Profatravesadavsang}
-%	\end{figure}
-%
-%Con esto en mente, presentamos en la Fig. \ref{Carac_UG_vardeg} los resultados de la simulación en AIRES del desarrollo longitudinal de electrones, positrones, muones y piones cargados para cascadas hacia arriba iniciadas por un protón de energía $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera, para varios ángulos de inclinación.
-%
-%La primera observación que podemos hacer es que, como acabamos de mencionar, el máximo número de partículas producido en la cascada decrece al aumentar el ángulo, i.e., cuanto más \textit{vertical} se sitúa el eje de la cascada. Por otra parte, vemos en las gráficas correspondientes del desarrollo frente a la profundidad atravesada \textit{a lo largo} del eje de la cascada que el máximo de la cascada ocurre aproximadamente en la misma posición, un resultado natural ya que esperamos que la producción de partículas dependa de la materia atravesada. Al tener en cuenta la inclinación, es evidente que las cascadas más verticales deberán recorrer más distancia para atravesar la misma cantidad de materia, por lo que los máximos aparecen desplazados en $X_v$ (véanse Figs. \ref{AIRES_planos} y \ref{Profatravesadavsang}). 
-%
-%No obstante, en las gráficas frente a $X_s$ observamos, para el caso de $\mu^\pm$ y $\pi^\pm$, que la posición del máximo cambia ligeramente con el ángulo, algo que no ocurre en el caso de los electrones. La diferencia entre ambos casos es la existencia de desintegraciones. Para interpretar este hecho, podemos ver en \eqref{edec} que la energía a la que las desintegraciones comienzan a dominar aumentará con la inclinación (dependencia $\rho^{-1}$, la zona densa se abandona antes), por lo que se alcanzará el máximo en un menor número de interacciones. Vemos por otra parte que el comportamiento de los desarrollos de piones cargados y muones es muy similar, con cierto \textit{retardo} que nos indica que el origen de los muones está en la desintegración del $\pi^\pm$. Además, apreciamos en la gráfica de desarrollo de muones frente a $X_v$, un ligero cambio de pendiente hacia el final del desarrollo, que evidencia sus desintegraciones.
-%
-%Por último, en las gráficas del desarrollo frente a la distancia recorrida en la atmósfera, el ligero desplazamiento en las posiciones de los máximos de nuevo señala el hecho de que, cuanto mayor sea el ángulo, más altura debe alcanzarse en la atmósfera para atravesar la cantidad de materia necesaria para llegar al máximo. Además, en el caso de los $e^\pm$ vemos que la caída del número de partículas, que se debe a la pérdida de energía con el medio, es más rápida cuanto menor el ángulo, debido a que en ese caso aún habrá materia con la que interaccionar \textit{por delante}.
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_e_v2}}
-%	\\
-%	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_mu_v2}}
-%	\\
-%	\subfigure[$\pi^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_pi_v2}}
-%	\caption{Desarrollo de electrones, muones y piones, en una cascada iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura. Profundidad a lo largo del eje y distancia se miden desde el punto de primera interacción, i.e,  $h=5\,\mathrm{km}$. Los cortes en las gráficas vs. $X_s$ ($e^\pm$, $\mu^\pm$) marcan el final de la atmósfera.}
-%	\label{Carac_UG_vardeg}
-%\end{figure}
-%\begin{itemize}
-%	\item \textit{Altura de la primera interacción}
-%\end{itemize}
-%El punto de la atmósfera en que ocurra la primera interacción, y por lo tanto comience el desarrollo de la cascada, podrá afectar a dos cuestiones: el número de partículas producidas y la posición del máximo de la cascada. Para verlo, presentamos a continuación resultados de AIRES para el desarrollo de electrones, positrones y muones en una cascada de ángulo $\theta=95^\circ$ iniciada por un protón de energía $1\,\mathrm{EeV}$:
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_e_v2}}
-%	\\
-%	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_mu_v2}}
-%
-%	\caption{Desarrollo de electrones y muones en una cascada a $95^\circ$ iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a varias alturas. $X_s$ y $d$ se miden desde la primera interacción.}
-%	\label{Carac_UG_varh}
-%\end{figure}
-%En primer lugar, la posición del máximo de la cascada cambia con la altura, un resultado evidente ya que estamos modificando el punto en que se inicia la cascada. Por su parte, en las gráficas frente a profundidad y distancia  a lo largo del eje volvemos a encontrar los mismos efectos que en el caso de la Fig. \ref{Carac_UG_vardeg}, sólo que ahora la diferencia en la materia atravesada viene dada por la altura de \textit{inyección} del primario y no por el ángulo de la cascada; pero la interpretación es la misma.
-%
-%Quizá el efecto más interesante aparece en el número máximo de partículas. En el caso de los electrones apenas hay cambios con la altura, mientras que para los muones se aprecia un decrecimiento considerable al aumentar la misma. Como habíamos comentado, el desarrollo de las cascadas atmosféricas es tal que, eventualmente, la mayor parte de la energía acaba transfiriéndose a la componente electromagnética (a través de la desintegración de piones neutros, por ejemplo). Por ello, dado que la energía del primario es constante en estas simulaciones y las alturas consideradas son suficientemente bajas para que la cascada complete su desarrollo, el número de electrones es aproximadamente el mismo en todos los casos. No ocurre así con la producción de muones, que depende básicamente de las interacciones hadrónicas que dan lugar a piones cargados. Al aumentar la altura, debe recorrerse cada vez más distancia para atravesar la misma cantidad de materia ($\lambda_I$), reduciendo la tasa de interacciones y por tanto el número de muones que se produce. El mismo efecto se observa en la producción de piones, que no incluimos al verse representada en la evolución del número de muones.
-%\begin{itemize}
-%	\item \textit{Energía del primario}
-%\end{itemize}
-%Naturalmente, el desarrollo de la cascada estará muy afectado por la energía de la partícula primaria que la origina. Cunato mayor sea esta, mayor será el número de interacciones que ocurran así como el número de partículas producidas en cada interacción. Por ello, una de las consecuencias fundamentales de una mayor o menor energía del primario aparecerá en el número de partículas máximo. Como ejemplo, presentamos a continuación los resultados de la simulación de cascadas a $95^\circ$ iniciadas por un protón de energía variable, interaccionando a $5\,\mathrm{km}$ de altura: 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_varE_95deg_5km_v2}
-%	\caption{Desarrollo de electrones, muones y piones en una cascada a $95^\circ$ iniciada por un protón de energía variable interaccionando a $5\,\mathrm{km}$ de altura.}
-%	\label{Carac_UG_varE}
-%\end{figure}
-%Como vemos, el número máximo de partículas producidas presenta una dependencia inequívoca con la energía del primario, $E_0$. De manera explícita, la tendencia que se espera tanto a partir de modelos teóricos como de simulaciones como las que hemos realizado es:
-%\begin{equation}
-%	N_{max}^{e}\propto E_0\;\;;\;\;N_{max}^{\mu}\propto E_0^\beta\;\text{con}\;\beta\sim0,85\label{ec25}
-%\end{equation}
-%Nuestro resultado, a simple vista, concuerda con esta tendencia (\textit{grosso modo}, aumentar $E_0$ en un factor 10 aumenta $N_{max}$ en un orden de magnitud). Más allá de lo anterior, las gráficas \ref{Carac_UG_varE} permiten mostrar claramente un efecto que habíamos mencionado: hacia el final de la cascada, aparecen cambios de pendiente en el desarrollo de $e^\pm$ y $\mu^\pm$ asociados a la desintegración de estos últimos.
-%\begin{itemize}
-%	\item \textit{Naturaleza del primario}
-%\end{itemize}
-%Hasta ahora, sólo hemos considerado cascadas iniciadas por un protón. Por ello, esta clase de cascadas presentan las tres componentes que discutimos al inicio de esta sección (electromagnética, hadrónica y muónica). Sin embargo, en cascadas iniciadas, por ejemplo, por un electrón o un fotón, no esperaríamos la aparición de componentes hadrónica o muónica, al menos no al mismo nivel que en cascadas iniciadas por protones o núcleos. Particularmente, en el caso que nos interesa podremos tener ambas situaciones, debido a los numerosos canales de desintegración del leptón $\tau$. Para estudiar esta clase de efectos, presentaremos a continuación resultados de simulaciones en AIRES en los que compararemos cascadas iniciadas por un protón o un electrón. Por simplicidad, y por ser un caso de particular interés dada la propuesta experimental que se planteó en la sec. \ref{sec1}, estudiaremos el caso de una cascada inclinada a $95^\circ$ iniciada por una partícula de $1\,\mathrm{EeV}$ que interacciona en las capas bajas de la atmósfera, a nivel del suelo:
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_pe_1EeV_95deg_0km_v2}
-%	\caption{Desarrollo de electrones, muones y piones en una cascada a $95^\circ$ iniciada por un protón o un electrón de $1\,\mathrm{EeV}$ interaccionando a $0\,\mathrm{km}$ de altura}
-%	\label{Carac_UG_varprim}
-%\end{figure}
-%
-%Como vemos inmediatamente, las cascadas iniciadas por protones presentan, respecto a una cascada iniciada por un electrón, un número de muones y piones superior en un factor $\sim 4$, aproximadamente. La diferencia no resulta demasiado grande, sobre todo recordando que los procesos que multiplican el número de piones (y por tanto de muones) al inicio de las cascadas requieren la presencia de hadrones de alta energía. Una explicación para esta observación es la presencia de reacciones fotonucleares, en las que un fotón de alta energía interacciona con un núcleo del medio produciendo hadrones ligeros. Dichos procesos tienen secciones eficaces muy inferiores a las de interacciones puramente hadrónicas\footnote{Típicamente dos órdenes de magnitud inferiores} y por tanto su contribución no se hace necesaria para interpretar las cascadas iniciadas por hadrones, aunque su efecto sí aparece cuando las interacciones hadrónicas no dominan, como en el caso de la cascada iniciada por electrón. 
-%
-% No obstante, el número máximo de electrones producido es similar en ambos casos. De nuevo, este es un reflejo del hecho de que, a lo largo del desarrollo de la cascada, existe una \textit{transferencia} de energía desde la componente hadrónica haca la componente electromagnética, fundamentalmente a través de la desintegración del pión neutro. Puesto que en ambos casos la energía del primario es la misma, el número de electrones y positrones producidos alcanza valores del mismo orden de magnitud. En el caso simulado de la Fig. \ref{Carac_UG_varprim} se encontró:
-%\begin{equation}
-%	\frac{N_e^{max}\;\;\text{(Prim. e)}}{N_e^{max}\;\;\text{(Prim. p)}}= 1,104 \label{ec26}
-%\end{equation}
-%El hecho de que se produzcan ligeramente menos electrones en la cascada iniciada por un protón de nuevo refleja el hecho de que una fracción de la energía del primario se encuentra en las componentes hadrónica y muónica. A pesar de todo, dado que $e^\pm$ son con diferencia las partículas más abundantes en cascadas atmosféricas, el número de partículas cargadas producidas en el máximo del desarrollo no tendrá una dependencia fuerte con la naturaleza del primario.
-%
-%Por otra parte, observamos en la cascada iniciada por un protón que el número de electrones después de haber alcanzado el máximo es superior al que se observa en la cascada iniciada por un electrón, algo que puede resultar extraño ya que $N_{e}^{max}$ toma prácticamente el mismo valor en ambos casos.  
-%
-%La razón para esta discrepancia reside precisamente en las contribuciones \textit{no electromagnéticas}. En una cascada iniciada por electrón, después de alcanzar el máximo del desarrollo los electrones producidos perderán energía con el medio, dando lugar a la caída que observamos en \ref{Carac_UG_varprim}. Sin embargo, en la cascada iniciada por un protón, tendremos muones que se propagarán sin interaccionar hasta decaer a mayor o menor altura, según su energía. Por ello, este mecanismo puede producir nuevos $e^\pm$ a mayores alturas, y su efecto es precisamente el que vemos en el desarrollo de electrones. 
-%
-%Para verlo, podemos fijarnos simplemente en la proporción de partículas producidas en una cascada iniciada por protón relativa a una cascada iniciada por electrón (Fig. \ref{frac_primpe}). Como vemos, ambos cocientes se van al mismo valor después de haber alcanzado el máximo (obviando las fluctuaciones en los electrones, mucho más afectados por interacciones con el medio), lo que muestra que el exceso de electrones está relacionado con la mayor producción de muones. 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=.5\linewidth]{figures/cascadas/frac_emu_Primpe}
-%	\caption{Proporción entre $e^\pm$ ($\mu^\pm$) producidos en cascadas a $95^\circ$ iniciadas por un protón o electrón de $1\,\mathrm{EeV}$.}
-%	\label{frac_primpe}
-%\end{figure}
-%
-%Otro observable que nos permitirá comprobar, al menos cualitativamente, que los muones originan los electrones \textit{extra} hacia el final del desarrollo es la evolución de su energía. En la sec. \ref{sec21} vimos cómo calcular la distancia que recorre una partícula antes de decaer en función de su energía \eqref{ec24}. Podemos invertir la relación para hallar la energía necesaria para recorrer una distancia $d$:
-%\begin{equation}
-%	E_{d} = \frac{mc^2}{c\tau} d\label{ec27}
-%\end{equation}
-%Por otra parte, en base a cálculos simples de geometría (Fig. \ref{evol_emu}a) y el modelo sencillo \eqref{ec21} podemos relacionar $d$ con $X_v$ en una cascada hacia arriba, y por lo tanto obtener la energía necesaria para alcanzar una profundidad $X_v$ sin decaer:
-%\begin{equation}
-%	\left.\begin{array}{r}d(h, \theta) =\sqrt{(R_T+h)^2-R_T^2\sin^2{\theta}}-R_T\cos{\theta}\\\\
-%	X_v=\int_h^\infty\rho(h')dh' \implies h(X_v) = h_0\log{\frac{\rho_0 h_0}{X_v}}\end{array}\right\}E_d(X_v, \theta) = \frac{mc^2}{c\tau}d(h(X_v),\theta)\label{ec28}
-%\end{equation}
-%
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Geometría considerada \eqref{ec28}]{\includegraphics[width=0.45\linewidth]{figures/cascadas/sketch_evol_emu}}
-%	\hspace{10mm}
-%	\subfigure[Comparación de simulación con $E_d$]{\includegraphics[width=0.45\linewidth]{figures/cascadas/evol_Emu_Primpe}}
-%	\caption{Evolución de la energía promedio por muón en una cascada a $95^\circ$.}
-%	\label{evol_emu}
-%\end{figure}
-%Como vemos, la evolución de la energía promedio sigue cualitativamente y en orden de magnitud el mismo comportamiento que la energía necesaria para alcanzar cierta altura en la atmósfera. La diferencia entre ambas curvas se debe a varios factores: en primer lugar, $E_d$ es la energía de un muón que se desintegra a una profundidad $X_v$, mientras que las simulaciones en AIRES precisamente muestran los muones que alcanzan un nivel de observación sin hacerlo (i.e., $E_d$ es una cota inferior a la energía). Por otra parte, hemos supuesto tanto un modelo muy simple de atmósfera como que todos los muones se producen en $h=0\,\mathrm{km}$. Además, la elección de $X_v$ como coordenada se ha hecho por ser posible obtener analíticamente\footnote{ La elección de $X_s$ o distancia a lo largo del eje podría ser más adecuada, aunque ambas requieren emplear cálculos numéricos. En el caso de $X_s$, la relación $d(X_s, \theta)$ debe obtenerse invirtiendo (para el modelo \eqref{ec21}):
-%$$X_s(d,\theta)=\int_{0}^{d}\rho(h(l))dl=\rho_0\int_{0}^{d}\exp\left[-\frac{1}{h_0}\left(\sqrt{(l+R_T\cos\theta)^2+R_T^2\sin^2\theta}\right)-R_T\right]dl$$ El resultado con esta elección no es sustancialmente distinto de \ref{evol_emu}. En el caso de trabajar con distancia a lo largo del eje, tenemos la desventaja de que AIRES sólo emplea profundidades como coordenadas, y la conversión a distancias se realiza numéricamente a posteriori.} la expresión \eqref{ec28}, pero tiene la desventaja de que podríamos \textit{mezclar} diferentes fases del desarrollo de la cascada (ver Fig. \ref{AIRES_planos}). En cualquier caso, la similitud del comportamiento entre la curva simulada y la que se obtiene de \eqref{ec27} y \eqref{ec28} de nuevo revela el papel de los muones como fuentes \textit{tardías} de electrones en cascadas hacia arriba.
-%
-%Para finalizar la caracterización de cascadas hacia arriba, haremos una breve discusión acerca de las diferencias que aparecen en el desarrollo de las mismas comparadas con cascadas atmosféricas \textit{hacia abajo}, más estudiadas históricamente. Para ello, compararemos los resultados de AIRES para cascadas iniciadas por un protón de $1\,\mathrm{EeV}$ que interacciona a $0\,\mathrm{km}$ ($100\,\mathrm{km}$) de altura y con un ángulo de $\theta=95^\circ$ ($85^\circ$). Los resultados que discutiremos se presentan en las Figs. \ref{comp_ugdg} y \ref{comp_ugdg_vsd}:
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Número de partículas]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_number}}
-%	\\
-%	\subfigure[Energía promedio]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_egy}}
-%	\caption{Comparativa del desarrollo de cascadas hacia arriba y abajo, frente a profundidad atravesada (en la dirección del desarrollo). \textit{Neutral pcles.} engloba todas las partículas neutras producidas excepto neutrones.}
-%	\label{comp_ugdg}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Número de partículas]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_number_vsd}}
-%	\\
-%	\subfigure[Energía promedio]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_egy_vsd}}
-%	\caption{Comparativa del desarrollo de cascadas hacia arriba y abajo, frente a distancia recorrida (en la dirección del desarrollo).}
-%	\label{comp_ugdg_vsd}
-%\end{figure}
-%Lo primero que observamos en las gráficas anteriores es la producción de un mayor número de partículas en el máximo en cascadas que \textit{viajan} hacia arriba. El efecto es especialmente claro en las gráficas que representan el desarrollo de muones y piones, aunque ocurre también para electrones. El origen de este comportamiento es precisamente el hecho de que la cascada hacia arriba se inicia en la región más densa de la atmósfera, en la que aparecen las partículas más energéticas del desarrollo y por tanto las interacciones que multiplican el número de partículas serán totalmente dominantes, mucho más que en cascadas hacia abajo en las que el desarrollo se inicia en zonas poco densas. Como hemos considerado cascadas iniciadas por protones, este efecto es especialmente visible en el desarrollo de piones cargados, y en los muones que se originan en las desintegraciones de los mismos. Por otra parte, si estudiamos el desarrollo en función de la distancia, vemos claramente que en cascadas hacia arriba el máximo ocurre prácticamente a nivel del suelo debido al elevado número de interacciones al inicio del desarrollo, frente a cascadas hacia abajo en que se requiere recorrer más distancia para atravesar la cantidad de materia necesaria para llegar al máximo. 
-%
-%Si atendemos al desarrollo de la energía promedio por partícula, observamos que en cascadas hacia arriba las energías son menores que en el caso de cascadas hacia abajo. La razón para este comportamiento reside en el simple hecho de que, puesto que la energía del primario es la misma en ambos casos simulados, la producción de un mayor número de partículas en cascadas hacia arriba implica necesariamente que su energía debe ser menor. Precisamente por esto, la contribución de las desintegraciones aparecerá antes en cascadas hacia arriba. Dicho efecto es evidente en las gráficas de desarrollo de muones y piones cargados frente a distancia, también en la energía de los electrones (Fig. \ref{comp_ugdg_vsd}b). Como sabemos, la desintegración del muón aumentará la energía promedio de $e^\pm$ según avance el desarrollo. Vemos claramente que en cascadas hacia arriba el inicio de este crecimiento ocurre en menos tiempo, revelando que las desintegraciones comienzan a contribuir antes.
-%
-%Por último, haremos un breve comentario acerca del desarrollo de las partículas neutras. Como sabemos, la contribución fundamental asociada en cascadas iniciadas por hadrones deberían ser los piones neutros. Como observamos, los desarrollos de partículas neutras, tanto en número como en energía, siguen un comportamiento similar al de $\pi^\pm$. Sin embargo, esperaríamos que $\pi^0$ y $\pi^\pm$ se produjeran en una proporción $1:2$, algo que no aparece en los desarrollos simulados. La razón para este hecho no es física sino que reside en el funcionamiento de AIRES y en la corta vida media del $\pi^0$, que hace que los piones neutros de menor energía se desintegren antes de alcanzar los niveles de observación establecidos\footnote{ En estas simulaciones se situaron 210 niveles de observación equiespaciados en $X_s$. Podemos estimar la distancia entre los planos como (ver ecs. \ref{ec21}, \ref{ec22}, \ref{ec24}): $$D \sim \frac{1}{210}\frac{X_s(100\,\mathrm{km}, 85^\circ)}{\rho_0}\sim \frac{1}{210}\frac{1000\,\mathrm{g/cm^2}}{\rho_0\cos85^\circ}\sim4\times 10^2\,\mathrm{m}\gg d_{dec}(\pi^0, 10^4\,\mathrm{GeV})\sim2\times10^{-3}\,\mathrm{m}$$}. No obstante, la similitud de ambas curvas revela que las partículas neutras que aparecen en cascadas atmosféricas tienen su origen en procesos hadrónicos.
-%
-%Para terminar esta sección, recapitularemos algunos resultados relevantes:
-%
-%\begin{enumerate}
-%	\item Las cascadas atmosféricas hacia arriba presentan un elevado número de partículas cargadas en el máximo ($\sim 10^8-10^{10}$), que a su vez aumenta con la inclinación de la cascada. 
-%	\item La altura de la primera interacción afecta a la posición del máximo en la atmósfera, aunque no influye demasiado en el número total de partículas cargadas producidas (siempre que la primera interacción no ocurra por encima de las decenas de $\mathrm{km}$)
-%	\item La energía del primario está altamente relacionada con el número máximo de partículas producidas en cascadas atmosféricas, manteniendo una dependencia prácticamente lineal.
-%	\item La naturaleza hadrónica o leptónica se refleja en el desarrollo tardío de la cascada, en que los electrones aparecen \textit{retardados} debido a la contribución muónica. La diferencia en el número máximo de partículas entre ambos casos es pequeña comparada con el efecto de la energía del primario.
-%	\item Las cascadas hacia arriba presentan máximos muy localizados en las proximidades del nivel del suelo y con una elevada producción de partículas, comparadas con cascadas hacia abajo.
-%\end{enumerate}
-%\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
-%	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
+
+	\subsection{Caracterización de cascadas atmosféricas hacia arriba}\label{sec22}
+	Para poder comprender mejor la evolución de cascadas atmosféricas en general, y más concretamente el caso de las cascadas propagándose \textit{hacia arriba}, hemos realizado una serie de simulaciones recurriendo al código AIRES \cite{https://doi.org/10.13140/rg.2.2.12566.40002} que nos permitirán explorar las características del desarrollo de las partículas más abundantes en cascadas atmosféricas (fundamentalmente nos centraremos en $e^\pm$, $\mu^\pm$ y $\pi^\pm$) en función de la naturaleza y energía del primario, de la altura a la que ocurre la primera interacción o el ángulo cenital con el que se desarrolla la cascada. Naturalmente, el desarrollo longitudinal del número de partículas cargadas en la atmósfera marcará la emisión de radiación en cascadas atmosféricas, así que nos detendremos en estudiar este aspecto en esta sección antes de avanzar en el objetivo de este trabajo.
+	
+	AIRES es un código capaz de simular mediante técnicas Monte Carlo el desarrollo de cascadas atmosféricas a nivel microscópico, i.e., teniendo en cuenta las interacciones y desintegraciones que tienen lugar a lo largo de la evolución de la cascada y la propagación en el medio. Debido al elevado número de partículas que se producen, es necesario recurrir a un algoritmo de \textit{muestreo} que estudia la propagación de partículas \textit{estadísticamente relevantes}, para luego compensar adecuadamente la contribución de las partículas rechazadas. Gracias a este procedimiento, es posible estudiar el desarrollo de cascadas de energías hasta $10^{20}\,\mathrm{eV}$ en un número de horas de CPU \textit{asumibles}. Además, el propio código incorpora modelos detallados de la atmósfera y campo magnético terrestre, lo que permite añadir condiciones plenamente realistas para el desarrollo de las cascadas.
+	
+	Para poner de manifiesto el detalle con que AIRES permite simular el desarrollo de cascadas, en la Tabla \ref{TablaAIRES} se recogen las partículas e interacciones consideradas en las simulaciones:
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lll}
+		\hline
+		\multicolumn{2}{l}{Partícula}                                                                   & Interacciones                         \\ \hline
+		\multicolumn{2}{l}{\multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}$\gamma$\\ $e^\pm$\end{tabular}}} & Efectos Compton y fotoeléctrico       \\
+		\multicolumn{2}{l}{}                                                                            & Bremsstrahlung y producción de pares  \\
+		\multicolumn{2}{l}{}                                                                            & Aniquilación $e^+e^-$                 \\
+		\multicolumn{2}{l}{}                                                                            & Emisión de $e^-$ knock-on (scattering M\o{}ller, Bhabha)            \\
+		\multicolumn{2}{l}{}                                                                            & Reacciones fotonucleares, ...         \\ \hline
+		\multicolumn{2}{l}{\multirow{3}{*}{$\mu^\pm$}}                                                  & Bremsstrahlung y producción de pares  \\
+		\multicolumn{2}{l}{}                                                                            & Emisión de $e^-$ knock-on             \\
+		\multicolumn{2}{l}{}                                                                            & Desintegración                        \\ \hline
+		\multicolumn{2}{l}{$\nu$'s}                                                                   & Aparición en desintegraciones         \\ \hline
+		\multicolumn{2}{l}{$p,\bar p, n, \bar n, \Lambda$}                                              & Colisiones hadrónicas y núcleo-núcleo \\
+		\multicolumn{2}{l}{$\pi^0, \pi^\pm, K^0_{L,S}, K^\pm$}                                          & Emisión de $e^-$ knock-on             \\
+		\multicolumn{2}{l}{Núcleos $Z\leq 36$}                                                          & Desintegraciones                      \\ \hline
+	\end{tabular}
+\caption{Partículas e interacciones consideradas en AIRES (v. 2.8.4a)}
+\label{TablaAIRES}
+\end{table}
+
+El estudio de la evolución de la cascada en AIRES se puede realizar, entre otras maneras, estableciendo una serie de \textit{niveles de observación} a lo largo del desarrollo. En cada uno de ellos, se registran las partículas que lo atraviesan y su energía, permitiendo obtener el desarrollo longitudinal del número de partículas y su energía. Los niveles de observación se disponen equiespaciados en profundidad atravesada ($\mathrm{g/cm^2}$), bien a lo largo del eje de desarrollo de la cascada ($X_s$) o en la dirección vertical ($X_v$):
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.7\linewidth]{figures/cascadas/AIRES_planos_v2}
+		\caption{Disposiciones posibles de los niveles de observación en el código de simulación AIRES, en el caso de una cascada hacia arriba. Izq.: A lo largo del eje del desarrollo. Der.: A lo largo de la dirección vertical (paralelos al suelo).}
+		\label{AIRES_planos}
+	\end{figure}
+	
+%Aunque presentaremos algún resultado con la configuración de la derecha en la Fig. anterior, normalmente optaremos por situar los niveles de observación a lo largo del eje del desarrollo\footnote{ Aunque a priori parezca irrelevante, la elección de niveles de observación tiene efectos no triviales en los valores obtenidos de la simulación, como comprobaremos en algún caso.}. 
+Además, dado que conocemos el modelo atmosférico\footnote{ AIRES emplea por defecto y como referencia la llamada parametrización de Linsley de la atmósfera estándar en EEUU.}, podremos convertir la posición de los planos de observación a alturas o distancias \textit{recorridas} (en $\mathrm{km}$) en la atmósfera aplicando \eqref{ec22}, lo que nos permitirá estudiar el desarrollo longitudinal de las cascadas en función de espesor másico o distancia. Teniendo en mente el funcionamiento de las simulaciones, podemos pasar a discutir el desarrollo de cascadas hacia arriba en la atmósfera.
+
+Fundamentalmente, existen cuatro aspectos básicos que afectarán al desarrollo de estas cascadas: el ángulo de inclinación, la altura en la atmósfera a la que ocurre la primera interacción, y la naturaleza y energía de la partícula primaria que inicia la cascada. Para estudiar los efectos de cada una de estas cuestiones, presentaremos y discutiremos a continuación una serie de resultados de simulaciones con AIRES variando cada una de las magnitudes que acabamos de mencionar.
+\begin{itemize}
+	\item \textit{Ángulo de la cascada}:
+\end{itemize}
+	La dependencia del desarrollo con el ángulo de inclinación del eje de la cascada es evidente si recordamos la dependencia de la densidad con la altura en la atmósfera. Para ilustrar esta idea, hemos representado en la Fig. \ref{Profatravesadavsang} la cantidad de materia atravesada desde el nivel del suelo hacia arriba para varios ángulos, usando una expresión equivalente\footnote{ Simplemente integrando entre $0$ y $h$.} a \eqref{ec22}. Como vemos, la cantidad de materia atravesada en la atmósfera aumenta cuanto más \textit{horizontal} sea la cascada por lo que esperaremos, por ejemplo, la producción de un mayor número de partículas en ese caso, al dominar las interacciones en regiones más densas.
+	
+	Antes de presentar resultados, debemos comentar el criterio empleado para los ángulos de inclinación de la cascada: para cascadas \textit{hacia abajo}, indicaremos el ángulo en el intervalo $\theta\in[0^\circ, 90^\circ]$ (Fig. \ref{shower_params}), mientras que en cascadas hacia arriba, por consistencia, daremos el ángulo en el intervalo  $\theta\in[90^\circ, 180^\circ]$, siendo $
+	90^\circ$ ($180^\circ$) una cascada horizontal (vertical hacia arriba).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.7\linewidth]{figures/cascadas/Profatravesadavsang}
+		\caption{Cantidad de materia atravesada a lo largo del eje de la cascada (hacia arriba) en función de la altura en la atmósfera sobre el nivel del mar, para varios ángulos. El gradiente de color que representa la atmósfera sigue la dependencia \eqref{ec21}, empleada para realizar esta gráfica. Se ha tenido en cuenta la curvatura de la Tierra, la primera imagen es meramente ilustrativa.}
+		\label{Profatravesadavsang}
+	\end{figure}
+
+Con esto en mente, presentamos en la Fig. \ref{Carac_UG_vardeg} los resultados de la simulación en AIRES del desarrollo longitudinal de electrones, positrones, muones y piones cargados para cascadas hacia arriba iniciadas por un protón de energía $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura en la atmósfera, para varios ángulos de inclinación (nótese que, en los paneles izquierdos, la profundidad $X_v$ se mide en vertical desde la parte superior de la atmósfera, por lo que $X_v$ decrecea medida que la cascada hacia arriba se desarrolla).
+\begin{figure}[H]
+	\centering
+	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_e_v2}}
+	\\
+	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_mu_v2}}
+	\\
+	\subfigure[$\pi^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_pi_v2}}
+	\caption{Desarrollo de electrones (a), muones (b) y piones (c), en una cascada hacia arriba iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura, para distintos ángulos de inclinación $\theta$. Profundidad y distancia a lo largo del eje se miden desde el punto de primera interacción, i.e,  $h=5\,\mathrm{km}$. Los cortes en las gráficas vs. $X_s$ ($e^\pm$, $\mu^\pm$) marcan el final de la atmósfera.}
+	\label{Carac_UG_vardeg}
+\end{figure}
+La primera observación que podemos hacer es que, como acabamos de mencionar, el máximo número de partículas producido en la cascada decrece al aumentar el ángulo, i.e., cuanto más \textit{vertical} se sitúa el eje de la cascada. Por otra parte, vemos en las gráficas correspondientes del desarrollo frente a la profundidad $X_s$ atravesada \textit{a lo largo} del eje de la cascada que el máximo de la cascada EM ocurre aproximadamente en la misma posición, un resultado natural ya que esperamos que la producción de partículas dependa de la materia atravesada. Al tener en cuenta la inclinación, es evidente que las cascadas más verticales deberán recorrer más distancia para atravesar la misma cantidad de materia, por lo que los máximos aparecen desplazados cuando el desarrollo se representa en función de la profundidad vertical $X_v$ (véanse Figs. \ref{AIRES_planos} y \ref{Profatravesadavsang}). 
+
+En las gráficas frente a $X_s$ observamos, para el caso de $\mu^\pm$ y $\pi^\pm$, que la posición del máximo cambia ligeramente con el ángulo, algo que no ocurre en el caso de los electrones. La diferencia entre ambos casos es la existencia de desintegraciones. Para interpretar este hecho, podemos ver en la ecuación \eqref{edec} que la energía a la que las desintegraciones comienzan a dominar aumentará cuando la cascada es más vertical (dependencia $\rho^{-1}$), ya que la zona densa de la atmósfera se abandona antes. Debido a que las desintegraciones son entonces mas frecuentes para piones cargados de mayores energías, la cascada se desarrolla más rápidamente y se alcanza el máximo en un menor número de interacciones Vemos por otra parte que el comportamiento de los desarrollos de piones cargados y muones es muy similar, con cierto \textit{retardo} que nos indica que el origen de los muones está en la desintegración de $\pi^\pm$. \textbf{Además, apreciamos en la gráfica de desarrollo de muones frente a $X_v$ o $X_s$, un cambio de pendiente hacia el final del desarrollo, que evidencia sus desintegraciones. Además, el número de $\pi^\pm$ y muones producidos disminuye con  la inclinación de la cascada, de nuevo debido a que los $\pi^\pm$ se desintegrarán a energías más altas y dejarán de contribuir a la producción de nuevos muones (Repasar, comentario de Jaime)}.
+
+Por último, en las gráficas del desarrollo frente a la distancia recorrida en la atmósfera, el ligero desplazamiento en las posiciones de los máximos de nuevo señala el hecho de que, cuanto mayor sea el ángulo $\theta$, más altura debe alcanzarse en la atmósfera para atravesar la cantidad de materia necesaria para llegar al máximo. Además, en el caso de los $e^\pm$ vemos que la caída del número de partículas, que se debe a la pérdida de energía con el medio, es más rápida cuanto menor el ángulo, debido a que en ese caso la cascada encuentra materia con la que interaccionar \textit{por delante}.
+
+
+\begin{itemize}
+	\item \textit{Altura de la primera interacción}
+\end{itemize}
+El punto de la atmósfera en que ocurra la primera interacción, y por lo tanto comience el desarrollo de la cascada, afecta a dos observables: el número de partículas producidas y la posición del máximo de la cascada. Para verlo, presentamos en la Fig. \ref{Carac_UG_varh} resultados de AIRES para el desarrollo de electrones, positrones y muones en una cascada de ángulo $\theta=95^\circ$ iniciada por un protón de energía $1\,\mathrm{EeV}$.
+
+En primer lugar, la posición del máximo de la cascada cambia con la altura (y por tanto con $X_v$), un resultado evidente ya que estamos modificando el punto en que se inicia la cascada. Por su parte, en las gráficas frente a profundidad y distancia  a lo largo del eje volvemos a encontrar los mismos efectos que en el caso de la Fig. \ref{Carac_UG_vardeg}, atribuibles a los distintos perfiles de densidad en que se desarrolla la cascada, sólo que ahora la diferencia en la materia atravesada viene dada por la altura de \textit{inyección} del primario y no por el ángulo de la cascada.
+\begin{figure}[H]
+	\centering
+	\subfigure[$e^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_e_v2}}
+	\\
+	\subfigure[$\mu^\pm$]{\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_mu_v2}}
+
+	\caption{Desarrollo de electrones y muones en una cascada a $\theta = 95^\circ$ iniciada por un protón de $1\,\mathrm{EeV}$ interaccionando a varias alturas sobre el nivel del mar. $X_s$ y $d$ se miden desde la primera interacción.}
+	\label{Carac_UG_varh}
+\end{figure}
+
+
+Quizá el efecto más interesante aparece en el número máximo de partículas. En el caso de los electrones apenas hay cambios con la altura $h$, mientras que para los muones se aprecia un decrecimiento considerable al aumentar $h$. Como habíamos comentado, el desarrollo de las cascadas atmosféricas es tal que, eventualmente, la mayor parte de la energía acaba transfiriéndose a la componente electromagnética (a través de la desintegración de piones neutros, por ejemplo). Por ello, dado que la energía del primario es constante en estas simulaciones y las alturas consideradas son suficientemente bajas para que la cascada complete su desarrollo, el número de electrones es aproximadamente el mismo en todos los casos. Hay que recordar además que los $e^\pm$ proceden de cascadas EM iniciadas por $\pi^0$. Dado que a los piones neutros no les afecta la competición deisntegración-interacción (fundamentalmente se desintegran), la cascada EM es poco dependiente del perfil de densidad atravesado. No ocurre así con la producción de muones, que depende básicamente de las interacciones hadrónicas que dan lugar a piones cargados que poco después se desintegran. Al aumentar la altura, debe recorrerse cada vez más distancia para atravesar la misma cantidad de materia ($\lambda_I$), reduciendo la tasa de interacciones y aumentando la tasa de desintegraciones de piones cargados, que además ocurrirán en promedio a mayor energía. Debido a ello, la multiplicación inicial del número de piones se \textit{frena}, y por tanto se reduce el número de muones de energías bajas producido. El mismo efecto se observa en la producción de piones, que no incluimos en la Fig. \ref{Carac_UG_varh} al verse reflejada en el desarrollo longitudinal del número de muones.
+\begin{itemize}
+	\item \textit{Energía del primario}
+\end{itemize}
+Naturalmente, el desarrollo de la cascada estará muy afectado por la energía de la partícula primaria que la origina. Cuanto mayor sea esta, mayor será el número de interacciones que ocurran así como el número de partículas producidas en cada interacción. Por ello, una de las consecuencias fundamentales de una mayor o menor energía del primario aparecerá en el número de partículas máximo. Como ejemplo, presentamos a continuación los resultados de la simulación de cascadas a $95^\circ$ iniciadas por un protón de energía variable, interaccionando a $5\,\mathrm{km}$ de altura: 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_varE_95deg_5km_v3}
+	\caption{Desarrollo de electrones, muones y piones en una cascada a $\theta=95^\circ$ iniciada por un protón de energía variable interaccionando a $5\,\mathrm{km}$ de altura (correspondiente a $X_v\sim600\,\mathrm{g/cm^2}$).}
+	\label{Carac_UG_varE}
+\end{figure}
+Como vemos, el número máximo de partículas producidas presenta una dependencia casi lineal con la energía del primario, $E_0$. De manera explícita, la tendencia que se espera tanto a partir de modelos teóricos (modelos de Heitler y Matthews, \cite[caps. 15-16]{gaisser2016cosmic}) como de simulaciones como las que hemos realizado es:
+\begin{equation}
+	N_{max}^{e}\propto E_0\;\;;\;\;N_{max}^{\mu}\propto E_0^\beta\;\text{con}\;\beta\sim0,85-0,9\;.\label{ec25}
+\end{equation}
+Nuestro resultado, a simple vista, concuerda con esta tendencia (aumentar $E_0$ en un factor 10 aumenta $N_{max}$ en un orden de magnitud). Más allá de lo anterior, las gráficas \ref{Carac_UG_varE} permiten mostrar claramente un efecto que habíamos mencionado: hacia el final de la cascada, aparecen cambios de pendiente en el desarrollo de $e^\pm$ y $\mu^\pm$ asociados a la desintegración de estos últimos.
+
+Además de estos efectos, observamos en la Fig. \ref{Carac_UG_varh} la aparición de partículas por debajo de la altura de inyección. Este efecto se debe a haber considerado el caso de una cascada prácticamente horizontal. En estos casos, aparecerán partículas de baja energía que viajan a grandes ángulos con respecto al eje del desarrollo, y que terminan por alcanzar alturas menores a la de inyección (véase Fig. \ref{AIRES_planos}, la elección de niveles equiespaciados en profundidad vertical $X_v$ combinada con una cascada casi horizontal lleva a que partículas que se propagan a grandes ángulos respecto al eje se puedan observar por debajo de la altura de primera interacción). Este efecto se reduce al considerar cascadas más verticales y/o inyectadas a mayores alturas. 
+\begin{itemize}
+	\item \textit{Naturaleza del primario}
+\end{itemize}
+Hasta ahora, sólo hemos considerado cascadas iniciadas por un protón. Por ello, esta clase de cascadas presentan las tres componentes que discutimos al inicio de esta sección (electromagnética, hadrónica y muónica). Sin embargo, en cascadas iniciadas, por ejemplo, por un electrón o un fotón, esperaríamos una reducción significativa de las componentes hadrónica o muónica, en comparación con cascadas iniciadas por protones o núcleos. Particularmente, en el caso que nos interesa podremos tener ambos tipos de cascadas, debido a los distintos canales de desintegración del leptón $\tau$. Para estudiar esta clase de efectos, presentaremos a continuación resultados de simulaciones en AIRES en los que compararemos cascadas iniciadas por un protón o un electrón. Por simplicidad, y por ser un caso de particular interés dada la propuesta experimental que se planteó en la sec. \ref{sec1}, estudiaremos el caso de una cascada inclinada a $\theta = 95^\circ$ iniciada por una partícula de $1\,\mathrm{EeV}$ que interacciona en las capas bajas de la atmósfera, concretamente a nivel del suelo:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_pe_1EeV_95deg_0km_v2}
+	\caption{Desarrollo de $e^\pm$ (izquierda), muones (centro) y piones (derecha) en una cascada a $\theta = 95^\circ$ iniciada por un protón o un electrón de $1\,\mathrm{EeV}$ interaccionando a $0\,\mathrm{km}$ de altura.}
+	\label{Carac_UG_varprim}
+\end{figure}
+
+Como vemos, las cascadas iniciadas por protones presentan, respecto a una cascada iniciada por un electrón, un número de muones y piones superior en un factor $\sim 4$ en la profundidad del máximo, y mayor a mayores profundidades. La diferencia no resulta demasiado grande, sobre todo recordando que los procesos que multiplican el número de piones (y por tanto de muones) al inicio de las cascadas requieren la presencia de hadrones de alta energía. Una explicación para esta observación es la presencia de reacciones fotonucleares, en las que un fotón de alta energía interacciona con un núcleo del medio produciendo hadrones ligeros. Dichos procesos tienen secciones eficaces muy inferiores a las de interacciones puramente hadrónicas\footnote{Típicamente dos órdenes de magnitud inferiores} y por tanto su contribución no se hace necesaria para interpretar las cascadas iniciadas por hadrones, aunque su efecto sí aparece cuando las interacciones hadrónicas no dominan, como en el caso de la cascada iniciada por electrón. 
+
+Por optra parte, el número máximo de electrones producido es similar en ambos casos. De nuevo, este es un reflejo del hecho de que, a lo largo del desarrollo de la cascada, existe una \textit{transferencia} de energía desde la componente hadrónica haca la componente electromagnética, fundamentalmente a través de la desintegración de piones neutros. Puesto que en ambos casos la energía del primario es la misma, el número de electrones y positrones producidos alcanza valores del mismo orden de magnitud. En el caso simulado de la Fig. \ref{Carac_UG_varprim} se encontró:
+\begin{equation}
+	\frac{N_e^{max}\;\;\text{(Prim. e)}}{N_e^{max}\;\;\text{(Prim. p)}}= 1,104\;. \label{ec26}
+\end{equation}
+El hecho de que se produzcan ligeramente menos electrones en la cascada iniciada por un protón de nuevo refleja el hecho de que una fracción de la energía del primario se deriva a las componentes hadrónica y muónica (y por supuesto en forma de neutrinos producidos en desintegraciones de $\pi^\pm$ y $\mu^\pm$). A pesar de todo, dado que $e^\pm$ son con diferencia las partículas más abundantes en cascadas atmosféricas, el número de partículas cargadas producidas en el máximo del desarrollo no presenta una dependencia fuerte con la naturaleza del primario.
+
+Por otra parte, observamos en la cascada iniciada por un protón que el número de electrones después de haber alcanzado el máximo es superior al que se observa en la cascada iniciada por un electrón. La razón para esta discrepancia reside precisamente en las contribuciones \textit{no electromagnéticas}. En una cascada iniciada por electrón, después de alcanzar el máximo del desarrollo los electrones producidos perderán energía con el medio, dando lugar a la caída que observamos en la Fig. \ref{Carac_UG_varprim}. Sin embargo, en la cascada iniciada por un protón, tendremos muones que se propagarán sin interaccionar hasta desintegrarse a mayor o menor altura, según su energía. Este mecanismo es responsable de la producción de nuevos $e^\pm$ a mayores alturas, dando lugar a una cola en el desarrollo longitudinal de electrones y positrones.
+
+Para confirmarlo, podemos fijarnos en la proporción de $e^\pm$ y $\mu^\pm$ producidas en una cascada iniciada por protón relativa a una cascada iniciada por electrón (Fig. \ref{frac_primpe}). Como vemos, ambos cocientes tienden al mismo valor ($\sim 8$) después de haber alcanzado el máximo (obviando las fluctuaciones en los electrones, mucho más afectados por interacciones con el medio), lo que muestra que la cola de electrones está relacionado con la producción de muones, y que cuantos más $\mu^\pm$ se produzcan más $e^\pm$ procedentes de sus desintegraciones aparecerán.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\linewidth]{figures/cascadas/frac_emu_Primpe}
+	\caption{Proporción entre $e^\pm$ ($\mu^\pm$) producidos en cascadas a $95^\circ$ iniciadas por un protón o electrón de $1\,\mathrm{EeV}$.}
+	\label{frac_primpe}
+\end{figure}
+
+Otro observable que nos permitirá comprobar, al menos cualitativamente, que los muones originan la cola de electrones es la evolución de su energía. En la sec. \ref{sec21} vimos cómo calcular la distancia que recorre una partícula antes de desintegrarse en función de su energía, \eqref{ec24}. Podemos invertir la relación para hallar la energía necesaria para recorrer (en promedio) una distancia $d$ sin desintegrarse:
+\begin{equation}
+	E_{d} = \frac{mc^2}{c\tau} d\;.\label{ec27}
+\end{equation}
+Por otra parte, en base a cálculos simples de geometría (Fig. \ref{evol_emu}a) y el modelo sencillo para la densidad de la atmósfera en función de la altura \eqref{ec21} podemos relacionar $d$ con $X_v$ en una cascada hacia arriba, y por lo tanto obtener la energía necesaria para que la partícula alcance una profundidad $X_v$ sin desintegrarse:
+\begin{equation}
+	\left.\begin{array}{r}d(h, \theta) =\sqrt{(R_T+h)^2-R_T^2\sin^2{\theta}}-R_T\cos{\theta}\\\\
+	X_v=\int_h^\infty\rho(h')dh' \implies h(X_v) = h_0\log{\frac{\rho_0 h_0}{X_v}}\end{array}\right\}\implies E_d(X_v, \theta) = \frac{mc^2}{c\tau}d(h(X_v),\theta)\;.\label{ec28}
+\end{equation}
+
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Geometría considerada \eqref{ec28}]{\includegraphics[width=0.45\linewidth]{figures/cascadas/sketch_evol_emu}}
+	\hspace{10mm}
+	\subfigure[Comparación de simulación con $E_d$]{\includegraphics[width=0.45\linewidth]{figures/cascadas/evol_Emu_Primpe}}
+	\caption{Evolución de la energía promedio por muón en una cascada a $\theta = 95^\circ$. Curva roja: resultado del modelo (ver texto). Curvas azul y negra: resultados de simulación con AIRES.}
+	\label{evol_emu}
+\end{figure}
+Como vemos, la evolución de la energía promedio sigue cualitativamente y en orden de magnitud el mismo comportamiento que la energía necesaria para alcanzar cierta altura en la atmósfera. La diferencia entre ambas curvas se debe a varios factores: en primer lugar, $E_d$ es la energía de un muón que se desintegra a una profundidad $X_v$, mientras que las simulaciones en AIRES precisamente muestran los muones que alcanzan un nivel de observación sin hacerlo (i.e., $E_d$ es una cota inferior a la energía). Por otra parte, hemos supuesto tanto un modelo muy simple de atmósfera como que todos los muones se producen en $h=0\,\mathrm{km}$. Además, la elección de $X_v$ como coordenada se ha hecho por ser posible obtener analíticamente la expresión \eqref{ec28}, pero tiene la desventaja de que podríamos \textit{mezclar} diferentes fases del desarrollo de la cascada (ver Fig. \ref{AIRES_planos}, los niveles de observación son paralelos al suelo y no perpendiculares al eje del desarrollo). En cualquier caso, la similitud del comportamiento entre la curva simulada y la que se obtiene de \eqref{ec27} y \eqref{ec28} de nuevo revela el papel de los muones como fuentes \textit{tardías} de electrones en cascadas atmosféricas.
+
+%\footnote{ La elección de $X_s$ o distancia a lo largo del eje podría ser más adecuada, aunque ambas requieren emplear cálculos numéricos. En el caso de $X_s$, la relación $d(X_s, \theta)$ debe obtenerse invirtiendo (para el modelo \eqref{ec21}):
+%	$$X_s(d,\theta)=\int_{0}^{d}\rho(h(l))dl=\rho_0\int_{0}^{d}\exp\left[-\frac{1}{h_0}\left(\sqrt{(l+R_T\cos\theta)^2+R_T^2\sin^2\theta}\right)-R_T\right]dl$$ El resultado con esta elección no es sustancialmente distinto de \ref{evol_emu}. En el caso de trabajar con distancia a lo largo del eje, tenemos la desventaja de que AIRES sólo emplea profundidades como coordenadas, y la conversión a distancias se realiza numéricamente a posteriori.}
+
+Para finalizar la caracterización de cascadas hacia arriba, haremos una breve discusión acerca de las diferencias que aparecen en el desarrollo de las mismas comparadas con cascadas atmosféricas \textit{hacia abajo}, más estudiadas históricamente. Para ello, compararemos los resultados de AIRES para cascadas iniciadas por un protón de $1\,\mathrm{EeV}$ que interacciona a $0\,\mathrm{km}$ ($100\,\mathrm{km}$) de altura y con un ángulo de $\theta=95^\circ$ ($85^\circ$), de tal manera que los ejes de ambas cascadas coinciden, pero el perfil de densidad se recorre en sentido opuesto. Los resultados se presentan en las Figs. \ref{comp_ugdg} y \ref{comp_ugdg_vsd}:
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Número de partículas]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_number}}
+	\\
+	\subfigure[Energía promedio por partícula]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_egy}}
+	\caption{Comparativa del desarrollo de cascadas hacia arriba ($\theta = 95^\circ$) y abajo ($\theta=85^\circ$), frente a profundidad atravesada lo largo del eje y en el sentido del desarrollo. \textit{Neutral pcles.} engloba todas las partículas neutras producidas excepto neutrones.}
+	\label{comp_ugdg}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Número de partículas]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_number_vsd}}
+	\\
+	\subfigure[Energía promedio por partícula]{\includegraphics[width=1\linewidth]{figures/cascadas/comp_ugdg_egy_vsd}}
+	\caption{Comparativa del desarrollo de cascadas hacia arriba ($\theta = 95^\circ$) y abajo ($\theta=85^\circ$), frente a distancia recorrida a lo largo del eje y en el sentido del desarrollo.}
+	\label{comp_ugdg_vsd}
+\end{figure}
+Lo primero que observamos en la Fig. \ref{comp_ugdg} (en la que mostramos desarrollos longitudinales en función de la profundidad atravesada) es la producción de un mayor número de partículas en el máximo en cascadas que \textit{viajan} hacia arriba. El efecto es especialmente claro en las gráficas que representan el desarrollo de muones y piones, aunque ocurre también en menor medida para electrones. El origen de este comportamiento es precisamente el hecho de que la cascada hacia arriba se inicia en la región más densa de la atmósfera, en la que las interacciones que multiplican el número de partículas serán mucho más dominantes que en cascadas hacia abajo, en las que el desarrollo se inicia en la zona menos densa. Como hemos considerado cascadas iniciadas por protones, este efecto es especialmente visible en el desarrollo de piones cargados, y en los muones que se originan en las desintegraciones de los mismos. Por otra parte, si estudiamos el desarrollo en función de la distancia, en la Fig. \ref{comp_ugdg_vsd} vemos claramente que en cascadas hacia arriba el máximo ocurre prácticamente a nivel del suelo debido al elevado número de interacciones al inicio del desarrollo y la mayor densidad atmosférica (que implica que el máximo se alcanza en menos distancia), frente a cascadas hacia abajo en que se requiere recorrer más distancia para atravesar la cantidad de materia necesaria para llegar al máximo. 
+
+Si atendemos al desarrollo de la energía promedio por partícula, observamos que en cascadas hacia arriba las energías son sigificativamente menores que en el caso de cascadas hacia abajo. La razón para este comportamiento reside en el hecho de que, puesto que la energía del primario es la misma en ambos casos simulados, la producción de un mayor número de partículas en cascadas hacia arriba implica necesariamente que la energía por partícula debe ser menor. Precisamente por esto, la contribución de las desintegraciones aparecerá antes en cascadas hacia arriba. Dicho efecto es evidente en las gráficas de desarrollo longitudinal de muones y piones cargados, también en la energía de los electrones. Como sabemos, la desintegración del muón aumentará la energía promedio de $e^\pm$ según avance el desarrollo. Vemos claramente en la Fig. \ref{comp_ugdg_vsd}b que en cascadas hacia arriba el inicio de este crecimiento ocurre en menos distancia, revelando que las desintegraciones comienzan a contribuir antes.
+
+Por último, haremos un breve comentario acerca del desarrollo de las partículas neutras. Como observamos en las Figs. \ref{comp_ugdg} y \ref{comp_ugdg_vsd}, los desarrollos de partículas neutras, tanto en número como en energía, siguen un comportamiento similar al de $\pi^\pm$. Sin embargo, esperaríamos que $\pi^0$ y $\pi^\pm$ se produjeran en una proporción $1:2$, algo que no se refleja en los desarrollos simulados, en los que la proporción es muy distinta. La razón para este hecho no es física sino que reside en el funcionamiento de AIRES y en la corta vida media del $\pi^0$, que hace que los piones neutros de menor energía se desintegren mayoritariamente antes de alcanzar los niveles de observación establecidos\footnote{ En estas simulaciones se situaron 210 niveles de observación equiespaciados en $X_s$. Podemos estimar la distancia entre los planos como (ver ecs. \ref{ec21}, \ref{ec22}, \ref{ec24}): $$D \sim \frac{1}{210}\frac{X_s(100\,\mathrm{km}, 85^\circ)}{\rho_0}\sim \frac{1}{210}\frac{1000\,\mathrm{g/cm^2}}{\rho_0\cos85^\circ}\sim4\times 10^2\,\mathrm{m}\gg d_{dec}(\pi^0, 10^4\,\mathrm{GeV})\sim2\times10^{-3}\,\mathrm{m}$$}, y por lo tanto no se reflejen en el desarrollo.
+
+Para terminar esta sección, recapitularemos algunos resultados relevantes:
+
+\begin{enumerate}
+	\item Las cascadas atmosféricas hacia arriba presentan un elevado número de partículas cargadas en el máximo ($\sim 10^8-10^{10}$), que aumenta con la inclinación de la cascada. 
+	\item La altura de la primera interacción afecta directamente a la posición del máximo en la atmósfera, aunque no influye demasiado en el número total de partículas cargadas EM producidas (siempre que la primera interacción no ocurra por encima de las decenas de $\mathrm{km}$), mientras que afecta considerablemente al número de muones.
+	\item La energía del primario está altamente relacionada con el número máximo de partículas producidas en cascadas atmosféricas, manteniendo una dependencia prácticamente lineal.
+	\item La naturaleza hadrónica o leptónica del primario se refleja en el desarrollo del número de muones y la evolución tardía de la cascada, en que aparecen $e^\pm$ \textit{retardados} debido a la desintegración de la componente muónica. La diferencia en el número máximo de partículas EM entre ambos casos es pequeña comparada con el efecto de la energía del primario.
+	\item Las cascadas hacia arriba presentan máximos muy localizados en las proximidades del nivel del suelo (debido a que se desarrollan en la región más densa de la atmósfera) y con una elevada producción de partículas (debido al dominio de interacciones frente a desintegraciones), comparadas con cascadas hacia abajo.
+\end{enumerate}
+\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
+	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
 %	Uno de los objetivos fundamentales de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
-%	\subsection{Formalismo de la emisión}\label{sec31}
+	\subsection{Formalismo de la emisión}\label{sec31}
 %	Como es bien sabido, la presencia de cargas en movimiento en un determinado medio implica, casi de manera inevitable, la emisión de radiación. Resulta entonces evidente que, en una cascada atmosférica iniciada, por ejemplo, por un protón o un neutrino de origen astrofísico en la que aparecerán un número gigantesco de partículas cargadas propagándose con una velocidad $v\sim c$, podemos esperar la aparición de radiación electromagnética.
 %	
 %	Ahora bien, uno podría pensar a priori que, en las escalas de energía y número de partículas que involucra una cascada atmosférica, el balance \textit{macroscópico} de cargas positivas y negativas debería ser nulo, y por lo tanto las respectivas contribuciones a la radiación electromagnética emitida deberían cancelarse. Sin embargo, existen dos aspectos acerca del desarrollo de una cascada en la atmósfera que inmediatamente nos obligan a abandonar esta perspectiva ingenua:
@@ -632,7 +634,7 @@ Naturalmente, la condición $d_{dec}\sim\lambda_I/\rho$ determina la energía t�
 %
 %Precisamente el último punto resulta de especial interés en este trabajo, ya que nuestro último objetivo será caracterizar la emisión de radio en cascadas atmosféricas hacia arriba mediante simulaciones. En el siguiente apartado nos detendremos en el algoritmo empleado en las mismas, y mostraremos algunos resultados sencillos que nos permitirán poner en contexto el desarrollo que hemos realizado en este apartado.
 %
-%	\subsection{Simulación y caracterización de la radiación}\label{sec32}
+	\subsection{Simulación y caracterización de la radiación}\label{sec32}
 %
 %Las simulaciones de la emisión electromagnética asociada a cascadas atmosféricas se ha realizado recurriendo al código ZHAireS, que combina la simulación del desarrollo de cascadas atmosféricas mediante AIRES con el algoritmo ZHS \cite{AlvarezMuniz2012, Zas1992} para calcular el campo eléctrico radiado. El desarrollo de la sección anterior será suficiente para describir, al menos de manera cualitativa, el funcionamiento de dicho algoritmo:
 %	\begin{itemize}
@@ -760,7 +762,7 @@ Naturalmente, la condición $d_{dec}\sim\lambda_I/\rho$ determina la energía t�
 %\end{enumerate}
 %\clearpage
 %
-%	\section{Emisión en radio en cascadas hacia arriba}
+	\section{Emisión en radio en cascadas hacia arriba}
 %	Partiendo de los desarrollos y resultados que hemos presentado en secciones anteriores, podemos pasar al objetivo final de este trabajo: la descripción y caracterización de la emisión en radiofrecuencias producida por cascadas atmosféricas \textit{hacia arriba}. Concretamente, nos interesará describir mediante simulaciones la radiación asociada a cascadas muy inclinadas iniciadas por la desintegración de un leptón $\tau$, originado a partir de un neutrino tau de origen astrofísico.  
 %	
 %	Antes de pasar a discutir la emisión en dichos eventos, podemos servirnos de desarrollos previos para, en cierto modo, adelantar el comportamiento que esperamos, algo que nos permitirá llegar a una interpretación clara de nuestros resultados. En primer lugar, hemos visto en la sección \ref{sec3} que los picos de emisión se sitúan en las posiciones que observan el máximo del desarrollo bajo el ángulo \v{C}erenkov. En cascadas hacia arriba ocurrirá exactamente lo mismo, salvo que (evidentemente) las dimensiones del \textit{anillo} \v{C}erenkov aumentarán con la altura en la atmósfera. Un ejemplo de este comportamiento se presenta en la Fig. \ref{Comparativa_20_36km}, en la que presentamos varias componentes de campo eléctrico obtenidas en simulaciones con ZHAireS de una cascada vertical hacia arriba. Aunque la observación de un evento similar es altamente improbable, muestra claramente el comportamiento esperado.
@@ -855,7 +857,7 @@ Naturalmente, la condición $d_{dec}\sim\lambda_I/\rho$ determina la energía t�
 %
 %De lo anterior, debemos quedarnos con que mediante el estudio de observables \textit{sencillos} hemos sido capaces de describir la radiación electromagnética emitida en cascadas atmosféricas hacia arriba, y hemos visto que dicha emisión contiene gran cantidad de información acerca de la naturaleza de la partícula primaria, gracias a la que podrían llegar a identificarse (con las técnicas adecuadas) eventos iniciados por neutrinos de altas energías y origen astrofísico.
 %	\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
-%	\section{Conclusiones}
+	\section{Conclusiones}
 %	La observación de neutrinos de muy altas energías y origen astrofísico se ha convertido en uno de los objetivos científicos fundamentales dentro del marco de la astronomía de multi-mensajeros y la Física de Astropartículas, debido a la gran ocasión que su detección y la medición de sus propiedades (dirección de llegada, espectro de energías, ...) nos ofrece para aumentar nuestro conocimiento sobre los fenómenos más energéticos del Universo.
 %	
 %	Dentro de las numerosas propuestas experimentales encaminadas al estudio de neutrinos de muy altas energías, las técnicas de radiodetección han experimentado un crecimiento significativo en los últimos años, debido tanto a su potencial para obtener información acerca de la partícula primaria como por la relativa facilidad para desplegar detectores cubriendo grandes áreas y/o alcanzando altas exposiciones. Además, la posibilidad de disponer de antenas desplegadas a grandes alturas permite ser sensibles a las interacciones de neutrinos tau en el interior de la Tierra, aumentando enormemente las posibilidades de observación.

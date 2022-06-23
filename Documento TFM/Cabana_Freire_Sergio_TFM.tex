@@ -515,253 +515,244 @@ Para terminar esta sección, recapitularemos algunos resultados relevantes:
 	\item La naturaleza hadrónica o leptónica del primario se refleja en el desarrollo del número de muones y la evolución tardía de la cascada, en que aparecen $e^\pm$ \textit{retardados} debido a la desintegración de la componente muónica. La diferencia en el número máximo de partículas EM entre ambos casos es pequeña comparada con el efecto de la energía del primario.
 	\item Las cascadas hacia arriba presentan máximos muy localizados en las proximidades del nivel del suelo (debido a que se desarrollan en la región más densa de la atmósfera) y con una elevada producción de partículas (debido al dominio de interacciones frente a desintegraciones), comparadas con cascadas hacia abajo.
 \end{enumerate}
-\clearpage %cleardoublepage pode meter paxinas en branco. Non e obrigatorio. Tampouco para a 
+
 	\section{Emisión en radio: Principio físico y caracterización}\label{sec3}
-%	Uno de los objetivos fundamentales de este trabajo, como hemos comentado en el apartado introductorio, es la caracterización de las radiofrecuencias emitidas en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es, como poco, importante para poder interpretar los resultados posteriores.
+	Uno de los objetivos fundamentales de este trabajo, como hemos comentado en la introducción, es la caracterización de la emisión electromagnética ($\mathrm{MHz-GHz}$) en cascadas atmosféricas y el estudio de su posible aprovechamiento para la detección de neutrinos tau de origen astrofísico. Para poder avanzar en esta cuestión, primero presentaremos los mecanismos físicos que originan dicha emisión, ya que una buena comprensión de los mismos es crucial para poder interpretar los resultados posteriores.
 	\subsection{Formalismo de la emisión}\label{sec31}
-%	Como es bien sabido, la presencia de cargas en movimiento en un determinado medio implica, casi de manera inevitable, la emisión de radiación. Resulta entonces evidente que, en una cascada atmosférica iniciada, por ejemplo, por un protón o un neutrino de origen astrofísico en la que aparecerán un número gigantesco de partículas cargadas propagándose con una velocidad $v\sim c$, podemos esperar la aparición de radiación electromagnética.
-%	
-%	Ahora bien, uno podría pensar a priori que, en las escalas de energía y número de partículas que involucra una cascada atmosférica, el balance \textit{macroscópico} de cargas positivas y negativas debería ser nulo, y por lo tanto las respectivas contribuciones a la radiación electromagnética emitida deberían cancelarse. Sin embargo, existen dos aspectos acerca del desarrollo de una cascada en la atmósfera que inmediatamente nos obligan a abandonar esta perspectiva ingenua:
-%	\begin{itemize}
-%		\item En primer lugar, la cascada se desarrolla en presencia del campo magnético terrestre, y por lo tanto las cargas sufren una deflexión en un sentido u otro según el signo de su carga. En una perspectiva \textit{macroscópica}, podemos interpretar que este efecto origina una corriente neta perpendicular tanto al desarrollo de la cascada como al campo magnético terrestre, generando entonces un campo eléctrico.
-%		\item En segundo lugar, la cascada no se desarrolla en el vacío sino en presencia de materia. Aunque en la cascada se produzca globalmente el mismo número de partículas con carga positiva que negativa, las interacciones con el medio darán lugar a un exceso de carga. Por ejemplo, los positrones generados en la cascada sufrirán procesos de aniquilación con los electrones del medio. Por otra parte, estos mismos electrones del medio podrán ser extraídos por diversos procesos (scattering $e^-e^-$, difusión Compton, ...) y contribuirán también a la aparición de una corriente neta. 
-%	\end{itemize}
-%
-%Estos dos mecanismos, a los que a partir de ahora nos referiremos como \textit{deflexión geomagnética} y \textit{efecto Askaryan}\footnote{ Este mecanismo de emisión fue propuesto por Gurgen A. Askaryan en la década de los 60.} respectivamente, serán los procesos que darán lugar fundamentalmente a la emisión coherente de radiación electromagnética en cascadas atmosféricas.
-%
-%Para ahondar en los mecanismos de emisión, recordaremos brevemente algunos conceptos de la electrodinámica clásica que nos permitirán explicar, al menos de manera cualitativa, los campos eléctricos que esperamos a partir de cada mecanismo. Partiremos de las ecuaciones de Maxwell en términos de los potenciales:
-%	\begin{equation}
-%	\vect{\nabla}^2\phi+\frac{\partial}{\partial t}\left(\vect{\nabla}\cdot\vect{A}\right)=-\frac{\rho}{\varepsilon}\label{ec31}
-%	\end{equation}
-%	\begin{equation}
-%	\vect{\nabla}^2\vect{A}-\mu\varepsilon\frac{\partial^2\vect{A}}{\partial t^2}-\vect{\nabla}\left(\vect{\nabla}\cdot\vect{A}+\mu\varepsilon\frac{\partial^2\phi}{\partial t^2}\right)=-\mu\vect{J}\label{ec32}
-%	\end{equation}
-%
-%Por la libertad gauge, escogemos $\vect{\nabla}\cdot \vect{A}=0$ (gauge de Coulomb). En ese caso, los potenciales electromagnéticos toman la forma\footnote{ Véase por ejemplo \cite{Jackson2002}.} ($\vect{R}=\vect{r}-\vect{r}'$):
-%\begin{equation}
-%	\phi(\vect{r}, t)=\frac{1}{4\pi\varepsilon}\int_{\text{fuente}} \frac{\rho(\vect{r}', t)}{\left|\vect{R}\right|}d^3r'\label{ec33}
-%\end{equation}
-%\begin{equation}
-%	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int_{\text{fuente}}\frac{\left[\vect{J}\left(\vect{r}', t_{ret}\right)-\left(\vect{J}\left(\vect{r}', t_{ret}\right)\cdot \hat{\vect{R}}\right)\hat{\vect{R}}\right]}{\left|\vect{R}\right|}d^3r'+\mathcal{O}(\left|\vect{R}\right|^{-3})\label{ec34}
-%\end{equation}
-%donde\footnote{ $n$ es el índice de refracción del medio.} $t_{ret}=t-nR/c$, y en \eqref{ec34} se desprecian términos que no contribuyen en la región de radiación. Las expresiones anteriores, aunque no sean especialmente simples de manejar, nos permitirán caracterizar los dos mecanismos de emisión que hemos comentado, sin más que tener en cuenta que:
-%\begin{itemize}
-%	\item En este gauge, el potencial escalar $\phi$ viene dado por una solución \textit{instantánea}, en el sentido de que no hay ninguna dependencia con $t_{ret}$. La consecuencia inmediata es que $\phi$ sólo describe efectos de campo cercano, y podremos escribir sencillamente:
-%	\begin{equation}
-%		\vect{E}=-\vect{\nabla}\phi-\dot{\vect{A}}\implies \vect{E}_{rad} = -\dot{\vect{A}}\label{ec35}
-%	\end{equation}
-%\item La solución para el potencial vector depende exclusivamente de la componente \textit{perpendicular} a $\vect{R}$ de la corriente:
-%\begin{equation}
-%	\vect{J}=\vect{J}_\parallel+\vect{J}_\perp = \left(\vect{J}\cdot\hat{\vect{R}}\right)\hat{\vect{R}}-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\label{ec36}
-%\end{equation} 
-%Por lo tanto, el breve desarrollo anterior nos permite establecer que el campo eléctrico radiado tendrá la dirección de la componente perpendicular\footnote{Estrictamente, de su derivada temporal. En los mecanismos de emisión considerados, $\vect{J}\parallel \dot{\vect{J}}$ aproximadamente.} $\vect{J}_\perp$ de la corriente generada por cada mecanismo:
-%\begin{equation}
-%	\left.
-%	\begin{array}{c}
-%		\vect{E}_{rad} = -\dot{\vect{A}}\\
-%		\vect{A}\sim\vect{J}_\perp=-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)
-%	\end{array}
-%\right\}\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\label{ec37}
-%\end{equation}
-%\end{itemize}
-%Este último resultado es suficiente para estudiar la polarización del campo eléctrico generado por una cascada atmosférica, bien por deflexión geomagnética o por efecto Askaryan. Por simplicidad, consideremos una cascada que se desarrolla en la dirección vertical (i.e. con un ángulo cenital $\theta=0^\circ$). El efecto de la deflexión geomagnética está determinado por la acción de la fuerza de Lorentz sobre las cargas generadas:
-%\begin{equation}
-%	\vect{F}=q\vect{v}\times \vect{B}\implies \vect{J}\sim \hat{\vect{n}}_{\text{shower}}\times\vect{B}\label{ec38}
-%\end{equation}
-%donde $\hat{\vect{n}}_{\text{shower}}$ representa la dirección del desarrollo de la cascada. El efecto puede verse más claramente en la Fig. \ref{Geomag_deflexion}, en donde también representamos la polarización del campo radiado mediante este mecanismo.
-%
-%\newpage
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_1}}
-%	\hspace{10mm}
-%	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_2}}
-%	\caption{Campo eléctrico radiado por efecto de la deflexión geomagnética. (a) Dirección del campo $\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ en una antena prueba al oeste de una cascada vertical. (b) Dirección esperada para el campo eléctrico radiado en una cascada vertical (se indica la posición del observador de la Fig. a). Las direcciones N, S, E, W hacen referencia al polo norte magnético.}
-%	\label{Geomag_deflexion}
-%\end{figure}
-%
-%Si queremos hacer el mismo análisis para el efecto Askaryan, la polarización del campo radiado ahora estará determinada por el exceso de carga que aparece a lo largo del desarrollo. Naturalmente, las partículas más abundantes en una cascada atmosférica serán electrones y positrones, tanto por ser las especies de menor masa como por existir numerosos mecanismos que los originan. Como ya mencionamos, los positrones desaparecerán en procesos de aniquilación, mientras que otros electrones del medio serán extraídos y contribuirán a la carga neta generada. Por ello, el efecto Askaryan se traduce en la aparición de un exceso de carga negativa a lo largo del desarrollo y por tanto:
-%\begin{equation}
-%	\vect{J}\sim -\hat{\vect{n}}_{\text{shower}}\label{ec39}
-%\end{equation}
-%La polarización del campo generado por este mecanismo se representa en la Fig. \ref{Askaryan} para una cascada vertical. Como vemos, expresiones sencillas como \eqref{ec37}, \eqref{ec38} y \eqref{ec39} son suficientes para describir cualitativamente el campo eléctrico radiado por una cascada de dirección arbitraria.
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_1}}
-%	\hspace{10mm}
-%	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_2}}
-%	\caption{Campo eléctrico radiado por efecto Askaryan. Mismos gráficos que en la Fig \ref{Geomag_deflexion}.}
-%	\label{Askaryan}
-%\end{figure}
-%
-%Hasta ahora, hemos hecho una descripción \textit{macroscópica} de la emisión de radiación electromagnética, en el sentido de que hemos considerado la aparición de corrientes netas como un efecto global sobre la cascada. Aunque este enfoque es muy intuitivo y permite explorar las características de la emisión, un análisis detallado de la misma deberá realizarse desde una perspectiva \textit{microscópica}, i.e. considerando la radiación emitida por partículas cargadas de manera \textit{individual}. Dado que este es el marco en el que se desarrollan nuestras simulaciones, y también porque nos permitirá extraer alguna conclusión extra acerca de la emisión, estudiaremos algo más esta perspectiva. Para empezar, reescribamos el potencial vector \eqref{ec34}:
-%\begin{equation}
-%	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int \frac{\vect{J}_\perp\left(\vect{r}', t'\right)}{\left|\vect{R}\right|}\,\delta\left(\frac{n}{c}\left|\vect{R}\right|-\left(t-t'\right)\right)d^3r'dt'\label{ec310}
-%\end{equation} 
-%donde sólo hemos introducido una función-$\delta$ que evalúa la corriente en $t_{ret}$. Supongamos ahora una carga puntual $q$ que se mueve a velocidad constante $\vect{v}$, entre $t=t_1$ y $t=t_2$. La corriente $\vect{J}$ asociada puede escribirse fácilmente:
-%\begin{equation}
-%	\vect{J}_\perp\left(\vect{r'}, t'\right)=q\vect{v}_\perp \,\delta^{(3)}\left(\vect{r}'-\vect{r}_0-\vect{v}t'\right)\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]\label{ec311}
-%\end{equation}
-%donde $\vect{r}_0=\vect{r}'\left(t=0\right)$, y el último término son funciones de Heaviside que garantizan que $\vect{J}_\perp=0$ para $t<t_1$ ó $t>t_2$. Sustituyendo esta última expresión en \eqref{ec310} e integrando en $d^3r'$ (aplicando la función-$\delta^{(3)}$), tenemos que:
-%\begin{equation}
-%	\vect{A}\left(\vect{r}, t\right)=\frac{\mu q}{4\pi}\vect{v}_\perp\int \frac{\delta\left(\frac{n}{c} \left|\vect{r}-\vect{r}_0-\vect{v}t'\right|-\left(t-t'\right)\right)}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|}\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]dt'\label{ec312}
-%\end{equation}
-%A grandes distancias, en el régimen de Fraunhofer, podemos escribir:
-%\begin{equation}
-%	\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|\approx R-t'\vect{v}\cdot\hat{\vect{R}}\;\;;\;\;\frac{1}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|} \approx \frac{1}{R}\label{ec313}
-%\end{equation}
-%Sustituyendo estas aproximaciones en \eqref{ec312} y aplicando propiedades de las funciones $\delta$ y $\Theta$, es fácil obtener:
-%\begin{equation}
-%	\vect{A}\left(\vect{r}, t\right)\approx\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\label{ec314}
-%\end{equation}
-%donde hemos usado que $\left|\vect{v}\right|=\beta c$, además de definir el ángulo de observación como $\cos{\theta}=\hat{\vect{v}}\cdot\hat{\vect{R}}$. Como comentamos anteriormente, el campo eléctrico en este régimen puede obtenerse derivando \eqref{ec314} respecto a $t$:
-%\begin{equation}
-%	\vect{E}\left(\vect{r}, t\right)\approx-\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\label{ec315}
-%\end{equation}
-%
-%De lo anterior puede extraerse fácilmente la expresión para el campo eléctrico en el dominio de frecuencias, sin más que hacer una transformada de Fourier\footnote{ Se ha usado el criterio (poco común) de transformada de Fourier empleado en el algoritmo ZHS (ver siguiente apartado):
-%	$$\tilde{f}(\omega)=2\int dt \exp\left(i\omega t\right)f(t)$$}:
-%\begin{equation}
-%	\vect{E}\left(\vect{r}, \omega\right)\approx-\frac{\mu q}{2\pi R}\vect{v}_\perp \exp\left(i\omega\frac{nR}{c}\right)\frac{e^{i\omega(1-n\beta\cos{\theta})t_1}-e^{i\omega(1-n\beta\cos{\theta})t_2}}{1-n\beta\cos{\theta}}\label{ec316}
-%\end{equation}
-%Podríamos preocuparnos acerca del hecho de que lo que hemos obtenido es el campo eléctrico radiado por una partícula moviéndose a $\vect{v}$ constante, i.e., sin aceleración. Sin embargo, las funciones-$\delta$ de la expresión anterior implican que sólo existe una contribución no nula en los extremos de la trayectoria (recordemos que la partícula \textit{aparece} en $t_1$ y \textit{desaparece} en $t_2$, véase la ec. \ref{ec311}), mientras que a lo largo de la trayectoria no se emite radiación, como esperaríamos.
-%
-%Más allá del comentario anterior, podemos extraer dos conclusiones importantes en lo que sigue:
-%\begin{itemize}
-%	\item En primer lugar, el campo eléctrico presenta una divergencia cuando el ángulo de observación coincide con el ángulo \v{C}erenkov del medio, $\cos{\theta_C}=1/n\beta$. Aunque esta divergencia es fruto de las aproximaciones del cálculo, describe correctamente el hecho de que el \textit{pico} de las emisiones se localiza en $\theta=\theta_C$. El resultado es natural, en una cascada se producirán partículas viajando a $v\sim c$, más rápido que la luz en la atmósfera ($n\geq 1$) y por lo tanto el valor máximo del campo eléctrico radiado aparecerá asociado al cono \v{C}erenkov.
-%	\item En segundo lugar, y desde un punto de vista más técnico, las expresiones \eqref{ec315} y \eqref{ec316} pueden incorporarse fácilmente a cálculos numéricos y simulaciones del desarrollo de cascadas.
-%\end{itemize}
-%
-%Precisamente el último punto resulta de especial interés en este trabajo, ya que nuestro último objetivo será caracterizar la emisión de radio en cascadas atmosféricas hacia arriba mediante simulaciones. En el siguiente apartado nos detendremos en el algoritmo empleado en las mismas, y mostraremos algunos resultados sencillos que nos permitirán poner en contexto el desarrollo que hemos realizado en este apartado.
-%
+	Como es bien sabido, la presencia de cargas en movimiento en un determinado medio implica la emisión de radiación. Resulta entonces evidente que, en una cascada atmosférica iniciada, por ejemplo, por un protón o un neutrino de origen astrofísico en la que aparecerán un número gigantesco de partículas cargadas propagándose con una velocidad $v\sim c$, podemos esperar la aparición de radiación electromagnética.
+	
+	Ahora bien, uno podría pensar a priori que, en las escalas de energía y número de partículas que involucra una cascada atmosférica, el balance \textit{macroscópico} de cargas positivas y negativas debería ser nulo, y por lo tanto las respectivas contribuciones a la radiación electromagnética emitida deberían cancelarse. Sin embargo, existen dos aspectos acerca del desarrollo de una cascada en la atmósfera que inmediatamente nos obligan a abandonar esta perspectiva:
+	\begin{itemize}
+		\item En primer lugar, la cascada se desarrolla en presencia del campo magnético terrestre, y por lo tanto las cargas sufren una deflexión en un sentido u otro según el signo de su carga. En una perspectiva \textit{macroscópica}, podemos interpretar que este efecto origina una corriente neta perpendicular tanto al desarrollo de la cascada como al campo magnético terrestre, generando entonces un campo eléctrico.
+		\item En segundo lugar, la cascada no se desarrolla en el vacío sino en presencia de materia. Aunque en la cascada se produzca globalmente el mismo número de partículas con carga positiva que negativa, las interacciones con el medio darán lugar a un exceso de carga. Por ejemplo, los positrones generados en la cascada sufrirán procesos de aniquilación con los electrones del medio. Por otra parte, estos mismos electrones del medio podrán ser extraídos por diversos procesos (scattering $e^-e^-$, difusión Compton, ...) y contribuirán también a la aparición de una carga neta. 
+	\end{itemize}
+
+Estos dos mecanismos, a los que a partir de ahora nos referiremos como \textit{deflexión geomagnética} y \textit{efecto Askaryan}\footnote{ Este mecanismo de emisión fue propuesto por Gurgen A. Askaryan en la década de los 60.} respectivamente, serán los procesos que darán lugar a la mayor parte de la emisión coherente de radiación electromagnética en cascadas atmosféricas.
+
+Para ahondar en los mecanismos de emisión, recordaremos brevemente algunos conceptos de la electrodinámica clásica que nos permitirán explicar, al menos de manera cualitativa, los campos eléctricos que esperamos a partir de cada mecanismo. Partimos de las ecuaciones de Maxwell en términos de los potenciales electromagnéticos escalar $\phi$ y vector $\vect{A}$:
+	\begin{equation}
+	\vect{\nabla}^2\phi+\frac{\partial}{\partial t}\left(\vect{\nabla}\cdot\vect{A}\right)=-\frac{\rho}{\varepsilon}\;,\label{ec31}
+	\end{equation}
+	\begin{equation}
+	\vect{\nabla}^2\vect{A}-\mu\varepsilon\frac{\partial^2\vect{A}}{\partial t^2}-\vect{\nabla}\left(\vect{\nabla}\cdot\vect{A}+\mu\varepsilon\frac{\partial^2\phi}{\partial t^2}\right)=-\mu\vect{J}\;,\label{ec32}
+	\end{equation}
+
+donde $\rho$ es la densidad de carga, $\vect{J}$ la densidad de correinte, y $\varepsilon$ y $\mu$ la permitividad eléctrica y permeabilidad magnética del medio, respectivamente. Por la libertad gauge, escogemos $\vect{\nabla}\cdot \vect{A}=0$ (gauge de Coulomb). En ese caso, los potenciales electromagnéticos toman la forma \cite{Jackson2002}:
+\begin{equation}
+	\phi(\vect{r}, t)=\frac{1}{4\pi\varepsilon}\int_{\text{fuente}} \frac{\rho(\vect{r}', t)}{\left|\vect{R}\right|}d^3r'\;,\label{ec33}
+\end{equation}
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int_{\text{fuente}}\frac{\left[\vect{J}\left(\vect{r}', t_{ret}\right)-\left(\vect{J}\left(\vect{r}', t_{ret}\right)\cdot \hat{\vect{R}}\right)\hat{\vect{R}}\right]}{\left|\vect{R}\right|}d^3r'+\mathcal{O}(\left|\vect{R}\right|^{-3})\;,\label{ec34}
+\end{equation}
+donde $\vect{r}$ y $t$ son, respectivamente, la posición del observador y el tiempo de llegada de la radiación al mismo, $\vect{r}'$ indica la posición de la fuente, y definimos $\vect{R}=\vect{r}-\vect{r}'$ y el tiempo retardado $t_{ret}=t-n\left|\vect{R}\right|/c$, con $n$ el índice de refracción. En \eqref{ec34} se desprecian términos que no contribuyen en la región de radiación. Las expresiones anteriores, aunque no sean especialmente simples de manejar, nos permitirán caracterizar los dos mecanismos de emisión que hemos comentado, sin más que tener en cuenta que:
+\begin{itemize}
+	\item En este gauge, el potencial escalar $\phi$ viene dado por una solución \textit{instantánea}, en el sentido de que no hay ninguna dependencia con $t_{ret}$. La consecuencia inmediata es que $\phi$ sólo describe efectos de campo cercano, y podremos escribir sencillamente:
+	\begin{equation}
+		\vect{E}=-\vect{\nabla}\phi-\dot{\vect{A}}\implies \vect{E}_{rad} = -\dot{\vect{A}}\;.\label{ec35}
+	\end{equation}
+\item La solución para el potencial vector depende exclusivamente de la componente \textit{perpendicular} a $\vect{R}$ de la corriente:
+\begin{equation}
+	\vect{J}=\vect{J}_\parallel+\vect{J}_\perp = \left(\vect{J}\cdot\hat{\vect{R}}\right)\hat{\vect{R}}-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\;.\label{ec36}
+\end{equation} 
+\end{itemize}
+Por lo tanto, el breve desarrollo anterior nos permite establecer que el campo eléctrico radiado tendrá la dirección de la componente perpendicular\footnote{Estrictamente, de su derivada temporal. En los mecanismos de emisión considerados, $\vect{J}\parallel \dot{\vect{J}}$ aproximadamente.} $\vect{J}_\perp$ de la corriente generada por cada mecanismo:
+\begin{equation}
+	\left.
+	\begin{array}{c}
+		\vect{E}_{rad} = -\dot{\vect{A}}\\
+		\vect{A}\sim\vect{J}_\perp=-\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)
+	\end{array}
+\right\}\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\;.\label{ec37}
+\end{equation}
+
+Este último resultado es suficiente para estudiar la polarización del campo eléctrico generado por una cascada atmosférica, bien por deflexión geomagnética o por efecto Askaryan. Por simplicidad, consideremos una cascada que se desarrolla en la dirección vertical (i.e. con un ángulo cenital $\theta=0^\circ$). El efecto de la deflexión geomagnética está determinado por la acción de la fuerza de Lorentz sobre las cargas generadas:
+\begin{equation}
+	\vect{F}=q\vect{v}\times \vect{B}\implies \vect{J}\sim \hat{\vect{n}}_{\text{shower}}\times\vect{B}\;,\label{ec38}
+\end{equation}
+donde $\hat{\vect{n}}_{\text{shower}}$ representa la dirección del desarrollo de la cascada. El efecto puede verse más claramente en la Fig. \ref{Geomag_deflexion}, en donde también representamos la polarización del campo radiado mediante este mecanismo.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_1}}
+	\hspace{10mm}
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Geomag_deflexion_2}}
+	\caption{Representación esquemática del campo eléctrico radiado por efecto de la deflexión geomagnética. (a) Dirección del campo $\vect{E}_{rad}\parallel  \hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ en una antena prueba al oeste de una cascada vertical. (b) Dirección esperada para el campo eléctrico radiado en una cascada vertical (se indica la posición del observador de la Fig. a). Las direcciones N, S, E, W hacen referencia al polo norte magnético.}
+	\label{Geomag_deflexion}
+\end{figure}
+
+Si hacemos el mismo análisis para el efecto Askaryan, la polarización del campo radiado ahora estará determinada por el exceso de carga que aparece a lo largo del desarrollo. Naturalmente, las partículas más abundantes en una cascada atmosférica son electrones y positrones, tanto por ser las especies de menor masa como por existir numerosos mecanismos que los originan. Como ya mencionamos, los positrones desaparecen de la cascada en procesos de aniquilación, mientras que otros electrones del medio son extraídos del mismo y contribuyen a la carga neta generada. Por ello, el efecto Askaryan se traduce en la aparición de un exceso de carga negativa a lo largo del desarrollo y por tanto:
+\begin{equation}
+	\vect{J}\sim -\hat{\vect{n}}_{\text{shower}}\;.\label{ec39}
+\end{equation}
+La polarización del campo generado por este mecanismo se representa en la Fig. \ref{Askaryan} para una cascada vertical. Como vemos, expresiones sencillas como \eqref{ec37}, \eqref{ec38} y \eqref{ec39} son suficientes para describir cualitativamente el campo eléctrico radiado por una cascada de dirección arbitraria.
+\begin{figure}[H]
+	\centering
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_1}}
+	\hspace{10mm}
+	\subfigure[]{\includegraphics[width=0.3\linewidth]{figures/Askaryan_2}}
+	\caption{Representación esquemática del campo eléctrico radiado por efecto Askaryan. Mismos gráficos que en la Fig \ref{Geomag_deflexion}.}
+	\label{Askaryan}
+\end{figure}
+
+Hasta ahora, hemos hecho una descripción \textit{macroscópica} de la emisión de radiación electromagnética, en el sentido de que hemos considerado la aparición de corrientes netas como un efecto global sobre la cascada. Aunque este enfoque es muy intuitivo y permite explorar las características de la emisión, un análisis detallado de la misma deberá realizarse desde una perspectiva \textit{microscópica}, i.e. considerando la radiación emitida por partículas cargadas de manera \textit{individual}. Dado que este es el marco en el que se desarrollan nuestras simulaciones (ver sec. \ref{sec32}), y también porque nos permitirá extraer alguna conclusión extra acerca de la emisión, estudiaremos algo más esta perspectiva. Para empezar, reescribamos el potencial vector \eqref{ec34}:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu}{4\pi}\int \frac{\vect{J}_\perp\left(\vect{r}', t'\right)}{\left|\vect{R}\right|}\,\delta\left(\frac{n}{c}\left|\vect{R}\right|-\left(t-t'\right)\right)d^3r'dt'\;,\label{ec310}
+\end{equation} 
+donde hemos introducido una función-$\delta$ que evalúa la corriente en $t_{ret}$. Supongamos ahora una carga puntual $q$ que se mueve a velocidad constante $\vect{v}$, entre $t'=t_1$ y $t'=t_2$ ($t'$ es el tiempo de la fuente). La corriente $\vect{J}$ asociada puede escribirse fácilmente:
+\begin{equation}
+	\vect{J}_\perp\left(\vect{r'}, t'\right)=q\vect{v}_\perp \,\delta^{(3)}\left(\vect{r}'-\vect{r}_0-\vect{v}t'\right)\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]\;,\label{ec311}
+\end{equation}
+donde $\vect{r}_0=\vect{r}'\left(t=0\right)$, y el último término son funciones de Heaviside que garantizan que $\vect{J}_\perp=0$ para $t'<t_1$ ó $t'>t_2$. Sustituyendo esta última expresión en \eqref{ec310} e integrando en $d^3r'$ (aplicando la función-$\delta^{(3)}$), tenemos que:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)=\frac{\mu q}{4\pi}\vect{v}_\perp\int \frac{\delta\left(\frac{n}{c} \left|\vect{r}-\vect{r}_0-\vect{v}t'\right|-\left(t-t'\right)\right)}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|}\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]dt'\;.\label{ec312}
+\end{equation}
+A distancias suficientemente grandes, en el régimen de Fraunhofer, podemos escribir:
+\begin{equation}
+	\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|\approx R-t'\vect{v}\cdot\hat{\vect{R}}\;\;;\;\;\frac{1}{\left|\vect{r}-\vect{r}_0-\vect{v}t'\right|} \approx \frac{1}{R}\;.\label{ec313}
+\end{equation}
+Sustituyendo estas aproximaciones en \eqref{ec312} y aplicando propiedades de las funciones $\delta$ y $\Theta$, es fácil obtener:
+\begin{equation}
+	\vect{A}\left(\vect{r}, t\right)\approx\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\;,\label{ec314}
+\end{equation}
+donde hemos usado que $\left|\vect{v}\right|=\beta c$, además de definir el ángulo de observación como $\cos{\theta}=\hat{\vect{v}}\cdot\hat{\vect{R}}$. Como comentamos anteriormente, el campo eléctrico en este régimen puede obtenerse derivando \eqref{ec314} respecto a $t$:
+\begin{equation}
+	\vect{E}\left(\vect{r}, t\right)\approx-\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\;.\label{ec315}
+\end{equation}
+
+De lo anterior puede extraerse fácilmente la expresión para el campo eléctrico en el dominio de frecuencias, sin más que hacer una transformada de Fourier\footnote{ Se ha usado el criterio (poco común) de transformada de Fourier empleado en el llamado algoritmo ZHS \cite{Zas1992} (ver siguiente apartado):
+	$$\tilde{f}(\omega)=2\int dt \exp\left(i\omega t\right)f(t)\;.$$}:
+\begin{equation}
+	\vect{E}\left(\vect{r}, \omega\right)\approx-\frac{\mu q}{2\pi R}\vect{v}_\perp \exp\left(i\omega\frac{nR}{c}\right)\frac{e^{i\omega(1-n\beta\cos{\theta})t_1}-e^{i\omega(1-n\beta\cos{\theta})t_2}}{1-n\beta\cos{\theta}}\;.\label{ec316}
+\end{equation}
+Podría preocuparnos el hecho de que hemos obtenido es el campo eléctrico radiado por una partícula moviéndose a $\vect{v}$ constante, i.e., sin aceleración. Sin embargo, las funciones-$\delta$ de la expresión anterior implican que sólo existe una contribución no nula en los extremos de la trayectoria (recordemos que la partícula \textit{aparece} en $t_1$ y \textit{desaparece} en $t_2$, véase la ec. \ref{ec311}), mientras que a lo largo de la trayectoria no se emite radiación, como esperaríamos.
+
+Más allá del comentario anterior, podemos extraer dos conclusiones importantes en lo que sigue:
+\begin{itemize}
+	\item En primer lugar, el campo eléctrico presenta una divergencia cuando el ángulo de observación coincide con el ángulo \v{C}erenkov del medio, $\cos{\theta_C}=1/n\beta$. Aunque esta divergencia es fruto de las aproximaciones del cálculo, describe correctamente el hecho de que el \textit{pico} de las emisiones se localiza en $\theta=\theta_C$. El resultado es natural, en una cascada se producirán partículas viajando a $v\sim c$, más rápido que la luz en la atmósfera ($n\geq 1$) y por lo tanto el valor máximo del campo eléctrico radiado aparecerá asociado al cono \v{C}erenkov.
+	\item En segundo lugar, y desde un punto de vista más técnico, las expresiones \eqref{ec315} y \eqref{ec316} pueden incorporarse fácilmente a cálculos numéricos y simulaciones del desarrollo de cascadas, dado que una trayectoria arbitraria puede aproximarse mediante segmentos rectilíneos recorridos con $\vect{v}$ constante (aunque diferente de un segmento a otro).
+\end{itemize}
+
+Precisamente el último punto resulta de especial interés en este trabajo, ya que nuestro último objetivo será caracterizar la emisión de radio en cascadas atmosféricas hacia arriba mediante simulaciones. En el siguiente apartado nos detendremos en el algoritmo empleado en las mismas, y mostraremos algunos resultados sencillos que nos permitirán poner en contexto el desarrollo que hemos realizado en este apartado.
+
 	\subsection{Simulación y caracterización de la radiación}\label{sec32}
-%
-%Las simulaciones de la emisión electromagnética asociada a cascadas atmosféricas se ha realizado recurriendo al código ZHAireS, que combina la simulación del desarrollo de cascadas atmosféricas mediante AIRES con el algoritmo ZHS \cite{AlvarezMuniz2012, Zas1992} para calcular el campo eléctrico radiado. El desarrollo de la sección anterior será suficiente para describir, al menos de manera cualitativa, el funcionamiento de dicho algoritmo:
-%	\begin{itemize}
-%		\item Las trayectorias de las partículas son discretizadas en \textit{sectores}, en los cuales la velocidad de la partícula se toma constante. Los parámetros de cada sector (energía, dirección, ...) se obtienen de AIRES.
-%		\item En cada paso de la simulación, la partícula se propagará a lo largo de un \textit{sector}, entre $t$ y $t+\Delta t$. Introduciendo las posiciones de observación (antenas) en la simulación, las expresiones \eqref{ec315} y \eqref{ec316} permiten calcular el campo eléctrico asociado al sector, tanto en dominio temporal como de frecuencias.
-%		\item Si en algún sector no se verifican las condiciones del régimen de Fraunhofer (e.g. trayectorias muy cercanas a una antena), dicho sector podrá subdividirse en \textit{subsectores} hasta alcanzar dimensiones lo suficientemente pequeñas para poder aplicar las expresiones \eqref{ec315} y \eqref{ec316}.
-%		%En cascadas atmosféricas, las dimensiones típicas de las mismas son comparables a la distancia a las antenas ($\sim 10^{2-3}\,\mathrm{m}$). Para evitar abandonar el 
-%
-%		
-%	\end{itemize}
-%Mediante esta técnica, puede simularse el campo eléctrico radiado por una cascada atmosférica en función del tiempo o la frecuencia, sin más que acumular la contribución de todas las partículas consideradas en cada paso de la simulación. Además, las expresiones \eqref{ec315} y \eqref{ec316} se extraen directamente de principios básicos, sin suponer un mecanismo de emisión u otro. Por ello, este algoritmo tiene inmediatamente en cuenta la emisión de radiación asociada a la (des)aparición de partículas cargadas en el medio y a las interacciones consideradas, así como efectos de interferencia al sumar las contribuciones de cada partícula. En la Fig. \ref{ZHSsketch} mostramos esta idea:  
+
+Las simulaciones de la emisión electromagnética asociada a cascadas atmosféricas se ha realizado recurriendo al código ZHAireS \cite{AlvarezMuniz2012}, que combina la simulación del desarrollo de cascadas atmosféricas mediante AIRES con el algoritmo ZHS (Zas-Halzen-Stanev \cite{Zas1992}) para calcular el campo eléctrico radiado. El desarrollo de la sección anterior será suficiente para describir, al menos de manera cualitativa, el funcionamiento de dicho algoritmo:
+	\begin{itemize}
+		\item Las trayectorias de las partículas son discretizadas en \textit{segmentos}, en los cuales la velocidad de la partícula se toma constante. Los parámetros de cada segmento (energía, dirección, ...) se obtienen de AIRES.
+		\item En cada paso de la simulación, la partícula se propagará a lo largo de un \textit{segmento}, entre $t$ y $t+\Delta t$. Introduciendo las posiciones de observación (antenas) en la simulación, las expresiones \eqref{ec315} y \eqref{ec316} permiten calcular el campo eléctrico asociado al segmento, tanto en dominio temporal como de frecuencias.
+		\item Si en algún segmento no se verifican las condiciones del régimen de Fraunhofer (e.g. trayectorias muy cercanas a una antena), dicho segmento podrá subdividirse en \textit{subsegmentos} hasta alcanzar dimensiones lo suficientemente pequeñas para poder aplicar las expresiones \eqref{ec315} y \eqref{ec316}.
+		%En cascadas atmosféricas, las dimensiones típicas de las mismas son comparables a la distancia a las antenas ($\sim 10^{2-3}\,\mathrm{m}$). Para evitar abandonar el 
+
+		
+	\end{itemize}
+Mediante esta técnica, puede simularse el campo eléctrico radiado por una cascada atmosférica en función del tiempo o la frecuencia, sin más que sumar en el tiempo $t$ del observador la contribución de todas las partículas consideradas en cada paso de la simulación. Además, las expresiones \eqref{ec315} y \eqref{ec316} se extraen directamente de principios básicos del electromagnetismo (ecuaciones de Maxwell y principio de superposición), sin presuponer ningún mecanismo de emisión. Por ello, este algoritmo ZHS tiene inmediatamente en cuenta la emisión de radiación asociada a la (des)aparición de partículas cargadas en el medio y a las interacciones consideradas, así como efectos de interferencia al sumar las contribuciones de cada partícula. En la Fig. \ref{ZHSsketch} mostramos esta idea:  
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/ZHSsketch}
+		\caption{Idea básica del algoritmo ZHS. La trayectoria de las partículas se discretiza en segmentos rectilíneos, permitiendo aplicar expresiones como \eqref{ec315} de manera sencilla.}
+		\label{ZHSsketch}
+	\end{figure}
+ 
+Mostraremos ahora algunos ejemplos de resultados típicos de ZHAireS, que nos permitirán poner de manifiesto algunas de las ideas desarrolladas hasta el momento. El primer caso que planteamos es el de una cascada vertical ($\theta=0^\circ$) iniciada por un protón de energía inicial $E=10^{17}\,\mathrm{eV}$. El campo magnético terrestre se ha supuesto, por simplicidad, horizontal (i.e., paralelo al plano del suelo) y de magnitud $23\,\mathrm{\mu T}$, y se han situado antenas en las cuatro direcciones relativas al \textit{core} de la cascada (N, S, E, W; ver p. ej. Fig. \ref{Geomag_deflexion}). Los resultados de la simulación se presentan en las Figs. \ref{EW_field} y \ref{NS_field}. 
+
+En la Fig. \ref{EW_field}  presentamos la componente $y$ del campo eléctrico, i.e., la componente en la dirección Este-Oeste (EW). Como vemos, la forma de la señal es muy similar en todas las posiciones, con un pulso bipolar con una duración del orden de decenas de $\mathrm{ns}$ cuya amplitud en el pico decrece con la distancia al \textit{core} de la cascada. Sin embargo, aparece una diferencia muy interesante en los máximos: tanto en las antenas al Norte y Sur se alcanzan los mismos valores aproximadamente, mientras que en las antenas al Este (Oeste) se llega a valores superiores (inferiores) en un $15-20\%$. En este efecto es donde podemos apreciar la competición entre la deflexión geomagnética y el efecto Askaryan. Recordando las Figs. \ref{Geomag_deflexion} y \ref{Askaryan}, es evidente que el efecto Askaryan no modifica de manera sustancial la componente $y$ del campo si nos situamos al Norte o al Sur, mientras que aporta una contribución que se añade (resta) al campo generado por deflexión geomagnética al Este (Oeste). Por ello, el campo observado en el Este es ligeramente superior al del Oeste, mientras que este efecto no aparece en observaciones al Norte o Sur.
+
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Norte]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_N_v2}}
+	\subfigure[Sur]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_S_v2}}
+	\\
+	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_E_v2}}
+	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_W_v2}}
+	\caption{Componente $y$ (E$\rightarrow$W) del campo eléctrico radiado por una cascada vertical iniciada por un protón de $10^{17}\,\mathrm{eV}$, en diferentes puntos de observación. La señal a $400\,\mathrm{m}$ se ha multiplicado por un factor $20$ para hacerla visible.}
+	\label{EW_field}
+\end{figure}
+
+Si nos centramos en la componente $x$ del campo, es decir, en la dirección Norte-Sur (NS), es evidente a partir de las Figs. \ref{Geomag_deflexion} y \ref{Askaryan} que sólo \textit{veremos} el efecto Askaryan en antenas al Norte y Sur, mientras que la deflexión geomagnética no será relevante. Además, esperamos que dicha componente NS del campo tenga signo opuesto, como observamos en la Fig. \ref{NS_field}. Además, por simetría (Fig. \ref{Askaryan}), podemos suponer que la \textit{contribución Askaryan} a la componente $x$ del campo en antenas al N,S ($\sim 2\times10^{-4}\,\mathrm{V/m}$) será igual a la contribución al campo en la dirección $y$ en antenas al E,W. Como vemos, dicho valor es plenamente coherente con que la diferencia que observábamos en las antenas E,W en la Fig. \ref{EW_field} tenga su origen en el efecto Askaryan. Por último, la componente $x$ en antenas al E,W es mucho menor que en antenas al N,S; ya que ni la deflexión geomagnética inducen una polarización significativa en la dirección S$\rightarrow$N en dichas posiciones (Figs. \ref{Geomag_deflexion}, \ref{Askaryan}).
+\begin{figure}[H]
+	\centering
+	\subfigure[Norte]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_N_v2}}
+	\subfigure[Sur]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_S_v2}}
+	\\
+	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_E_v2}}
+	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_W_v2}}
+	\caption{Equivalente a Fig. \ref{EW_field} para la componente $x$ (S$\rightarrow$N) del campo.}
+	\label{NS_field}
+\end{figure}
+A partir de estos resultados, podemos plantearnos la pregunta de \textit{qué} banda de frecuencias será de interés a la hora de estudiar la emisión electromagnética en cascadas atmosféricas. El enfoque más directo para responder a esa pregunta es estudiar la transformada de Fourier de las señales en tiempo. Por ello, presentamos como ejemplo en la Fig. \ref{E_fields_FFT} el campo eléctrico en el dominio de frecuencias\footnote{ Aplicando una transformación de Fourier rápida (FFT) a la señal en tiempo simulada, sin recurrir al output directo de ZHAireS, que también arroja el campo eléctrico en dominio de frecuencias.} correspondiente a las Figs. \ref{EW_field}a y \ref{NS_field}a. Como vemos, el espectro mantiene un comportamiento creciente con $\omega$ hasta una frecuencia entre $10$ y $100\,\mathrm{MHz}$, en que la coherencia de la señal comienza a desaparecer. Por ello, podemos adelantar que la banda de interés estará entre las decenas y centenas de $\mathrm{MHz}$, i.e., en las radiofrecuencias. 
+
+Una justificación muy simple a que la emisión se produzca de manera coherente en esta banda de frecuencia puede hacerse en términos de un modelo geométrico muy sencillo, representando la cascada como un frente de partículas de cierta anchura lateral (perpendicular al eje de desarrollo) y \textit{grosor}. Como vemos en la Fig. \ref{coherence}, a un observador a gran distancia (en el régimen de Fraunhofer) llegarían señales con retrasos temporales $\Delta t$ debidos al desarrollo longitudinal, lateral y al propio grosor del frente.
+
+\begin{figure}[H]
+	\centering
+	\subfigure{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_N_Fourier_v3}}
+	\subfigure{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_N_Fourier_v3}}
+	\caption{Transformada de Fourier de las señales en tiempo a distintas distancias hacia el Norte del core. Izq.: Componente $y$ del campo. Der.: Componente $x$.}
+	\label{E_fields_FFT}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{figures/radio/coherence_v2}
+	\caption{Modelo geométrico sencillo de una cascada. (a), (b) y (c) representan las contribuciones respectivas a los retrasos temporales en la llegada de la señal debidas al desarrollo longitudinal, lateral y de \textit{grosor} del frente.}
+	\label{coherence}
+\end{figure}
+
+Las emisiones serán coherentes a frecuencias $f\lesssim\Delta t_{max}^{-1}$ (i.e., $\lambda\gtrsim c\Delta t_{max}$, longitudes de onda comparables a las dimensiones de la cascada), donde el máximo de los tres retardos determina el límite a la coherencia. En el caso concreto de cascadas en aire, puede comprobarse\footnote{El modelo anterior permite hallar $\Delta t_{L}=\frac{n}{c}L\cos{\theta}$, $\Delta t_{R}=\frac{n}{c}R\sin{\theta}$. $\Delta t_D$ depende de la forma del frente. Valores típicos en cascadas atmosféricas: $L\sim 5-10\,\mathrm{km}$, $R\sim100\,\mathrm{m}$, $D\sim6\,\mathrm{m}$, $\theta\sim\theta_c\sim1^\circ$, $n\sim1,0003$} que el retraso máximo para un observador en el ángulo \v{C}erenkov $\theta_C$ y en la región de Fraunhofer (que se corresponde con cierta distancia al core, en el caso de las Figs. \ref{EW_field} y \ref{NS_field} entre $50$ y $100\,\mathrm{m}$) corresponde a la contribución del \textit{grosor} del frente, $\Delta t_D\sim 20\,\mathrm{ns}$. Por ello, las frecuencias de interés en cascadas atmosféricas se sitúan en el orden de $f\sim\left(20\,\mathrm{ns}\right)^{-1}\sim50\,\mathrm{MHz}$. Aunque el anterior es un modelo muy simple, será suficiente para obtener una intuición del origen de la emisión en radiofrecuencias. Además, este modelo predice que a medida que el observador se aleja del core (i.e. $\theta>\theta_C$) los retrasos debidos a las distribuciones longitudinal y lateral aumentan, disminuyendo la frecuencia a la que se alcanza la máxima coherencia (como vemos en la Fig. \ref{E_fields_FFT}).
+
+El siguiente caso que plantearemos es el de una cascada inclinada, iniciada por una partícula primaria de mayor energía. Concretamente, se ha simulado una cascada iniciada por un protón de energía $E=10^{19}\,\mathrm{eV}$, con ángulo cenital $\theta=70^{\circ}$. En este caso, se ha supuesto un campo magnético diferente\footnote{ Concretamente, este campo magnético es similar al que se encuentra en el Polo Sur, una localización de especial interés experimental para el estudio de la radiación cósmica.}, de magnitud $55\,\mathrm{\mu T}$ y ángulo de inclinación $I = 72,42^\circ$; mientras que las antenas se han situado a lo largo de las direcciones NS y EW (Fig. \ref{ANITApaper_showscheme}). Esta configuración nos permitirá estudiar algo más en detalle el campo eléctrico observado en función de la posición respecto a la cascada.
+
+Como mencionamos en el primer apartado de esta sección, el máximo de la emisión ocurre cuando el ángulo de observación coincide con el ángulo \v{C}erenkov. Además, hemos visto en la sección \ref{sec2} cómo el desarrollo de cascadas atmosféricas presenta un máximo en el número de partículas a cierta profundidad $X_{max}$ en la atmósfera que depende de los parámetros del primario. Por ello, en el suelo se registrará el máximo del campo eléctrico en las antenas que observen dicho máximo de la cascada bajo un ángulo $\theta_C$, i.e, en la intersección del suelo con el cono \v{C}erenkov, que representamos mediante una elipse (azul) en la Fig. \ref{ANITApaper_showscheme}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{figures/radio/ANITApaper_showscheme}
+	\caption{Esquema de una cascada a $\theta=70^\circ$, y de la posiciónde las antenas. Se situaron 50 antenas a lo largo de cada eje, hasta $1500\,\mathrm{m}$ del \textit{core} de la cascada. El máximo de emisión se espera en la intersección del cono \v{C}erenkov, cuyo vértice se sitúa en la profundidad $X_{max}$ a la que el número de partículas ($e^\pm$) alcanza su máximo valor.}
+	\label{ANITApaper_showscheme}
+\end{figure}
+
+Evidentemente, para una cascada inclinada la intersección del cono \v{C}erenkov con el suelo no será una circunferencia sino una elipse. Si para esta configuración representamos las componentes de Fourier del campo eléctrico en la dirección EW registradas en cada antena a distintas frecuencias fijas, obtenemos la Fig. \ref{freqfieldsgrounds}. Vemos en ella cómo aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S (coincidente con el eje mayor de la elipse) como era de esperar, dada la inclinación de la cascada.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Componente $y$ del campo a $300\,\mathrm{MHz}$]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground_v2}}
+	\subfigure[Componentes a varias frecuencias a lo largo de la dirección EW]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_varfreq_groundEW_v2}}
+	\caption{Componentes de Fourier del campo eléctrico (componente $y$) en función de la distancia al \textit{core} de la cascada.}
+	\label{freqfieldsgrounds}
+\end{figure} 
+
+
+%Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
+
+%La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la duración de los pulsos nos da un orden de magnitud para $f$:
+%\begin{equation}
+%	\omega T = 2\pi f T \sim 1\implies f\sim \left(2\pi T\right)^{-1} \implies T \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
+%\end{equation} 
+%Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
 %	\begin{figure}[H]
 %		\centering
-%		\includegraphics[width=.8\linewidth]{figures/ZHSsketch}
-%		\caption{Idea básica del algoritmo ZHS. La trayectoria de las partículas se discretiza, permitiendo aplicar expresiones como \eqref{ec315} de manera sencilla.}
-%		\label{ZHSsketch}
+%		\includegraphics[width=.6\linewidth]{figures/radio/coherence}
+%		\caption{Geometría considerada. $D$ se corresponde con el desarrollo lateral de la cascada en el máximo.}
+%		\label{coherence}
 %	\end{figure}
-% 
-%Mostraremos ahora algunos ejemplos de resultados típicos de ZHAireS, que nos permitirán poner de manifiesto algunas de las ideas desarrolladas hasta el momento. El primer caso que planteamos es el de una cascada vertical ($\theta=0^\circ$) iniciada por un protón de energía inicial $E=10^{17}\,\mathrm{eV}$. El campo magnético terrestre se ha supuesto, por simplicidad, horizontal (i.e., paralelo al plano del suelo) y de magnitud $23\,\mathrm{\mu T}$, y se han situado antenas en las cuatro direcciones relativas al \textit{core} de la cascada (N, S, E, W). Los resultados de la simulación se presentan en las Figs. \ref{EW_field} y \ref{NS_field}. Aunque a simple vista no es evidente, dichos resultados son un ejemplo perfecto para ver los efectos de los mecanismos de emisión que discutimos en la sec. \ref{sec31}. 
-%
-%Empecemos por la Fig. \ref{EW_field}, en la que presentamos la componente $y$ del campo eléctrico, i.e., la componente en la dirección Este-Oeste (EW). Como vemos, la forma de la señal es muy similar en todas las posiciones, con un pulso de duración $\sim \mathrm{ns}$ cuya amplitud decrece con la distancia al \textit{core} de la cascada. Sin embargo, aparece una diferencia muy interesante en los máximos: tanto en las antenas al Norte y Sur se alcanzan los mismos valores aproximadamente, mientras que en las antenas al Este (Oeste) se llega a valores algo superiores (inferiores). En este efecto es donde podemos apreciar la competición entre la deflexión geomagnética y el efecto Askaryan. Recordando las Figs. \ref{Geomag_deflexion} y \ref{Askaryan}, es evidente que el efecto Askaryan no modifica de manera sustancial la componente $y$ del campo si nos situamos al Norte o al Sur, mientras que aporta una contribución que se añade (resta) al campo generado por deflexión geomagnética al Este (Oeste). Por ello, el campo observado en el Este es ligeramente superior al del Oeste, mientras que este efecto no aparece en observaciones al Norte o Sur.
-%
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Norte]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_N_v2}}
-%	\subfigure[Sur]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_S_v2}}
-%	\\
-%	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_E_v2}}
-%	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_W_v2}}
-%	\caption{Componente $y$ (E$\rightarrow$W) del campo eléctrico radiado por una cascada vertical iniciada por un protón de $10^{17}\,\mathrm{eV}$, en diferentes puntos de observación. La señal a $400\,\mathrm{m}$ se ha multiplicado por un factor $20$ para hacerla visible.}
-%	\label{EW_field}
-%\end{figure}
-%
-%Si nos centramos en la componente $x$ del campo, es decir, en la dirección Norte-Sur (NS), es evidente a partir de las Figs. \ref{Geomag_deflexion} y \ref{Askaryan} que sólo \textit{veremos} el efecto Askaryan en antenas al Norte y Sur, mientras que la deflexión geomagnética no será relevante. Además, esperamos que dicha componente NS del campo tenga signo opuesto. Precisamente, este es el resultado que observamos en la Fig. \ref{NS_field}. Además, por simetría (Fig. \ref{Askaryan}), podemos suponer que la \textit{contribución Askaryan} a la componente $x$ del campo en antenas al N,S ($\sim 2\times10^{-4}\,\mathrm{V/m}$) será igual a la contribución al campo en la dirección $y$ en antenas al E,W. Como vemos, dicho valor es plenamente coherente con que la diferencia que observábamos en las antenas E,W en la Fig. \ref{EW_field} tenga su origen en el efecto Askaryan.
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Norte]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_N_v2}}
-%	\subfigure[Sur]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_S_v2}}
-%	\\
-%	\subfigure[Este]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_E_v2}}
-%	\subfigure[Oeste]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_W_v2}}
-%	\caption{Equivalente a Fig. \ref{EW_field} para la componente $x$ (S$\rightarrow$N) del campo.}
-%	\label{NS_field}
-%\end{figure}
-%A partir de estos resultados, podemos plantearnos la pregunta de \textit{qué} banda de frecuencias será de interés a la hora de estudiar la emisión electromagnética en cascadas atmosféricas. El enfoque más directo para responder a esa pregunta es estudiar la transformada de Fourier de las señales en tiempo. Por ello, presentamos como ejemplo en la Fig. \ref{E_fields_FFT} el campo eléctrico en el dominio de frecuencias\footnote{ Aplicando una transformación de Fourier rápida (FFT) a la señal en tiempo simulada, sin recurrir al output de ZHAireS en frecuencias.} correspondiente a las Figs. \ref{EW_field}a y \ref{NS_field}a. Como vemos, el espectro mantiene un comportamiento \textit{suave} hasta aproximadamente $10-100\,\mathrm{MHz}$, en que la coherencia de la señal desaparece. Por ello, podemos adelantar que la banda de interés estará entre las decenas y centenas de $\mathrm{MHz}$, i.e., en las radiofrecuencias. Una justificación muy simple a que la emisión se produzca de manera coherente en esta banda de frecuencia puede hacerse en términos de un modelo geométrico muy sencillo, representando la cascada como un frente de partículas de cierta anchura y \textit{grosor}. Como vemos en la Fig. \ref{coherence}, a un observador a gran distancia (en el régimen de Fraunhofer) llegarían señales con retardos debidos al desarrollo longitudinal, lateral y al propio grosor del frente.
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Componente $y$ del campo, al Norte de la cascada.]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_EW_N_Fourier_v2}}
-%	\subfigure[Componente $x$ del campo, al Norte de la cascada.]{\includegraphics[width=0.45\linewidth]{figures/radio/p_1e17_0deg_NS_N_Fourier_v2}}
-%	\caption{Transformada de Fourier de las señales en tiempo.}
-%	\label{E_fields_FFT}
-%\end{figure}
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=.7\linewidth]{figures/radio/coherence_v2}
-%	\caption{Modelo geométrico sencillo. (a), (b) y (c) representan las contribuciones respectivas del desarrollo longitudinal, lateral y de \textit{grosor} del frente a los retardos en la señal.}
-%	\label{coherence}
-%\end{figure}
-%
-%Por lo tanto, las emisiones serán coherentes a frecuencias $f\lesssim\Delta t_{max}^{-1}$ (i.e., $\lambda\gtrsim c\Delta t_{max}$, longitudes de onda comparables a las dimensiones de la cascada), donde el máximo de los tres retardos determina el límite a la coherencia. En el caso concreto de cascadas en aire, puede comprobarse\footnote{El modelo geométrico anterior permite hallar fácilmente $\Delta t_{L}=\frac{n}{c}L\cos{\theta}$, $\Delta t_{R}=\frac{n}{c}R\sin{\theta}$. $\Delta t_D$ depende de la forma del frente. Valores típicos en cascadas atmosféricas: $L\sim 5-10\,\mathrm{km}$, $R\sim100\,\mathrm{m}$, $D\sim6\,\mathrm{m}$, $\theta\sim\theta_c\sim1^\circ$, $n\sim1,0003$} que el retardo máximo corresponde a la contribución del \textit{grosor} del frente, $\Delta t_D\sim 20\,\mathrm{ns}$. Por ello, las frecuencias de interés en cascadas atmosféricas se sitúan en el orden de $f\sim\left(20\,\mathrm{ns}\right)^{-1}\sim50\,\mathrm{MHz}$. Aunque el anterior es un modelo muy simple, será suficiente para obtener una intuición del origen de la emisión en radiofrecuencias.
-%
-%El siguiente caso que plantearemos es el de una cascada inclinada, iniciada por una partícula primaria de mayor energía. Concretamente, se ha simulado una cascada iniciada por un protón de energía $E=10^{19}\,\mathrm{eV}$, con una trayectoria de ángulo cenital $\theta=70^{\circ}$. En este caso, se ha supuesto un campo magnético ligeramente diferente\footnote{ Concretamente, este campo magnético es similar al que se encuentra en el Polo Sur, una localización de especial interés experimental para el estudio de la radiación cósmica.}, de magnitud $55\,\mathrm{\mu T}$ y ángulo de inclinación $I = 72,42^\circ$; mientras que las antenas se han situado a lo largo de las direcciones NS y EW (Fig. \ref{ANITApaper_showscheme}). Esta configuración nos permitirá estudiar algo más en detalle el campo eléctrico observado en función de la posición respecto a la cascada.
-%
-%Como mencionamos en el primer apartado de esta sección, el máximo de la emisión ocurre cuando el ángulo de observación coincide con el ángulo \v{C}erenkov. Además, hemos visto en la sección \ref{sec2} cómo el desarrollo de cascadas atmosféricas presenta, a cierta profundidad en la atmósfera que depende de los parámetros del primario, un máximo claro del número de partículas. Por ello, en el suelo se registrará el máximo del campo eléctrico en las antenas que observen dicho máximo de la cascada bajo un ángulo $\theta_C$, i.e, en la intersección del suelo con el cono \v{C}erenkov. 
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=.65\linewidth]{figures/radio/ANITApaper_showscheme}
-%	\caption{Configuración planteada. Se situaron 50 antenas a lo largo de cada eje, hasta $1500\,\mathrm{m}$ del \textit{core} de la cascada. El máximo de emisión se espera en la intersección del cono \v{C}erenkov., cuyo vértice se sitúa en el máximo del desarrollo.}
-%	\label{ANITApaper_showscheme}
-%\end{figure}
-%
-%Evidentemente, para una cascada inclinada la intersección del cono \v{C}erenkov con el suelo no será una circunferencia sino una elipse. Si para esta configuración representamos el máximo de la componente EW del campo eléctrico registrado en cada antena, obtenemos la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground}. El resultado no es especialmente esclarecedor, ya que esperaríamos dos máximos bien definidos a lo largo de los dos ejes. Si bien puede intuirse un comportamiento así en las antenas situadas a lo largo de la dirección NS, no ocurre así para la dirección EW.
-%
-%Lo que haremos será estudiar el campo eléctrico en el dominio de frecuencias, en lugar de representar el máximo en tiempo como hemos hecho. Presentamos en la Fig. \ref{freqfieldsgrounds} algunas componentes de Fourier obtenidas con la configuración de la Fig. \ref{ANITApaper_showscheme}. En este caso sí aparecen perfectamente definidos los máximos asociados al cono \v{C}erenkov, estando más separados en la dirección N-S como era de esperar, dada la inclinación de la cascada.
-%
-%\clearpage
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=.65\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_t_ground_v2}
-%	\caption{Máximo del campo eléctrico registrado en las antenas a nivel del suelo de la configuración \ref{ANITApaper_showscheme}. Se representan los valores en los dos ejes (NS, EW).}
-%	\label{downgoing_p_10EeV_70deg_Ey_t_ground}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\subfigure[Componente $y$ del campo a $300\,\mathrm{MHz}$]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground_v2}}
-%	\subfigure[Componentes a varias frecuencias a lo largo de la dirección EW]{\includegraphics[width=0.49\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_varfreq_groundEW_v2}}
-%	\caption{Componentes de Fourier del campo eléctrico (componente $y$) en función de la distancia al \textit{core} de la cascada.}
-%	\label{freqfieldsgrounds}
-%\end{figure} 
-%
-%
-%%Como ya mencionamos, ZHAireS permite obtener el espectro en frecuencia del campo eléctrico en cada antena. Antes de presentar los resultados que hemos obtenido de esta manera, haremos una breve digresión acerca de los valores de frecuencia que debemos considerar.
-%
-%%La estimación más rápida para las frecuencias asociada a la radiación electromagnética emitida puede hacerse a partir de los resultados \ref{EW_field} y \ref{NS_field}. Puesto que tiempo y frecuencia son variables conjugadas de Fourier, la duración de los pulsos nos da un orden de magnitud para $f$:
-%%\begin{equation}
-%%	\omega T = 2\pi f T \sim 1\implies f\sim \left(2\pi T\right)^{-1} \implies T \sim 1 \,\mathrm{ns} \leftrightarrow f \sim 100 \,\mathrm{MHz}\label{ec317}
-%%\end{equation} 
-%%Por lo tanto, podemos adelantar que las frecuencias de interés estarán en el rango de las radiofrecuencias ($\sim30\,\mathrm{MHz}-1\,\mathrm{GHz}$). Una razón para que la emisión relevante aparezca en esta banda de frecuencias puede verse con argumentos sencillos de coherencia, i.e., exigiendo que la longitud de onda sea comparable a las dimensiones de la cascada:
-%%	\begin{figure}[H]
-%%		\centering
-%%		\includegraphics[width=.6\linewidth]{figures/radio/coherence}
-%%		\caption{Geometría considerada. $D$ se corresponde con el desarrollo lateral de la cascada en el máximo.}
-%%		\label{coherence}
-%%	\end{figure}
-%%Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
-%
-% La explicación para los resultados de la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} puede extraerse de la gráfica de la derecha, en la que representamos las componentes de Fourier del campo a varias frecuencias. Como vemos la amplitud de las componentes decrece al aumentar la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, aunque quizá el efecto más relevante es que la \textit{resolución} de los máximos disminuye cuanto menor sea $f$, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
-%
-%La explicación a este hecho puede encontrarse en fenómenos de tipo difractivo. Podemos ejemplificarlo recordando, e.g., el patrón de Airy, en el que el primer cero del patrón de difracción ocurre cuando, respecto al máximo, observamos bajo un ángulo $\alpha$ tal que:
-%\begin{equation}
-%	\sin\alpha=1,22\frac{\lambda}{d}\label{ec318}
-%\end{equation}  
-%donde $d$ es el tamaño típico de la fuente. Evidentemente, a menor (mayor) frecuencia (longitud de onda), debemos irnos hasta un mayor $\alpha$ para encontrar el mínimo del patrón. Es decir, cuanto menor sea la frecuencia mayor será la anchura del pico, como observamos en \ref{freqfieldsgrounds}b
-%
-%Evidentemente, en la Fig. \ref{downgoing_p_10EeV_70deg_Ey_t_ground} estábamos viendo la superposición de todas las componentes de Fourier, y debido a que las dominantes (menores frecuencias) no están resueltas, no se observaba claramente la intersección del cono \v{C}erenkov con el suelo.
-%
-%Para acabar esta sección, recapitularemos los resultados y conclusiones más importantes:
-%\begin{enumerate}
-%	\item En cascadas atmosféricas tendremos dos contribuciones fundamentales a la emisión de radiación electromagnética: deflexión geomagnética y efecto Askaryan, cada una con efectos diferentes en la polarización del campo detectado.
-%	\item Las expresiones deducidas para el campo eléctrico radiado no asumen ningún mecanismo de emisión, y están integradas en el código ZHAireS empleado para realizar las simulaciones. Como hemos visto, el efecto de ambos mecanismos es evidente en los resultados.
-%	\item Las frecuencias de interés se sitúan en la banda de los $\mathrm{MHz}$ (radiofrecuencias). Además, la señal de campo eléctrico detectada tiene una dependencia importante con la frecuencia, tanto en amplitud (mayor a menores frecuencias) como en la resolución de los máximos en torno al ángulo \v{C}erenkov.
-%\end{enumerate}
-%\clearpage
-%
+%Tomando valores típicos para una cascada en la atmósfera ($D\sim 100\,\mathrm{m}$, $\theta\sim\theta_C\sim1^\circ$), se encuentra $f\sim30\,\mathrm{MHz}$. Por lo tanto, debemos quedarnos con que los rangos de frecuencia que nos interesan son de radiofrecuencias.
+
+Vemos además que la amplitud de las componentes decrece al aumentar la frecuencia\footnote{ Tomando el límite $\theta\rightarrow\theta_C$ de manera adecuada en \eqref{ec316} puede verse que $\vect{E}\left(\vect{r},\omega\right)\propto\omega$.}, como ya habíamos explicado en base al modelo de la Fig. \ref{coherence}, aunque el efecto más relevante es que la \textit{resolución} de los máximos disminuye cuanto menor sea $f$, llegando a estar prácticamente superpuestos para las frecuencias más bajas. 
+
+La explicación a este hecho puede encontrarse en fenómenos de tipo difractivo. Podemos ejemplificarlo recordando, e.g., el patrón de Airy, en el que el primer cero del patrón de difracción ocurre cuando, respecto al máximo, observamos bajo un ángulo $\alpha$ tal que:
+\begin{equation}
+	\sin\alpha=1,22\frac{\lambda}{d}\;,\label{ec318}
+\end{equation}  
+donde $d$ es el tamaño típico de la fuente. Evidentemente, a menor (mayor) frecuencia (longitud de onda), debemos irnos hasta un mayor $\alpha$ para encontrar el mínimo del patrón. Es decir, cuanto menor sea la frecuencia mayor será la anchura del pico, como observamos en \ref{freqfieldsgrounds}b
+
+Para acabar esta sección, recapitularemos los resultados y conclusiones más importantes:
+\begin{enumerate}
+	\item En cascadas atmosféricas existen dos contribuciones fundamentales a la emisión de radiación electromagnética: deflexión geomagnética y efecto Askaryan, cada una con efectos diferentes en la polarización del campo detectado.
+	\item Las expresiones deducidas para el campo eléctrico radiado no asumen ningún mecanismo de emisión, y están integradas en el código ZHAireS empleado para realizar las simulaciones. Como hemos visto, el efecto de ambos mecanismos es evidente en los resultados.
+	\item Las frecuencias de interés (donde la emisión es coherente) se sitúan en la banda $10-100\mathrm{MHz}$ fundamentalmente. Además, la señal de campo eléctrico detectada tiene una dependencia primero lineal con la frecuencia, para después disminuir a medida que la cascada deja de emitir de manera coherente. 
+	\item Existe una región elíptica localizada en el suelo en la que la emisión es máxima, que se corresponde con la región en que el máximo de la cascada se observa bajo el ángulo \v{C}erenkov. La definición de dicha región disminuye al aumentar la frecuencia.
+\end{enumerate}
+\clearpage
+
 	\section{Emisión en radio en cascadas hacia arriba}
 %	Partiendo de los desarrollos y resultados que hemos presentado en secciones anteriores, podemos pasar al objetivo final de este trabajo: la descripción y caracterización de la emisión en radiofrecuencias producida por cascadas atmosféricas \textit{hacia arriba}. Concretamente, nos interesará describir mediante simulaciones la radiación asociada a cascadas muy inclinadas iniciadas por la desintegración de un leptón $\tau$, originado a partir de un neutrino tau de origen astrofísico.  
 %	

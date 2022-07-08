@@ -1,0 +1,224 @@
+\documentclass{beamer}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{braket}
+\usepackage{ragged2e,color,textcomp,multicol,geometry,cancel,etoolbox}
+%\usepackage[latin1]{inputenc} PARA MACs
+\usepackage{bm} %letras griegas en negrita (uso: \bm{\alpha})
+
+\title[]{Caracterización de la emisión en radio en cascadas atmosféricas iniciadas por
+neutrinos tau de muy altas energías en detectores a gran altitud}
+
+\author[USC. Curso 2021/22]{\textit{Trabajo de Fin de Máster}\vspace{5mm}\\\textit{Autor:} Sergio Cabana Freire\vspace{5mm}\\\textit{Tutor:} Jaime Álvarez Muñiz}
+\date[Trabajo Fin de Máster]{}
+
+\usetheme{Madrid} %Selección de Tema.
+
+% Galería de temas: http://deic.uab.es/~iblanes/beamer_gallery/
+
+\apptocmd{\frame}{}{\justifying}{}
+\beamertemplatenavigationsymbolsempty
+\AtBeginSection[]
+{
+	\begin{frame}
+		\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+	\begin{frame}[plain, noframenumbering]
+		\titlepage
+		\vspace{-15mm}
+		\begin{columns}
+		\column{.5\textwidth}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=.45\linewidth]{figures/USC}
+		\end{figure}
+		\column{.5\textwidth}
+		\begin{center}
+		\textit{Facultad de Física, USC}
+		\vspace{5mm}\\
+		19 de julio de 2022
+		\end{center}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[plain, noframenumbering]{Contenidos}
+		\tableofcontents
+	\end{frame}
+	\section{Introducción}
+	\begin{frame}{Introducción}
+		\begin{itemize}
+			\item Descubrimientos recientes $\rightarrow$ Astronomía de Multi-mensajeros (EM, GW, neutrinos, rayos cósmicos, ...)
+			\item Nuevas posibilidades de observación y estudio de fenómenos astrofísicos
+		\end{itemize}
+		\pause\begin{block}{\centering Neutrinos $\rightarrow$ Baja probabilidad de interacción}
+
+		\begin{columns}
+			\column{.45\textwidth}
+			\centering
+			$\bullet$Información directa desde las fuentes
+			
+			$\bullet$Propagación rectilínea, escasa pérdida de energía
+			
+			$\bullet$Acceso a regiones EM opacas
+			\column{.45\textwidth}
+			\centering
+			$\bullet$Grandes dificultades para detección
+			
+			$\bullet$Escasos flujos a las mayores energías
+			
+			$\bullet$Detectores de gran exposición
+		\end{columns}
+		\end{block}
+	\end{frame}
+\begin{frame}{Introducción II}
+	\begin{equation*}
+		\text{Flujo de neutrinos}\left\{\begin{array}{l}\text{Fuentes concretas}\left\{\begin{array}{l}\text{Galácticas}\\\text{Extragalácticas}\end{array}\right.\\\text{Flujos difusos}\end{array}\right.
+	\end{equation*}
+\begin{itemize}
+	\item Origen en interacciones hadrónicas de rayos cósmicos (CR) en fuentes o propagación
+	\item Información sobre producción de CR's (interacciones en fuentes) y sobre su propagación (medio intergaláctico)
+\end{itemize}
+\pause\begin{block}{\centering Posibilidad para detección}
+	\centering \textit{Observación de radiación electromagnética en frecuencias $\mathrm{MHz-GHz}$ emitida en cascadas atmosféricas de partículas}
+	\end{block}
+\end{frame}
+\begin{frame}{Introducción III}
+	\begin{itemize}
+		\item Objetivo: Detección de neutrinos tau interaccionando en el interior de la Tierra y generando cascadas atmosféricas hacia arriba. 
+		\item Radiodetección $\rightarrow$ Monitorización de grandes áreas con detectores a gran altitud (BEACON, ANITA, PUEO). Posibilidad de emplear la Tierra como blanco de interacción.
+	\end{itemize}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\linewidth]{figures/shower_up_v2}
+	\end{figure}
+\end{frame}
+	\section{Cascadas atmosféricas}
+	\begin{frame}{Cascadas atmosféricas}
+		\begin{itemize}
+			\item Detección indirecta de partículas de alta energía $\rightarrow$ Interacciones producen un nº elevado de partículas propagándose en la atmósfera (cascada), detección con diversas técnicas.
+		\end{itemize}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=.7\linewidth]{figures/cascadas/shower_params_v2}
+			\end{figure}
+		\begin{itemize}
+			\item Atmósfera inhomogénea $\rightarrow$ Materia atravesada como magnitud clave. 
+		\end{itemize}
+	\end{frame}
+\begin{frame}{Cascadas atmosféricas II}
+	\begin{itemize}
+		\item $\text{Tres componentes}\left\{\begin{array}{l}\text{\color{blue}Electromagnética } ({\color{blue}\gamma, e^\pm})\\\text{\color{red}Hadrónica }\left\{\begin{array}{l}\color{red} p, n, \text{Núcleos}, ...\\\color{red}\pi^0\color{black}\rightarrow\color{blue}\gamma\gamma\\\color{red}\pi^\pm\color{black}\rightarrow\color{green}\mu\nu_\mu\end{array}\right. \\\text{\color{green}Muónica } \color{green}\mu\color{black}\rightarrow\color{blue}e\color{green}\nu_\mu\nu_e\end{array}\right.$
+		\color{black}
+		\item Desarrollo $\rightarrow$ Competición entre interacción ($\uparrow$ nº partículas) frente a desintegraciones (producen $\mu^\pm$, $\nu$ y partículas EM que \textit{extraen} energía de la cascada)
+	\end{itemize}
+\pause\begin{block}{\centering Simulaciones con AIRES (v. 2.8.4a)}
+	\centering Desarrollo de cascadas hacia arriba según ángulo cenital $\theta$, energía y naturaleza del primario. Comparación con cascadas hacia abajo.
+\end{block}
+\end{frame}
+
+\begin{frame}{Ángulo cenital $\theta$}
+	\begin{itemize}
+		\item Primario protón de $1\,\mathrm{EeV}$ interaccionando a $5\,\mathrm{km}$ de altura.
+	\end{itemize}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=.95\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_e_v2}
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\linewidth]{figures/cascadas/upgoing_p_1EeV_vardeg_5km_mu_v2}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Ángulo cenital $\theta$. Comentarios}
+	\begin{itemize}
+		\item El máximo nº de partículas decrece con el ángulo (cascadas más verticales) $\rightarrow$ Desarrollo en zonas menos densas.
+		\item La posición del máximo de $e^\pm$ (EM) sólo depende de la materia atravesada.
+		\item La posición del máximo de $\mu^\pm$ depende del ángulo $\rightarrow$ Efecto de desintegraciones en zonas menos densas.
+		\item Al aumentar $\theta$, se necesita recorrer una mayor distancia para alcanzar el máximo del desarrollo.
+	\end{itemize}	
+\end{frame}
+\begin{frame}{Energía del primario}
+		\begin{itemize}
+		\item Primario protón a $\theta = 95^\circ$ interaccionando a $5\,\mathrm{km}$ de altura.
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figures/cascadas/upgoing_p_varE_95deg_5km_v3}
+	\end{figure}
+\begin{itemize}
+	\item Nº máximo de partículas prácticamente lineal con la energía. En base a modelos \cite{matthews2005heitler}:
+	\begin{equation*}
+			N_{max}^{e}\propto E_0\;\;;\;\;N_{max}^{\mu}\propto E_0^\beta\;\text{con}\;\beta\sim0,85-0,9
+	\end{equation*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Naturaleza del primario (hadrón - leptón)}
+	\begin{itemize}
+		\item Primario de $1\,\mathrm{EeV}$ a $\theta = 95^\circ$ interaccionando a nivel del suelo.
+		\end{itemize}
+			\begin{figure}[H]
+			\centering
+			\includegraphics[width=1.\linewidth]{figures/cascadas/upgoing_pe_1EeV_95deg_0km_v2}
+		\end{figure}
+	\begin{itemize}
+		\item Nº máximo de $e^\pm$ muy similar. Nº máximo de $\mu^\pm,\pi^\pm$ menor para primario $e^-$ en un factor $\sim 4$
+		\item Cola de $e^\pm$ para primario $p$ $\rightarrow$ Origen en desintegración de $\mu^\pm$
+	\end{itemize}
+\end{frame}
+\begin{frame}{Comparación de cascadas hacia arriba - abajo}
+	\begin{itemize}
+		\item Protón de $1\,\mathrm{EeV}$ a $\theta=95^\circ \,(85^\circ)$ interaccionando en $h=0\,(100)\,\mathrm{km}$ 
+	\end{itemize}
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/cascadas/comp_ugdg_number}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{figures/cascadas/comp_ugdg_number_vsd}
+\end{figure}
+\end{frame}
+\begin{frame}{Cascadas hacia arriba - abajo. Comentarios}
+	\begin{itemize}
+		\item Producción de más partículas en cascadas hacia arriba (dominio de interacciones). Efecto claro en $\mu^\pm$ y $\pi^\pm$.
+		\item Menor energía promedio por partícula en cascadas hacia arriba. Las desintegraciones contribuirán antes.
+		\item En cascadas hacia arriba, máximo localizado en las proximidades del suelo. (Gran cantidad de materia atravesada en poco tiempo)
+		\item Desarrollo de partículas neutras similar a $\pi^\pm$: Piones neutros.
+	\end{itemize}
+\end{frame}
+\begin{frame}{Resultados clave}
+	\begin{enumerate}
+		\item Cascadas atmosféricas hacia arriba $\rightarrow$ elevado número de partículas cargadas en el máximo ($\sim 10^8-10^{10}$), que aumenta con la inclinación de la cascada. 
+	\item Número máximo de partículas producidas lineal con la energía del primario. 
+	\item La naturaleza del primario no provoca gran diferencia en el número máximo de partículas EM.
+	\item Las cascadas hacia arriba presentan máximos muy localizados en las proximidades del nivel del suelo y con una elevada producción de partículas comparadas con cascadas hacia abajo.
+	\end{enumerate}
+\end{frame}
+	\section{Emisión en radio: Principio físico y caracterización}
+	\begin{frame}{Origen de la emisión en radio}
+		
+	\end{frame}
+	\begin{frame}{Caracterización en simulaciones con ZHAireS}
+		
+	\end{frame}
+	\section{Emisión en radio en cascadas hacia arriba}
+	\begin{frame}{Emisión en radio en cascadas hacia arriba}
+		
+	\end{frame}
+	\section{Conclusiones}
+	\begin{frame}{Conclusiones}
+
+	\end{frame}
+	
+	\begin{frame}[plain, noframenumbering, allowframebreaks]{Referencias}
+		\fontsize{9pt}{1}
+		\nocite{*}
+		\bibliography{TFMbib}
+		\bibliographystyle{apalike}
+	\end{frame}
+\end{document}

@@ -5,7 +5,7 @@
 \usepackage{ragged2e,color,textcomp,multicol,geometry,cancel,etoolbox}
 %\usepackage[latin1]{inputenc} PARA MACs
 \usepackage{bm} %letras griegas en negrita (uso: \bm{\alpha})
-
+\newcommand{\vect}[1]{\boldsymbol{\mathbf{#1}}}
 \title[]{Caracterización de la emisión en radio en cascadas atmosféricas iniciadas por
 neutrinos tau de muy altas energías en detectores a gran altitud}
 
@@ -112,7 +112,7 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 	\begin{itemize}
 		\item $\text{Tres componentes}\left\{\begin{array}{l}\text{\color{blue}Electromagnética } ({\color{blue}\gamma, e^\pm})\\\text{\color{red}Hadrónica }\left\{\begin{array}{l}\color{red} p, n, \text{Núcleos}, ...\\\color{red}\pi^0\color{black}\rightarrow\color{blue}\gamma\gamma\\\color{red}\pi^\pm\color{black}\rightarrow\color{green}\mu\nu_\mu\end{array}\right. \\\text{\color{green}Muónica } \color{green}\mu\color{black}\rightarrow\color{blue}e\color{green}\nu_\mu\nu_e\end{array}\right.$
 		\color{black}
-		\item Desarrollo $\rightarrow$ Competición entre interacción ($\uparrow$ nº partículas) frente a desintegraciones (producen $\mu^\pm$, $\nu$ y partículas EM que \textit{extraen} energía de la cascada)
+		\item Desarrollo $\rightarrow$ Competición entre interacción ($\uparrow$ nº partículas) frente a desintegraciones (producen $\mu^\pm$, $\nu$ y partículas EM que \textit{depositan} energía en el medio)
 	\end{itemize}
 \pause\begin{block}{\centering Simulaciones con AIRES (v. 2.8.4a)}
 	\centering Desarrollo de cascadas hacia arriba según ángulo cenital $\theta$, energía y naturaleza del primario. Comparación con cascadas hacia abajo.
@@ -201,18 +201,171 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 \end{frame}
 	\section{Emisión en radio: Principio físico y caracterización}
 	\begin{frame}{Origen de la emisión en radio}
-		
+		\begin{itemize}
+			\item Cascada atmosférica$\rightarrow$ Cargas en movimiento ($v\sim c$) en un medio.
+		\end{itemize}
+	\pause\begin{block}{}
+		\centering\textit{Dos mecanismos de emisión (aparición de corrientes netas)}
+	\end{block}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{block}{\centering\textit{Deflexión geomagnética}}
+			\centering Campo magnético terrestre $\vect{B}$ (deflexión de cargas según signo)
+			$$\vect{J}\sim \hat{\vect{n}}_{\text{cascada}}\times\vect{B}$$
+		\end{block}
+		\column{.45\textwidth}
+		\begin{block}{\centering\textit{Efecto Askaryan}}
+			\centering Aparición de carga neta a lo largo del eje (aniquilación $e^+e^-$, extracción de $e^-$,...)
+			$$\vect{J}\sim-\hat{\vect{n}}_{\text{cascada}}$$
+		\end{block}
+	\end{columns}
+\begin{itemize}
+	\pause\item Puede comprobarse que: $\left\{\begin{array}{l}\vect{E}_{rad}\parallel\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\\\text{Emisión máxima en el ángulo \v{C}erenkov} \end{array}\right.$
+\end{itemize}
 	\end{frame}
+\begin{frame}{Origen de la emisión en radio}
+	\begin{columns}
+		\column{.5\textwidth}
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.6\linewidth]{figures/Geomag_deflexion_1}
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{figures/Geomag_deflexion_2}
+\end{figure}
+		\column{.5\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{figures/Askaryan_1}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.6\linewidth]{figures/Askaryan_2}
+\end{figure}
+\end{columns}
+\end{frame}
 	\begin{frame}{Caracterización en simulaciones con ZHAireS}
-		
+		\begin{itemize}
+			\item Simulación de la emisión en radio: ZHAireS (AIRES $+$ algoritmo ZHS) $\rightarrow$ Primeros principios del EM, cálculo numérico a nivel microscópico.
+			\item Componente EW de campo al N del core de una cascada vertical (Primario $p$ de $10^{17}\,\mathrm{eV}$):
+		\end{itemize}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.95\linewidth]{figures/radio/p_1e17_0deg_EW_N_v2}
+		\end{figure}
+	\begin{block}{}
+		\centering\textit{Pulso bipolar, $\sim 10 \,\mathrm{ns}$}
+	\end{block}
+\column{.45\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\linewidth]{figures/radio/p_1e17_0deg_EW_N_Fourier_v3}
+\end{figure}
+\begin{block}{}
+	\centering\textit{Emisión coherente hasta $\sim10-100\,\mathrm{MHz}$ (RF)}
+\end{block}
+	\end{columns}
 	\end{frame}
+\begin{frame}{Caracterización en simulaciones con ZHAireS II}
+	\begin{itemize}
+		\item Ejemplo de cascada inclinada: Primario $p$ de $10^{19}\,\mathrm{eV}$ a $\theta = 70^\circ$
+		\item Señal máxima observando el máximo del desarrollo bajo el ángulo \v{C}erenkov 
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.7\linewidth]{figures/radio/ANITApaper_showscheme}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Caracterización en simulaciones con ZHAireS III}
+	\begin{columns}
+		\column{.49\textwidth}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.95\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_300MHz_ground_v2}
+	\end{figure}
+		\column{.49\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\linewidth]{figures/radio/downgoing_p_10EeV_70deg_Ey_varfreq_groundEW_v2}
+\end{figure}
+	\end{columns}
+\pause\begin{block}{\centering\textit{Ideas clave}}
+	\begin{itemize}
+		\item Contribuciones geomagnética + Askaryan (diferente polarización)
+		\item Frecuencias de interés (coherencia): Banda $\sim 10-100\,\mathrm{MHz}$
+		\item Emisión máxima en \textit{elipse} \v{C}erenkov. Definición mayor a mayor frecuencia.
+	\end{itemize}
+\end{block}
+\end{frame}
 	\section{Emisión en radio en cascadas hacia arriba}
 	\begin{frame}{Emisión en radio en cascadas hacia arriba}
-		
+		\begin{itemize}
+			\item Desarrollo hacia arriba en la atmósfera y observación de la radiación por encima del máximo $\rightarrow$ Asimetría opuesta a cascadas hacia abajo
+		\end{itemize}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=.75\linewidth]{figures/Radio_UG/Comparativa_0_45deg}
+	\end{figure}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=.65\linewidth]{figures/Radio_UG/Polarizacion_UG}
+	\end{figure}
+
 	\end{frame}
+
+\begin{frame}{Casos simulados}
+	\begin{itemize}
+		\item $\text{Desintegraciones del leptón } \tau\left\{\begin{array}{l}\text{Hadrones}+\nu_\tau\; (\sim64\%)\\e\nu_e\nu_\tau\;(\sim 17\%)\\\mu \nu_\mu\nu_\tau\;(\sim 17\%)\end{array}\right.$
+		\item Poca influencia de la naturaleza del primario en el máximo $\rightarrow$ Primario $p$ interaccionando a $0\,\mathrm{km}$ de altura.
+		\item Evento realista $\rightarrow$ Cascada hacia arriba muy inclinada, $\theta = 95^\circ$
+		\pause\begin{columns}
+					\column{.32\textwidth}
+			\begin{block}{\centering Altura de obs.}
+				\centering $5\,\mathrm{km}$ (BEACON)\\$36\,\mathrm{km}$ (PUEO)\\$100\,\mathrm{km}$
+			\end{block}
+			\column{.32\textwidth}
+			\begin{block}{\centering Energía del primario}
+				\centering $10\,\mathrm{PeV}$\\$100\,\mathrm{PeV}$\\$1\,\mathrm{EeV}$
+			\end{block}
+
+	\column{.32\textwidth}
+	\begin{block}{\centering Frecuencia}
+		\centering $100\,\mathrm{MHz}$\\$300\,\mathrm{MHz}$\\$500\,\mathrm{MHz}$
+	\end{block}
+		\end{columns}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Resultados: Altura de observación}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figures/Radio_UG/85deg_varh_5_36_100}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Resultados: Energía del primario}
+		\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figures/Radio_UG/85deg_varE}
+
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Propiedades del primario a partir de la señal}
+	Comentar elipse cerenkov: direccion de llegada (interferometria), identificacion de primario (masa con Xmax, debajo horizonte)
+\end{frame}
+
+\begin{frame}{Propiedades del primario a partir de la señal II}
+	Comentar magnitud del campo, dependencia lineal con energía, caida 1/d de campos de radiacion
+\end{frame}
 	\section{Conclusiones}
 	\begin{frame}{Conclusiones}
-
+		Repasar conclusiones mas técnicas avnazadas (interferometrias, energy fluence, ....)
 	\end{frame}
 	
 	\begin{frame}[plain, noframenumbering, allowframebreaks]{Referencias}

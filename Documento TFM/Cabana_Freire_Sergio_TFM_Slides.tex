@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{braket}
 \usepackage{ragged2e,color,textcomp,multicol,geometry,cancel,etoolbox}
+\usepackage{multirow}
 %\usepackage[latin1]{inputenc} PARA MACs
 \usepackage{bm} %letras griegas en negrita (uso: \bm{\alpha})
 \newcommand{\vect}[1]{\boldsymbol{\mathbf{#1}}}
@@ -39,7 +40,7 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 		\begin{center}
 		\textit{Facultad de Física, USC}
 		\vspace{5mm}\\
-		19 de julio de 2022
+		20 de julio de 2022
 		\end{center}
 		\end{columns}
 	\end{frame}
@@ -74,11 +75,14 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 		\end{block}
 	\end{frame}
 \begin{frame}{Introducción II}
-	\begin{equation*}
+		\begin{equation*}
+		\text{Interacción hadrónica de rayos cósmicos}\left\{\begin{array}{l}\pi^0\rightarrow \gamma\gamma\\\pi^+\rightarrow \mu^+ \bm{\nu_\mu}\rightarrow e^+ \bm{\nu_e \overline{\nu}_\mu \nu_\mu}\\ \pi^-\rightarrow \mu^- \bm{\overline{\nu}_\mu}\rightarrow e^- \bm{\overline{\nu}_e \nu_\mu \overline{\nu}_\mu}\end{array}\right.\;.\label{ec11}
+	\end{equation*}
+	\pause\begin{equation*}
 		\text{Flujo de neutrinos}\left\{\begin{array}{l}\text{Fuentes concretas}\left\{\begin{array}{l}\text{Galácticas}\\\text{Extragalácticas}\end{array}\right.\\\text{Flujos difusos}\end{array}\right.
 	\end{equation*}
+
 \begin{itemize}
-	\item Origen en interacciones hadrónicas de rayos cósmicos (CR) en fuentes o propagación
 	\item Información sobre producción de CR's (interacciones en fuentes) y sobre su propagación (medio intergaláctico)
 \end{itemize}
 \pause\begin{block}{\centering Posibilidad para detección}
@@ -109,10 +113,13 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 		\end{itemize}
 	\end{frame}
 \begin{frame}{Cascadas atmosféricas II}
-	\begin{itemize}
-		\item $\text{Tres componentes}\left\{\begin{array}{l}\text{\color{blue}Electromagnética } ({\color{blue}\gamma, e^\pm})\\\text{\color{red}Hadrónica }\left\{\begin{array}{l}\color{red} p, n, \text{Núcleos}, ...\\\color{red}\pi^0\color{black}\rightarrow\color{blue}\gamma\gamma\\\color{red}\pi^\pm\color{black}\rightarrow\color{green}\mu\nu_\mu\end{array}\right. \\\text{\color{green}Muónica } \color{green}\mu\color{black}\rightarrow\color{blue}e\color{green}\nu_\mu\nu_e\end{array}\right.$
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.65\linewidth]{figures/EAS_sketch}
+		\end{figure}
 		\color{black}
-		\item Desarrollo $\rightarrow$ Competición entre interacción ($\uparrow$ nº partículas) frente a desintegraciones (producen $\mu^\pm$, $\nu$ y partículas EM que \textit{depositan} energía en el medio)
+		\begin{itemize}
+		\item Desarrollo $\rightarrow$ Competición entre interacción ($\uparrow$ nº partículas) frente a desintegraciones.
 	\end{itemize}
 \pause\begin{block}{\centering Simulaciones con AIRES (v. 2.8.4a)}
 	\centering Desarrollo de cascadas hacia arriba según ángulo cenital $\theta$, energía y naturaleza del primario. Comparación con cascadas hacia abajo.
@@ -139,7 +146,11 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 		\item La posición del máximo de $e^\pm$ (EM) sólo depende de la materia atravesada.
 		\item La posición del máximo de $\mu^\pm$ depende del ángulo $\rightarrow$ Efecto de desintegraciones en zonas menos densas.
 		\item Al aumentar $\theta$, se necesita recorrer una mayor distancia para alcanzar el máximo del desarrollo.
-	\end{itemize}	
+	\end{itemize}
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=.65\linewidth]{figures/cascadas/AIRES_planos_v2}
+\end{figure}
 \end{frame}
 \begin{frame}{Energía del primario}
 		\begin{itemize}
@@ -174,21 +185,14 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 	\begin{itemize}
 		\item Protón de $1\,\mathrm{EeV}$ a $\theta=95^\circ \,(85^\circ)$ interaccionando en $h=0\,(100)\,\mathrm{km}$ 
 	\end{itemize}
-		\begin{figure}[H]
-	\centering
-	\includegraphics[width=.9\linewidth]{figures/cascadas/comp_ugdg_number}
-\end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.9\linewidth]{figures/cascadas/comp_ugdg_number_vsd}
+	\includegraphics[width=.95\linewidth]{figures/comp_ugdg_slides}
 \end{figure}
-\end{frame}
-\begin{frame}{Cascadas hacia arriba - abajo. Comentarios}
 	\begin{itemize}
-		\item Producción de más partículas en cascadas hacia arriba (dominio de interacciones). Efecto claro en $\mu^\pm$ y $\pi^\pm$.
+		\item Producción de más partículas en cascadas hacia arriba (dominio de interacciones).
 		\item Menor energía promedio por partícula en cascadas hacia arriba. Las desintegraciones contribuirán antes.
 		\item En cascadas hacia arriba, máximo localizado en las proximidades del suelo. (Gran cantidad de materia atravesada en poco tiempo)
-		\item Desarrollo de partículas neutras similar a $\pi^\pm$: Piones neutros.
 	\end{itemize}
 \end{frame}
 \begin{frame}{Resultados clave}
@@ -201,51 +205,77 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 \end{frame}
 	\section{Emisión en radio: Principio físico y caracterización}
 	\begin{frame}{Origen de la emisión en radio}
-		\begin{itemize}
-			\item Cascada atmosférica$\rightarrow$ Cargas en movimiento ($v\sim c$) en un medio.
-		\end{itemize}
-	\pause\begin{block}{}
+	\begin{itemize}
+		\item Cascada atmosférica$\rightarrow$ Cargas en movimiento ($v\sim c$) en un medio.
+	\end{itemize}
+	\begin{block}{}
 		\centering\textit{Dos mecanismos de emisión (aparición de corrientes netas)}
 	\end{block}
 	\begin{columns}
 		\column{.45\textwidth}
 		\begin{block}{\centering\textit{Deflexión geomagnética}}
-			\centering Campo magnético terrestre $\vect{B}$ (deflexión de cargas según signo)
-			$$\vect{J}\sim \hat{\vect{n}}_{\text{cascada}}\times\vect{B}$$
+			\centering
+			$\vect{J}\sim \hat{\vect{n}}_{\text{cascada}}\times\vect{B}$
 		\end{block}
 		\column{.45\textwidth}
 		\begin{block}{\centering\textit{Efecto Askaryan}}
-			\centering Aparición de carga neta a lo largo del eje (aniquilación $e^+e^-$, extracción de $e^-$,...)
-			$$\vect{J}\sim-\hat{\vect{n}}_{\text{cascada}}$$
+			\centering
+			$\vect{J}\sim-\hat{\vect{n}}_{\text{cascada}}$
 		\end{block}
 	\end{columns}
-\begin{itemize}
-	\pause\item Puede comprobarse que: $\left\{\begin{array}{l}\vect{E}_{rad}\parallel\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)\\\text{Emisión máxima en el ángulo \v{C}erenkov} \end{array}\right.$
-\end{itemize}
-	\end{frame}
-\begin{frame}{Origen de la emisión en radio}
-	\begin{columns}
-		\column{.5\textwidth}
+	\vspace{10mm}
+	\begin{itemize}
+		\item Puede comprobarse que:
+		\begin{itemize} \item $\vect{E}_{rad}\parallel\hat{\vect{R}}\times\left(\hat{\vect{R}}\times\vect{J}\right)$ donde $\vect{R}\equiv$ Posición fuente-observador
+			\item Emisión máxima en el ángulo \v{C}erenkov
+		\end{itemize}
+	\end{itemize}
+\end{frame}
 
+\begin{frame}{Origen de la emisión en radio II}
+
+\begin{block}{\centering\textit{Deflexión geomagnética}}
+	\centering Campo magnético terrestre $\vect{B}$ (deflexión de cargas según signo)
+	$$\vect{J}\sim \hat{\vect{n}}_{\text{cascada}}\times\vect{B}j$$  
+\end{block}
+
+\begin{columns}
+	\column{.5\textwidth}
+	
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=.6\linewidth]{figures/Geomag_deflexion_1}
 	\end{figure}
+	\column{.5\textwidth}
 	\begin{figure}[H]
-	\centering
-	\includegraphics[width=.6\linewidth]{figures/Geomag_deflexion_2}
-\end{figure}
-		\column{.5\textwidth}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.6\linewidth]{figures/Askaryan_1}
-\end{figure}
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.6\linewidth]{figures/Askaryan_2}
-\end{figure}
+		\centering
+		\includegraphics[width=.6\linewidth]{figures/Geomag_deflexion_2}
+	\end{figure}
 \end{columns}
 \end{frame}
+\setcounter{page}{14}
+\begin{frame}{Origen de la emisión en radio III}
+	
+	\begin{block}{\centering\textit{Efecto Askaryan}}
+			\centering Aparición de carga neta a lo largo del eje (e.g. aniquilación $e^+e^-$)
+			$$\vect{J}\sim-\hat{\vect{n}}_{\text{cascada}}$$
+		\end{block}
+	
+	\begin{columns}
+		\column{.5\textwidth}
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.6\linewidth]{figures/Askaryan_1}
+		\end{figure}
+		\column{.5\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.6\linewidth]{figures/Askaryan_2}
+		\end{figure}
+	\end{columns}
+\end{frame}
+
 	\begin{frame}{Caracterización en simulaciones con ZHAireS}
 		\begin{itemize}
 			\item Simulación de la emisión en radio: ZHAireS (AIRES $+$ algoritmo ZHS) $\rightarrow$ Primeros principios del EM, cálculo numérico a nivel microscópico.
@@ -303,20 +333,7 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 \end{block}
 \end{frame}
 	\section{Emisión en radio en cascadas hacia arriba}
-	\begin{frame}{Emisión en radio en cascadas hacia arriba}
-		\begin{itemize}
-			\item Desarrollo hacia arriba en la atmósfera y observación de la radiación por encima del máximo $\rightarrow$ Asimetría opuesta a cascadas hacia abajo
-		\end{itemize}
-		\begin{figure}[H]
-		\centering
-		\includegraphics[width=.75\linewidth]{figures/Radio_UG/Comparativa_0_45deg}
-	\end{figure}
-	\begin{figure}[H]
-	\centering
-	\includegraphics[width=.65\linewidth]{figures/Radio_UG/Polarizacion_UG}
-	\end{figure}
 
-	\end{frame}
 
 \begin{frame}{Casos simulados}
 	\begin{itemize}
@@ -355,7 +372,20 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 
 	\end{figure}
 \end{frame}
-
+	\begin{frame}{Emisión en radio en cascadas hacia arriba}
+	\begin{itemize}
+		\item Desarrollo hacia arriba en la atmósfera y observación de la radiación por encima del máximo $\rightarrow$ Asimetría opuesta a cascadas hacia abajo
+	\end{itemize}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.75\linewidth]{figures/Radio_UG/Comparativa_0_45deg}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.65\linewidth]{figures/Radio_UG/Polarizacion_UG}
+	\end{figure}
+	
+\end{frame}
 \begin{frame}{Propiedades del primario a partir de la señal}
 	\begin{itemize}
 		\item Elipse \v{C}erenkov $\leftrightarrow$ Naturaleza del primario y dirección de llegada.
@@ -404,4 +434,132 @@ neutrinos tau de muy altas energías en detectores a gran altitud}
 		\bibliography{TFMbib}
 		\bibliographystyle{apalike}
 	\end{frame}
+
+\begin{frame}[noframenumbering]{Aux.: Desintegración vs. interacción}
+	\begin{itemize}
+		\item Distancia de interacción, $\lambda_I\,\left[\mathrm{g/cm^2}\right]$. En uds. de distancia, $d_I\sim\lambda_I/\rho(h)$.
+		\item  Distancia de desintegración, $d_{dec}\,\left[\mathrm{m}\right]$: $$d_{dec}=\Gamma\beta c\tau\sim\frac{E}{mc^2}c\tau\left\{\begin{array}{l}\pi^\pm\rightarrow d_{dec}=\Gamma\left(7,8 \,\mathrm{m}\right)\\
+			\pi^0\rightarrow d_{dec}=\Gamma\left(2,5\times10^{-8}\,\mathrm{m}\right)\end{array}\right.\;.$$
+		\item Energía a la que comienzan a dominar desintegraciones: $$d_{dec}\sim\lambda_I/\rho\implies E_{dec}\sim \frac{\lambda_I mc^2}{\rho c \tau} \;.$$
+	\end{itemize}
+\end{frame}
+\begin{frame}[noframenumbering]{Interacciones en AIRES v. 2.8.4a}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{lll}
+			\hline
+			\multicolumn{2}{l}{Partícula}                                                                   & Interacciones                         \\ \hline
+			\multicolumn{2}{l}{\multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}$\gamma$\\ $e^\pm$\end{tabular}}} & Efectos Compton y fotoeléctrico       \\
+			\multicolumn{2}{l}{}                                                                            & Bremsstrahlung y producción de pares  \\
+			\multicolumn{2}{l}{}                                                                            & Aniquilación $e^+e^-$                 \\
+			\multicolumn{2}{l}{}                                                                            & Emisión de $e^-$ knock-on (scattering M\o{}ller, Bhabha)            \\
+			\multicolumn{2}{l}{}                                                                            & Reacciones fotonucleares, ...         \\ \hline
+			\multicolumn{2}{l}{\multirow{3}{*}{$\mu^\pm$}}                                                  & Bremsstrahlung y producción de pares  \\
+			\multicolumn{2}{l}{}                                                                            & Emisión de $e^-$ knock-on             \\
+			\multicolumn{2}{l}{}                                                                            & Desintegración                        \\ \hline
+			\multicolumn{2}{l}{$\nu$'s}                                                                   & Aparición en desintegraciones         \\ \hline
+			\multicolumn{2}{l}{$p,\bar p, n, \bar n, \Lambda$}                                              & Colisiones hadrónicas y núcleo-núcleo \\
+			\multicolumn{2}{l}{$\pi^0, \pi^\pm, K^0_{L,S}, K^\pm$}                                          & Emisión de $e^-$ knock-on             \\
+			\multicolumn{2}{l}{Núcleos $Z\leq 36$}                                                          & Desintegraciones                      \\ \hline
+		\end{tabular}
+	\end{table}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Materia atravesada vs. $\theta$}
+	$$X_{s}^\text{up}(h,\theta)=\int_{0}^h\rho(h')dl=\int_0^{h}\rho(h')\frac{dh'}{\sqrt{1-\frac{R_T^2\sin^2{\theta}}{\left(R_T+h'\right)^2}}}\;.$$
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/cascadas/ProfAtravesadavsang}
+	\end{figure}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Altura de interacción en cascadas hacia arriba}
+		\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_e_v2}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.95\linewidth]{figures/cascadas/upgoing_p_1EeV_95deg_varh_mu_v2}
+\end{figure}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Desintegración de muones en cascadas hacia arriba}
+	\begin{columns}
+		\column{.45\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{figures/cascadas/frac_emu_Primpe}
+		\end{figure}
+		\column{.45\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=1\linewidth]{figures/cascadas/evol_Emu_Primpe}
+		\end{figure}
+	\end{columns}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Energía por partícula en cascadas hacia arriba-abajo}
+			\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figures/Egyperpartugdg_slides}
+	\end{figure}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Fórmulas ZHS}
+	$$	\vect{J}_\perp\left(\vect{r'}, t'\right)=q\vect{v}_\perp \,\delta^{(3)}\left(\vect{r}'-\vect{r}_0-\vect{v}t'\right)\left[\Theta\left(t'-t_1\right)-\Theta\left(t'-t_2\right)\right]\;,$$
+	
+	\footnotesize
+	$$	\vect{A}\left(\vect{r}, t\right)\approx\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\Theta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\;,$$
+	
+	$$\vect{E}\left(\vect{r}, t\right)\approx-\frac{\mu q}{4\pi R}\vect{v}_\perp\frac{\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_1\right]-\delta\left[t-nR/c-\left(1-n\beta\cos{\theta}\right)t_2\right]}{1-n\beta\cos{\theta}}\;,$$
+	\normalsize
+	
+	$$\vect{E}\left(\vect{r}, \omega\right)\approx-\frac{\mu q}{2\pi R}\vect{v}_\perp \exp\left(i\omega\frac{nR}{c}\right)\frac{e^{i\omega(1-n\beta\cos{\theta})t_1}-e^{i\omega(1-n\beta\cos{\theta})t_2}}{1-n\beta\cos{\theta}}\;.$$
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Señal de radio en cascada vertical hacia abajo ($E_y$)}
+	\begin{columns}
+		\column{.49\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_EW_N_v2}
+		\end{figure}
+			\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_EW_E_v2}
+	\end{figure}
+		\column{.49\textwidth}
+			\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_EW_S_v2}
+	\end{figure}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_EW_W_v2}
+	\end{figure}
+	\end{columns}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Señal de radio en cascada vertical hacia abajo ($E_x$)}
+		\begin{columns}
+		\column{.49\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_NS_N_v2}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_NS_E_v2}
+		\end{figure}
+		\column{.49\textwidth}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_NS_S_v2}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{figures/radio/p_1e17_0deg_NS_W_v2}
+		\end{figure}
+	\end{columns}
+\end{frame}
+\begin{frame}[noframenumbering]{Aux.: Modelo geométrico para la coherencia de la señal}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=1\linewidth]{figures/radio/coherence_v2}
+	\end{figure}
+\end{frame}
 \end{document}
